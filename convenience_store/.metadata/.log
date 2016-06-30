@@ -1,0 +1,93 @@
+!SESSION 2016-06-30 22:47:07.007 -----------------------------------------------
+eclipse.buildId=4.5.0.I20150603-2000
+java.version=1.8.0_60
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/byunhyeongwon/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/byunhyeongwon/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2016-06-30 22:52:43.119
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.equinox.p2.director 2 10054 2016-06-30 22:52:59.079
+!MESSAGE Cannot complete the install because of a conflicting dependency.
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 0 2016-06-30 22:52:59.079
+!MESSAGE Software being installed: artificial_root 1.0.0.v1467294776638
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-06-30 22:52:59.079
+!MESSAGE Only one of the following can be installed at once: 
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-06-30 22:52:59.079
+!MESSAGE Eclipse IDE for Java EE Developers 4.5.0.20150621-1200 (epp.package.jee 4.5.0.20150621-1200)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-06-30 22:52:59.079
+!MESSAGE Eclipse IDE for Java EE Developers 4.6.0.20160613-1800 (epp.package.jee 4.6.0.20160613-1800)
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-06-30 22:52:59.079
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-06-30 22:52:59.079
+!MESSAGE From: artificial_root 1.0.0.v1467294776638
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-06-30 22:52:59.079
+!MESSAGE To: epp.package.jee [4.5.0,4.6.0)
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-06-30 22:52:59.079
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-06-30 22:52:59.079
+!MESSAGE From: artificial_root 1.0.0.v1467294776638
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-06-30 22:52:59.079
+!MESSAGE To: epp.package.jee [4.6.0,4.7.0)
+
+!ENTRY org.springsource.ide.eclipse.dashboard.ui 4 2 2016-06-30 22:53:11.893
+!MESSAGE Problems occurred when invoking code from plug-in: "org.springsource.ide.eclipse.dashboard.ui".
+!STACK 0
+java.lang.IllegalStateException: Job manager has been shut down.
+	at org.eclipse.core.internal.jobs.JobManager.schedule(JobManager.java:1240)
+	at org.eclipse.core.internal.jobs.InternalJob.schedule(InternalJob.java:382)
+	at org.eclipse.core.runtime.jobs.Job.schedule(Job.java:602)
+	at org.springsource.ide.eclipse.dashboard.internal.ui.feeds.FeedMonitor$5.done(FeedMonitor.java:153)
+	at org.eclipse.core.internal.jobs.JobListeners$3.notify(JobListeners.java:42)
+	at org.eclipse.core.internal.jobs.JobListeners.doNotify(JobListeners.java:113)
+	at org.eclipse.core.internal.jobs.JobListeners.done(JobListeners.java:151)
+	at org.eclipse.core.internal.jobs.JobManager.endJob(JobManager.java:694)
+	at org.eclipse.core.internal.jobs.WorkerPool.endJob(WorkerPool.java:105)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:72)
+
+!ENTRY org.eclipse.core.jobs 4 2 2016-06-30 22:53:11.894
+!MESSAGE An internal error occurred during: "Downloading RSS feeds".
+!STACK 0
+java.lang.NullPointerException
+	at org.springsource.ide.eclipse.dashboard.internal.ui.util.IdeUiUtils.getVersion(IdeUiUtils.java:260)
+	at org.springsource.ide.eclipse.dashboard.internal.ui.editors.AggregateFeedJob.updateNotifications(AggregateFeedJob.java:231)
+	at org.springsource.ide.eclipse.dashboard.internal.ui.editors.AggregateFeedJob.run(AggregateFeedJob.java:179)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SESSION 2016-06-30 22:53:17.716 -----------------------------------------------
+eclipse.buildId=4.5.0.I20150603-2000
+java.version=1.8.0_60
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/byunhyeongwon/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/byunhyeongwon/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2016-06-30 22:53:44.650
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.equinox.p2.director 2 10054 2016-06-30 22:53:58.251
+!MESSAGE Cannot complete the install because of a conflicting dependency.
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 0 2016-06-30 22:53:58.251
+!MESSAGE Software being installed: artificial_root 1.0.0.v1467294835833
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-06-30 22:53:58.251
+!MESSAGE Only one of the following can be installed at once: 
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-06-30 22:53:58.251
+!MESSAGE Eclipse IDE for Java EE Developers 4.5.0.20150621-1200 (epp.package.jee 4.5.0.20150621-1200)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-06-30 22:53:58.251
+!MESSAGE Eclipse IDE for Java EE Developers 4.6.0.20160613-1800 (epp.package.jee 4.6.0.20160613-1800)
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-06-30 22:53:58.251
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-06-30 22:53:58.251
+!MESSAGE From: artificial_root 1.0.0.v1467294835833
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-06-30 22:53:58.251
+!MESSAGE To: epp.package.jee [4.5.0,4.6.0)
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-06-30 22:53:58.251
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-06-30 22:53:58.251
+!MESSAGE From: artificial_root 1.0.0.v1467294835833
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-06-30 22:53:58.251
+!MESSAGE To: epp.package.jee [4.6.0,4.7.0)
+
+!ENTRY org.eclipse.core.jobs 2 2 2016-06-30 22:54:25.604
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.springsource.ide.eclipse.commons.gettingstarted.dashboard.WelcomeDashboard$2

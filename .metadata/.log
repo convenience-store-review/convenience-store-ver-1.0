@@ -1,0 +1,108 @@
+!SESSION 2016-06-30 22:54:59.218 -----------------------------------------------
+eclipse.buildId=4.5.0.I20150603-2000
+java.version=1.8.0_60
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/byunhyeongwon/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/byunhyeongwon/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2016-06-30 22:55:17.156
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.equinox.p2.director 2 10054 2016-06-30 22:55:31.649
+!MESSAGE Cannot complete the install because of a conflicting dependency.
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 0 2016-06-30 22:55:31.649
+!MESSAGE Software being installed: artificial_root 1.0.0.v1467294929500
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-06-30 22:55:31.649
+!MESSAGE Only one of the following can be installed at once: 
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-06-30 22:55:31.649
+!MESSAGE Eclipse IDE for Java EE Developers 4.5.0.20150621-1200 (epp.package.jee 4.5.0.20150621-1200)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-06-30 22:55:31.649
+!MESSAGE Eclipse IDE for Java EE Developers 4.6.0.20160613-1800 (epp.package.jee 4.6.0.20160613-1800)
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-06-30 22:55:31.649
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-06-30 22:55:31.649
+!MESSAGE From: artificial_root 1.0.0.v1467294929500
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-06-30 22:55:31.649
+!MESSAGE To: epp.package.jee [4.5.0,4.6.0)
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-06-30 22:55:31.649
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-06-30 22:55:31.649
+!MESSAGE From: artificial_root 1.0.0.v1467294929500
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-06-30 22:55:31.649
+!MESSAGE To: epp.package.jee [4.6.0,4.7.0)
+
+!ENTRY org.eclipse.equinox.p2.transport.ecf 2 0 2016-06-30 22:56:48.563
+!MESSAGE Connection to http://dist.springsource.com/release/STS/doc/updates.xml failed on Operation timed out. Retry attempt 0 started
+!STACK 0
+java.net.ConnectException: Operation timed out
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.eclipse.ecf.internal.provider.filetransfer.httpclient4.ECFHttpClientProtocolSocketFactory.connectSocket(ECFHttpClientProtocolSocketFactory.java:86)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection(DefaultClientConnectionOperator.java:177)
+	at org.apache.http.impl.conn.AbstractPoolEntry.open(AbstractPoolEntry.java:144)
+	at org.apache.http.impl.conn.AbstractPooledConnAdapter.open(AbstractPooledConnAdapter.java:131)
+	at org.apache.http.impl.client.DefaultRequestDirector.tryConnect(DefaultRequestDirector.java:611)
+	at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:446)
+	at org.apache.http.impl.client.AbstractHttpClient.doExecute(AbstractHttpClient.java:863)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:82)
+	at org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientRetrieveFileTransfer.performConnect(HttpClientRetrieveFileTransfer.java:1077)
+	at org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientRetrieveFileTransfer.access$0(HttpClientRetrieveFileTransfer.java:1068)
+	at org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientRetrieveFileTransfer$1.performFileTransfer(HttpClientRetrieveFileTransfer.java:1064)
+	at org.eclipse.ecf.filetransfer.FileTransferJob.run(FileTransferJob.java:73)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SESSION 2016-06-30 23:06:41.817 -----------------------------------------------
+eclipse.buildId=4.5.0.I20150603-2000
+java.version=1.8.0_60
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/byunhyeongwon/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/byunhyeongwon/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2016-06-30 23:07:02.491
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.equinox.p2.director 2 10054 2016-06-30 23:07:16.907
+!MESSAGE Cannot complete the install because of a conflicting dependency.
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 0 2016-06-30 23:07:16.907
+!MESSAGE Software being installed: artificial_root 1.0.0.v1467295634259
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-06-30 23:07:16.907
+!MESSAGE Only one of the following can be installed at once: 
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-06-30 23:07:16.907
+!MESSAGE Eclipse IDE for Java EE Developers 4.5.0.20150621-1200 (epp.package.jee 4.5.0.20150621-1200)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-06-30 23:07:16.907
+!MESSAGE Eclipse IDE for Java EE Developers 4.6.0.20160613-1800 (epp.package.jee 4.6.0.20160613-1800)
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-06-30 23:07:16.907
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-06-30 23:07:16.907
+!MESSAGE From: artificial_root 1.0.0.v1467295634259
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-06-30 23:07:16.907
+!MESSAGE To: epp.package.jee [4.5.0,4.6.0)
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-06-30 23:07:16.907
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-06-30 23:07:16.907
+!MESSAGE From: artificial_root 1.0.0.v1467295634259
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-06-30 23:07:16.907
+!MESSAGE To: epp.package.jee [4.6.0,4.7.0)
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-06-30 23:09:48.713
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-06-30 23:09:48.735
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-06-30 23:10:00.405
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-06-30 23:10:00.426
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-06-30 23:11:02.127
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-06-30 23:11:02.130
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
