@@ -1,4 +1,6 @@
 *.class
+*.log
+*.xmi
 
 # eclipse
 .metadata/
