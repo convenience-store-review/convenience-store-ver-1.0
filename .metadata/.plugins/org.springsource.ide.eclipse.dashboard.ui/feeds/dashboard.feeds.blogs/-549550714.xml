@@ -5,7 +5,64 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2016-06-30T12:41:07Z</updated>
+  <updated>2016-07-01T15:19:00Z</updated>
+  <entry>
+    <title>Spring Cloud Brixton.SR2 is available</title>
+    <link rel="alternate" href="https://spring.io/blog/2016/07/01/spring-cloud-brixton-sr2-is-available" />
+    <category term="releases" label="Releases" />
+    <author>
+      <name>Spencer Gibb</name>
+    </author>
+    <id>tag:spring.io,2016-07-01:2541</id>
+    <updated>2016-07-01T15:19:00Z</updated>
+    <content type="html">&lt;p&gt;On behalf of the team, I am pleased to announce that Service Release 2 of the &lt;a href="http://cloud.spring.io"&gt;Spring Cloud Brixton&lt;/a&gt; Release Train is available today. The release can be found in our &lt;a href="http://repo.spring.io/release"&gt;Spring Release repository&lt;/a&gt; and &lt;a href="http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22spring-cloud-dependencies%22"&gt;Maven Central&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This is primarily a bug fix release.&lt;/p&gt;&lt;h4&gt;&lt;a href="#the-following-modules-were-updated-as-part-of-brixton-sr2" class="anchor" name="the-following-modules-were-updated-as-part-of-brixton-sr2"&gt;&lt;/a&gt;The following modules were updated as part of Brixton.SR2:&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;Spring Cloud Config &lt;a href="https://github.com/spring-cloud/spring-cloud-config/issues?q=milestone:1.1.2"&gt;1.1.2.RELEASE&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Spring Cloud Consul &lt;a href="https://github.com/spring-cloud/spring-cloud-consul/issues?q=milestone:1.0.2"&gt;1.0.2.RELEASE&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Spring Cloud Netflix &lt;a href="https://github.com/spring-cloud/spring-cloud-netflix/issues?q=milestone:1.1.3"&gt;1.1.3.RELEASE&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Spring Cloud Sleuth &lt;a href="https://github.com/spring-cloud/spring-cloud-sleuth/issues?q=milestone:1.0.2"&gt;1.0.2.RELEASE&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Spring Cloud Zookeeper &lt;a href="https://github.com/spring-cloud/spring-cloud-zookeeper/issues?q=milestone:1.0.2"&gt;1.0.2.RELEASE&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And, as always, we welcome feedback: either on &lt;a href="https://github.com/spring-cloud"&gt;GitHub&lt;/a&gt;, on &lt;a href="https://gitter.im/spring-cloud/spring-cloud"&gt;gitter&lt;/a&gt;, on &lt;a href="http://stackoverflow.com/questions/tagged/spring-cloud"&gt;Stack Overflow&lt;/a&gt;, or on &lt;a href="https://twitter.com/SpringCloudOSS"&gt;Twitter&lt;/a&gt;.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;The Spring Cloud team will be talking about Spring Cloud at &lt;a href="http://springoneplatform.io"&gt;Spring One Platform&lt;/a&gt;, which will be taking place in Las Vegas between August 1-4 this year. There are many other great talks so &lt;a href="https://2016.event.springoneplatform.io/schedule/sessions"&gt;check the agenda&lt;/a&gt; and &lt;a href="https://2016.event.springoneplatform.io/register"&gt;get your ticket&lt;/a&gt; if you haven’t done so already. &lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Gradle Dependency Management Plugin 0.6.0 released</title>
+    <link rel="alternate" href="https://spring.io/blog/2016/06/30/gradle-dependency-management-plugin-0-6-0-released" />
+    <category term="releases" label="Releases" />
+    <author>
+      <name>Andy Wilkinson</name>
+    </author>
+    <id>tag:spring.io,2016-06-30:2539</id>
+    <updated>2016-06-30T17:15:08Z</updated>
+    <content type="html">&lt;p&gt;I am pleased to announce that &lt;a href="https://github.com/spring-gradle-plugins/dependency-management-plugin"&gt;Gradle dependency management plugin&lt;/a&gt; 0.6.0.RELEASE is now available from Maven Central, JCenter, and the &lt;a href="https://plugins.gradle.org/plugin/io.spring.dependency-management"&gt;Gradle Plugin Portal&lt;/a&gt;. &lt;/p&gt;&lt;h3&gt;&lt;a href="#gradle-3-0-compatibility" class="anchor" name="gradle-3-0-compatibility"&gt;&lt;/a&gt;Gradle 3.0 compatibility&lt;/h3&gt;
+&lt;p&gt;This new release is compatible with Gradle 3.0. At the time of writing it&amp;rsquo;s tested against 3.0 M2 and the 0.6.x line will continue to track Gradle 3.0 development to maintain compatibility if at all possible.&lt;/p&gt;&lt;h3&gt;&lt;a href="#finer-control-over-bom-property-overrides" class="anchor" name="finer-control-over-bom-property-overrides"&gt;&lt;/a&gt;Finer control over bom property overrides&lt;/h3&gt;
+&lt;p&gt;Previously, an imported bom&amp;rsquo;s properties could be overridden using project properties. This new release adds support for overriding a property as part of the import. &lt;code&gt;bomProperty&lt;/code&gt; can be used to override properties one at a time (and can be used multiple times to override multiple properties:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="prettyprint groovy"&gt;dependencyManagement {&#xD;
+    imports {&#xD;
+        mavenBom(&amp;#39;com.example:example-bom:1.2.0&amp;#39;) {&#xD;
+            bomProperty &amp;#39;foo.version&amp;#39;, &amp;#39;1.1.1&amp;#39;&#xD;
+            bomProperty &amp;#39;bar.version&amp;#39;, &amp;#39;2.0.3&amp;#39;&#xD;
+        }&#xD;
+    }&#xD;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Alternatively, &lt;code&gt;bomProperties&lt;/code&gt; can be used along with a map of property overrides:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="prettyprint groovy"&gt;dependencyManagement {&#xD;
+    imports {&#xD;
+        mavenBom(&amp;#39;io.spring.platform:platform-bom:2.0.5.RELEASE&amp;#39;) {&#xD;
+            bomProperties([&#xD;
+                &amp;#39;foo.version&amp;#39;: &amp;#39;1.1.1&amp;#39;,&#xD;
+                &amp;#39;bar.version&amp;#39;: &amp;#39;2.0.3&amp;#39;&#xD;
+            ])&#xD;
+        }&#xD;
+    }&#xD;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2&gt;&lt;a href="#learning-more" class="anchor" name="learning-more"&gt;&lt;/a&gt;Learning more&lt;/h2&gt;
+&lt;p&gt;For more information about how the plugin can improve your Gradle builds, please read the &lt;a href="https://spring.io/blog/2015/02/23/better-dependency-management-for-gradle"&gt;introductory blog post&lt;/a&gt;.&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Spring Session 1.2.1 Released</title>
     <link rel="alternate" href="https://spring.io/blog/2016/06/30/spring-session-1-2-1-released" />
@@ -1148,84 +1205,5 @@ A good rule of thumb is "&lt;strong&gt;never call an extractor&lt;/strong&gt;". 
     <content type="html">&lt;p&gt;Shortly after the &lt;a href="https://spring.io/blog/2016/06/03/spring-cloud-stream-1-0-1-release-is-available"&gt;1.0.1.RELEASE announcement&lt;/a&gt; last week we’ve identified a critical and very specific &lt;a href="https://github.com/spring-cloud/spring-cloud-stream/issues/564"&gt;issue&lt;/a&gt; concerning multi-binder configurations in cloud environments. As a result, we have decided to follow up with a 1.0.2.RELEASE to handle that and ensure that the fix is available in the upcoming Brixton.SR1 release. The artifacts can be found in &lt;a href="https://repo.spring.io"&gt;Spring Repository&lt;/a&gt; as well as &lt;a href="http://search.maven.org/#search%7Cga%7C1%7Cspring-cloud-stream"&gt;Maven Central&lt;/a&gt;.&lt;/p&gt;
 &lt;hr/&gt;
 &lt;p&gt;I will be talking about Spring Cloud Stream at &lt;a href="http://springoneplatform.io"&gt;Spring One Platform&lt;/a&gt;, which will be taking place in Las Vegas between August 1-4 this year. There are many other great talks so &lt;a href="https://2016.event.springoneplatform.io/schedule/sessions"&gt;check the agenda&lt;/a&gt; and &lt;a href="https://2016.event.springoneplatform.io/register"&gt;get your ticket&lt;/a&gt; if you haven’t done so already. &lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>This Week in Spring - June 7th, 2016</title>
-    <link rel="alternate" href="https://spring.io/blog/2016/06/07/this-week-in-spring-june-7th-2016" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Josh Long</name>
-    </author>
-    <id>tag:spring.io,2016-06-07:2521</id>
-    <updated>2016-06-07T23:35:36Z</updated>
-    <content type="html">&lt;p&gt;Welcome to another installment of &lt;em&gt;This Week in Spring&lt;/em&gt;! It&amp;rsquo;s &lt;em&gt;already&lt;/em&gt; June! Where. Does. The. Time. GO?? This week I&amp;rsquo;m in Chicago, IL, for the Chicago Coder Conference, Boston and New Hampshire for customer visits, London, England for Devoxx UK and Talin, Estonia for Geekout EE. If you&amp;rsquo;re around be &lt;a href="http://twitter.com/starbuxman"&gt;sure to say hi&lt;/a&gt;! Now then, we&amp;rsquo;ve got a lot to cover this week so let&amp;rsquo;s get to it!&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Spring Cloud Services ninja Scott Frederick just announced the Spring Cloud Cloud Foundry Service Broker, which is a &lt;a href="https://spring.io/blog/2016/06/07/introducing-spring-cloud-cloud-foundry-service-broker"&gt;nice framework for building service brokers for the Cloud Foundry platform&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Spring Boot and Spring Cloud co-founder (the good) Dr. Dave Syer just put published the &lt;a href="https://spring.io/blog/2016/06/07/notes-on-reactive-programming-part-i-the-reactive-landscape"&gt;first post in a series on the reactive programming landscape&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Spring Integration ninja Artem Bilan &lt;a href="https://spring.io/blog/2016/06/07/spring-integration-kafka-support-2-0-0-release-candidate-is-now-available"&gt;just announced that Spring Integration Kafka 2.0.0.RC1 is now available&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;not one to rest on his laurels, Artem &lt;em&gt;also&lt;/em&gt; &lt;a href="https://spring.io/blog/2016/06/07/spring-for-apache-kafka-1-0-release-candidate-1-available"&gt;announced the Spring for Apache Kafka 1.0. RC1&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Spring Cloud Streams lead &lt;a href="https://spring.io/blog/2016/06/03/spring-cloud-stream-1-0-1-release-is-available"&gt;Marius Bogoevici has just announced Spring Cloud Stream 1.0.1.RELEASE&lt;/a&gt;. It provides additional configuration options and the ability to contribute bindings without overriding defaults and a slew of small updates.&lt;/li&gt;
-  &lt;li&gt;the Reactor project has come a long way, and &lt;a href="https://spring.io/blog/2016/06/02/reactor-guides-deprecated"&gt;we&amp;rsquo;ve deprecated some of the older Reactor guides accordingly&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Spring Integration and Spring AMQP ninja Artem Bilan &lt;em&gt;also&lt;/em&gt; just announced that &lt;a href="https://spring.io/blog/2016/06/01/spring-amqp-1-6-release-available"&gt;the Spring AMQP 1.6 GA (1.6.0.RELEASE) is now available&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;This blog on &lt;a href="http://javatar81.blogspot.com/2016/06/hibernate-validator-spring-expression.html"&gt;integrating Hibernate to use Spring Expression Language for class-level and cross-parameter constraints&lt;/a&gt; is &lt;em&gt;very interesting&lt;/em&gt;.&lt;/li&gt;
-  &lt;li&gt;I really liked this InfoQ post &lt;a href="https://www.infoq.com/news/2016/06/Spring-Releases-Statemachine"&gt;by Michael Redlich on Spring Statemachine 1.1&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;the New Stack has a nice post called &lt;a href="http://thenewstack.io/cloud-foundry-wants-help-destroy-architecture-seriously/"&gt;&lt;em&gt;Cloud Foundry: Built to Survive&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;want &lt;a href="http://blog.schneider-electric.com/industrial-software/2016/06/03/basics-mqtt-messaging-protocol-internet-things/"&gt;a quick introduction to MQTT&lt;/a&gt;?&lt;/li&gt;
-  &lt;li&gt;this blog on &lt;a href="https://blog.codecentric.de/en/2016/06/spring-boot-apache-cxf-testing-soap-webservices/"&gt;developing document-centric JAX-WS SOAP-based services with Spring Boot and CXF is interesting&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content>
-  </entry>
-  <entry>
-    <title>Introducing Spring Cloud Cloud Foundry Service Broker</title>
-    <link rel="alternate" href="https://spring.io/blog/2016/06/07/introducing-spring-cloud-cloud-foundry-service-broker" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Scott Frederick</name>
-    </author>
-    <id>tag:spring.io,2016-05-27:2512</id>
-    <updated>2016-06-07T18:57:27Z</updated>
-    <content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;I am pleased to announce the newest addition to the Spring Cloud family. &lt;a href="http://cloud.spring.io/spring-cloud-cloudfoundry-service-broker/"&gt;Spring Cloud Cloud Foundry Service Broker&lt;/a&gt; is a framework for building &lt;a href="http://docs.cloudfoundry.org/services"&gt;service brokers&lt;/a&gt; for the &lt;a href="https://www.cloudfoundry.org"&gt;Cloud Foundry&lt;/a&gt; platform.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="cloud-foundry-service-brokers"&gt;&lt;a class="anchor" href="#cloud-foundry-service-brokers"&gt;&lt;/a&gt;Cloud Foundry service brokers&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Service brokers provide a means to extend Cloud Foundry with managed services that can be consumed by applications deployed to the platform. Managed services typically expose some sort of resource to an application, such as a database or other persistent store, a messaging system, or other supporting infrastructure. Service brokers publish a catalog of services and service plans, manage the provisioning and de-provisioning of service instances, and provide connection details and credentials for an application to consume the resource. Service brokers are registered to Cloud Foundry and communicate with the platform using a well-defined &lt;a href="http://docs.cloudfoundry.org/services/api.html"&gt;Service Broker REST API&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Spring Cloud Cloud Foundry Service Broker implements the full service broker REST API as Spring MVC endpoints. This allows a service broker author to focus on the logic necessary to manage the backing resources without having to worry about implementing the broker API semantics.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="some-history"&gt;&lt;a class="anchor" href="#some-history"&gt;&lt;/a&gt;Some history&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Shortly after Spring Boot was released, &lt;a href="https://twitter.com/spgreenberg"&gt;Steve Greenberg&lt;/a&gt; developed the &lt;a href="https://github.com/cloudfoundry-community/spring-boot-cf-service-broker"&gt;spring-boot-cf-service-broker&lt;/a&gt; project and contributed it to the Cloud Foundry community. In the subsequent months, many &lt;a href="https://github.com/cloudfoundry-community/spring-boot-cf-service-broker/graphs/contributors"&gt;contributors&lt;/a&gt; helped add features, fix bugs, and keep pace with the service broker API. Unfortunately, the contributors couldn&amp;#8217;t commit to keeping the project up to date on a consistent basis since it was a "side project" for everyone involved.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The Spring Cloud team offered to take ownership and commit to keeping the project up-to-date, and Steve graciously agreed to allow the project to be moved under the Spring Cloud umbrella. The move to Spring Cloud includes changes to the project&amp;#8217;s packaging structure and Maven coordinates, along with some cleanup and rationalization of the interfaces that need to be implemented by service broker authors.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="the-path-forward"&gt;&lt;a class="anchor" href="#the-path-forward"&gt;&lt;/a&gt;The path forward&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Spring Cloud Cloud Foundry Service Broker will track the service broker API evolution and add support for the latest broker API features, allowing developers to quickly react to changes in the API. Of course, contributions are welcomed and encouraged. Since there are no interdependencies with other Spring Cloud projects, Spring Cloud Cloud Foundry Service Broker won&amp;#8217;t be part of the Spring Cloud &lt;a href="http://projects.spring.io/spring-cloud/#release-trains"&gt;release trains&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;A few release candidates have already been published for the project. Users of the previous project have tested these RCs and provided feedback. With this introduction, Spring Cloud Cloud Foundry Service Broker will be GA with version 1.0.0.RELEASE.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="get-involved"&gt;&lt;a class="anchor" href="#get-involved"&gt;&lt;/a&gt;Get involved&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;To get started, view the &lt;a href="http://cloud.spring.io/spring-cloud-cloudfoundry-service-broker/"&gt;project page&lt;/a&gt; and the &lt;a href="https://github.com/spring-cloud/spring-cloud-cloudfoundry-service-broker"&gt;documentation&lt;/a&gt;. Provide feedback via GitHub &lt;a href="https://github.com/spring-cloud/spring-cloud-cloudfoundry-service-broker/issues"&gt;issues&lt;/a&gt; or contribute via &lt;a href="https://github.com/spring-cloud/spring-cloud-cloudfoundry-service-broker/pulls"&gt;pull requests&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;</content>
   </entry>
 </feed>

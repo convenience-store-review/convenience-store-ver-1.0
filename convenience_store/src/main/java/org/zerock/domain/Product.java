@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Product {
 	
-	private int product_id;
+	private int id;
 	private String name;
 	private int price;
 	private String photo;
@@ -12,13 +12,13 @@ public class Product {
 	private String pbname;
 	private String company;
 	private Date regdate;
-	private int product_category_id;
+	private ProductCategory productCategory;
 	
-	public int getProduct_id() {
-		return product_id;
+	public int getId() {
+		return id;
 	}
-	public void setProduct_id(int product_id) {
-		this.product_id = product_id;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getName() {
 		return name;
@@ -62,13 +62,11 @@ public class Product {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
-	public int getProduct_category_id() {
-		return product_category_id;
+	public ProductCategory getProductCategory() {
+		return productCategory;
 	}
-	public void setProduct_category_id(int product_category_id) {
-		this.product_category_id = product_category_id;
+	public void setProductCategory(ProductCategory productCategory) {
+		this.productCategory = productCategory;
 	}
-	
-	
 	
 }

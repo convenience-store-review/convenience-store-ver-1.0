@@ -4,11 +4,11 @@ import java.util.Date;
 
 public class UserReview {
 	
-	private int user_review_id;
-	private int user_id;
-	private int grade_id;
-	private int product_review_id;
-	private int collabo_review_id;
+	private int id;
+	private User user;
+	private Grade grade;
+	private ProductReview productReview;
+	private CollaboReview collaboReview;
 	private String content1;
 	private String content2;
 	private String content3;
@@ -17,35 +17,35 @@ public class UserReview {
 	private Date regdate;
 	private Date updatedate;
 	
-	public int getUser_review_id() {
-		return user_review_id;
+	public int getId() {
+		return id;
 	}
-	public void setUser_review_id(int user_review_id) {
-		this.user_review_id = user_review_id;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public int getUser_id() {
-		return user_id;
+	public User getUser() {
+		return user;
 	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setUser(User user) {
+		this.user = user;
 	}
-	public int getGrade_id() {
-		return grade_id;
+	public Grade getGrade() {
+		return grade;
 	}
-	public void setGrade_id(int grade_id) {
-		this.grade_id = grade_id;
+	public void setGrade(Grade grade) {
+		this.grade = grade;
 	}
-	public int getProduct_review_id() {
-		return product_review_id;
+	public ProductReview getProductReview() {
+		return productReview;
 	}
-	public void setProduct_review_id(int product_review_id) {
-		this.product_review_id = product_review_id;
+	public void setProductReview(ProductReview productReview) {
+		this.productReview = productReview;
 	}
-	public int getCollabo_review_id() {
-		return collabo_review_id;
+	public CollaboReview getCollaboReview() {
+		return collaboReview;
 	}
-	public void setCollabo_review_id(int collabo_review_id) {
-		this.collabo_review_id = collabo_review_id;
+	public void setCollaboReview(CollaboReview collaboReview) {
+		this.collaboReview = collaboReview;
 	}
 	public String getContent1() {
 		return content1;
