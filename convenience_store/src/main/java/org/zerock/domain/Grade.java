@@ -2,17 +2,17 @@ package org.zerock.domain;
 
 public class Grade {
 
-	private int grade_id;
+	private int id;
 	private double taste;
 	private double cost_ratio;
 	private double calory;
 	private double total;
 	
-	public int getGrade_id() {
-		return grade_id;
+	public int getId() {
+		return id;
 	}
-	public void setGrade_id(int grade_id) {
-		this.grade_id = grade_id;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public double getTaste() {
 		return taste;

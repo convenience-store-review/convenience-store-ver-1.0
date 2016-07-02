@@ -4,9 +4,9 @@ import java.util.Date;
 
 public class CollaboReview {
 	
-	private int collabo_review_id;
-	private int user_id;
-	private int grade_id;
+	private int id;
+	private User user;
+	private Grade grade;
 	private String title;
 	private int total_price;
 	private String recipe;
@@ -18,24 +18,23 @@ public class CollaboReview {
 	private Date regdate;
 	private Date updatedate;
 	
-	
-	public int getCollabo_review_id() {
-		return collabo_review_id;
+	public int getId() {
+		return id;
 	}
-	public void setCollabo_review_id(int collabo_review_id) {
-		this.collabo_review_id = collabo_review_id;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public int getUser_id() {
-		return user_id;
+	public User getUser() {
+		return user;
 	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setUser(User user) {
+		this.user = user;
 	}
-	public int getGrade_id() {
-		return grade_id;
+	public Grade getGrade() {
+		return grade;
 	}
-	public void setGrade_id(int grade_id) {
-		this.grade_id = grade_id;
+	public void setGrade(Grade grade) {
+		this.grade = grade;
 	}
 	public String getTitle() {
 		return title;

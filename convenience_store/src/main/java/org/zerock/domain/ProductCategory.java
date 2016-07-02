@@ -2,14 +2,14 @@ package org.zerock.domain;
 
 public class ProductCategory {
 	
-	private int product_category_id;
+	private int id;
 	private String type;
 	
-	public int getProduct_category_id() {
-		return product_category_id;
+	public int getId() {
+		return id;
 	}
-	public void setProduct_category_id(int product_category_id) {
-		this.product_category_id = product_category_id;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getType() {
 		return type;

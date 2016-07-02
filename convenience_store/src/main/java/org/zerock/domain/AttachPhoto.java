@@ -6,9 +6,9 @@ public class AttachPhoto {
 	
 	private String attach_photo_fullname;
 	private Date regdate;
-	private int product_review_id;
-	private int collabo_review_id;
-	private int user_review_id;
+	private ProductReview productReview;
+	private CollaboReview collaboReview;
+	private UserReview userReview;
 	
 	public String getAttach_photo_fullname() {
 		return attach_photo_fullname;
@@ -22,26 +22,23 @@ public class AttachPhoto {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
-	public int getProduct_review_id() {
-		return product_review_id;
+	public ProductReview getProductReview() {
+		return productReview;
 	}
-	public void setProduct_review_id(int product_review_id) {
-		this.product_review_id = product_review_id;
+	public void setProductReview(ProductReview productReview) {
+		this.productReview = productReview;
 	}
-	public int getCollabo_review_id() {
-		return collabo_review_id;
+	public CollaboReview getCollaboReview() {
+		return collaboReview;
 	}
-	public void setCollabo_review_id(int collabo_review_id) {
-		this.collabo_review_id = collabo_review_id;
+	public void setCollaboReview(CollaboReview collaboReview) {
+		this.collaboReview = collaboReview;
 	}
-	public int getUser_review_id() {
-		return user_review_id;
+	public UserReview getUserReview() {
+		return userReview;
 	}
-	public void setUser_review_id(int user_review_id) {
-		this.user_review_id = user_review_id;
+	public void setUserReview(UserReview userReview) {
+		this.userReview = userReview;
 	}
-	
-	
-	
 
 }
