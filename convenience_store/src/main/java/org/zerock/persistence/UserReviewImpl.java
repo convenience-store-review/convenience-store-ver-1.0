@@ -25,5 +25,15 @@ public class UserReviewImpl implements UserReivewDAO {
 	public UserReview read(Integer id)throws Exception {
 		return session.selectOne(namespace+".read", id);
 	}
+	
+	@Override
+	public ProductReview product_info(Integer id) throws Exception {
+		  return session.selectOne(namespace + ".product_info", id);
+	}
+	
+	@Override
+	public List<UserReview> user_review_list(Integer id) throws Exception {
+		return session.selectList(namespace + ".user_review_list", id);
+	}
 
 }

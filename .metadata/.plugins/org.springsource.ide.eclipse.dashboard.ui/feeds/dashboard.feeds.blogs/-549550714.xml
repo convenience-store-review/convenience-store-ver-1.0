@@ -36,10 +36,10 @@
       <name>Andy Wilkinson</name>
     </author>
     <id>tag:spring.io,2016-06-30:2539</id>
-    <updated>2016-06-30T17:15:08Z</updated>
+    <updated>2016-06-30T17:15:00Z</updated>
     <content type="html">&lt;p&gt;I am pleased to announce that &lt;a href="https://github.com/spring-gradle-plugins/dependency-management-plugin"&gt;Gradle dependency management plugin&lt;/a&gt; 0.6.0.RELEASE is now available from Maven Central, JCenter, and the &lt;a href="https://plugins.gradle.org/plugin/io.spring.dependency-management"&gt;Gradle Plugin Portal&lt;/a&gt;. &lt;/p&gt;&lt;h3&gt;&lt;a href="#gradle-3-0-compatibility" class="anchor" name="gradle-3-0-compatibility"&gt;&lt;/a&gt;Gradle 3.0 compatibility&lt;/h3&gt;
 &lt;p&gt;This new release is compatible with Gradle 3.0. At the time of writing it&amp;rsquo;s tested against 3.0 M2 and the 0.6.x line will continue to track Gradle 3.0 development to maintain compatibility if at all possible.&lt;/p&gt;&lt;h3&gt;&lt;a href="#finer-control-over-bom-property-overrides" class="anchor" name="finer-control-over-bom-property-overrides"&gt;&lt;/a&gt;Finer control over bom property overrides&lt;/h3&gt;
-&lt;p&gt;Previously, an imported bom&amp;rsquo;s properties could be overridden using project properties. This new release adds support for overriding a property as part of the import. &lt;code&gt;bomProperty&lt;/code&gt; can be used to override properties one at a time (and can be used multiple times to override multiple properties:&lt;/p&gt;
+&lt;p&gt;Previously, an imported bom&amp;rsquo;s properties could be overridden using project properties. This new release adds support for overriding a property as part of the import. &lt;code&gt;bomProperty&lt;/code&gt; can be used to override properties one at a time (and can be used multiple times to override multiple properties):&lt;/p&gt;
 &lt;pre&gt;&lt;code class="prettyprint groovy"&gt;dependencyManagement {&#xD;
     imports {&#xD;
         mavenBom(&amp;#39;com.example:example-bom:1.2.0&amp;#39;) {&#xD;
@@ -52,7 +52,7 @@
 &lt;p&gt;Alternatively, &lt;code&gt;bomProperties&lt;/code&gt; can be used along with a map of property overrides:&lt;/p&gt;
 &lt;pre&gt;&lt;code class="prettyprint groovy"&gt;dependencyManagement {&#xD;
     imports {&#xD;
-        mavenBom(&amp;#39;io.spring.platform:platform-bom:2.0.5.RELEASE&amp;#39;) {&#xD;
+        mavenBom(&amp;#39;com.example:example-bom:1.2.0&amp;#39;) {&#xD;
             bomProperties([&#xD;
                 &amp;#39;foo.version&amp;#39;: &amp;#39;1.1.1&amp;#39;,&#xD;
                 &amp;#39;bar.version&amp;#39;: &amp;#39;2.0.3&amp;#39;&#xD;
