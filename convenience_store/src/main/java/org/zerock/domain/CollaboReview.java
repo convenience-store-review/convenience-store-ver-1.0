@@ -18,6 +18,8 @@ public class CollaboReview {
 	private Date regdate;
 	private Date updatedate;
 	
+	private String test;
+	
 	public int getId() {
 		return id;
 	}
