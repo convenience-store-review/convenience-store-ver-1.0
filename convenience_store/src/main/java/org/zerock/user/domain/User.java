@@ -1,4 +1,4 @@
-package org.zerock.domain;
+package org.zerock.user.domain;
 
 import java.util.Date;
 
