@@ -6,6 +6,8 @@
 
   <typeAliases>
     <package name="org.zerock.domain"/>    
+    <package name="org.zerock.user.domain"/>
+    
   </typeAliases>
 
 

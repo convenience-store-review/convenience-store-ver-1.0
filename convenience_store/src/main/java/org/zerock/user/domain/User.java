@@ -54,4 +54,11 @@ public class User {
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
+	
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", email=" + email + ", password=" + password + ", nickname=" + nickname
+				+ ", regdate=" + regdate + ", updatedate=" + updatedate + ", photo=" + photo + "]";
+	}
+	
 }

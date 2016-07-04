@@ -15,16 +15,35 @@
     <context:component-scan base-package="org.zerock.user.service" />
 	
 	
-	<!-- 로그인 처리 -->
+	<!-- 인터셉터 샘플 -->
 	<beans:bean id="sampleInterceptor" class="org.zerock.interceptor.SampleInterceptor" />
-	
-   <interceptors>
+	   <interceptors>
        <interceptor>
-           <mapping path="/user/doA"/>
-           <mapping path="/user/doB"/>
-           <beans:ref bean="sampleInterceptor" />
+			<mapping path="/user/doA" />
+			<mapping path="/user/doB" />
+			<beans:ref bean="sampleInterceptor" />
        </interceptor>
    </interceptors>
+	
+    <!-- 로그인 처리 -->
+    <beans:bean id="loginInterceptor" class="org.zerock.interceptor.LoginInterceptor" />
+    <!-- 접근 권한 처리 -->
+    <beans:bean id="authInterceptor" class="org.zerock.interceptor.AuthInterceptor" />
+    
+	<interceptors>
+		<interceptor>
+           <mapping path="/user/loginPost"/>
+           <beans:ref bean="loginInterceptor" />
+		</interceptor>
+		
+		<interceptor>
+           <mapping path="/sboard/list"/>
+           <mapping path="/sboard/register"/>
+           <mapping path="/sboard/modifyPage"/>
+           <mapping path="/sboard/removePage"/>
+           <beans:ref bean="authInterceptor" />
+		</interceptor>
+	</interceptors>
 	
 	
 </beans:beans>
