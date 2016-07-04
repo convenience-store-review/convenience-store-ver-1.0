@@ -19,6 +19,7 @@ public class CollaboReview {
 	private Date updatedate;
 	
 	private String test;
+	private String what="what am i doing???? ";
 	
 	public int getId() {
 		return id;
