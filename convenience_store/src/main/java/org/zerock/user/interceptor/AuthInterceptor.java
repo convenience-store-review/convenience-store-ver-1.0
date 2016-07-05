@@ -1,4 +1,4 @@
-package org.zerock.interceptor;
+package org.zerock.user.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -20,4 +20,24 @@ public class UserDAOImpl implements UserDAO {
 		return session.selectOne(NAMESPACE + ".login", dto);
 	}
 
+	@Override
+	public User selectByEmail(String email) throws Exception {
+		return session.selectOne(NAMESPACE + ".selectByEmail", email);
+	}
+
+	@Override
+	public void create(User user) throws Exception {
+		session.insert(NAMESPACE + ".insert", user);
+	}
+
+	@Override
+	public void update(User user) throws Exception {
+		session.update(NAMESPACE + ".update", user);
+	}
+
+	@Override
+	public void delete(int id) throws Exception {
+		session.delete(NAMESPACE + ".delete", id);
+	}
+	
 }

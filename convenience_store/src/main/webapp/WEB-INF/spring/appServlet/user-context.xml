@@ -16,7 +16,7 @@
 	
 	
 	<!-- 인터셉터 샘플 -->
-	<beans:bean id="sampleInterceptor" class="org.zerock.interceptor.SampleInterceptor" />
+	<beans:bean id="sampleInterceptor" class="org.zerock.user.interceptor.SampleInterceptor" />
 	   <interceptors>
        <interceptor>
 			<mapping path="/user/doA" />
@@ -26,9 +26,9 @@
    </interceptors>
 	
     <!-- 로그인 처리 -->
-    <beans:bean id="loginInterceptor" class="org.zerock.interceptor.LoginInterceptor" />
+    <beans:bean id="loginInterceptor" class="org.zerock.user.interceptor.LoginInterceptor" />
     <!-- 접근 권한 처리 -->
-    <beans:bean id="authInterceptor" class="org.zerock.interceptor.AuthInterceptor" />
+    <beans:bean id="authInterceptor" class="org.zerock.user.interceptor.AuthInterceptor" />
     
 	<interceptors>
 		<interceptor>

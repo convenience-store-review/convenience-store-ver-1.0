@@ -2,6 +2,8 @@ package org.zerock.user.domain;
 
 import java.util.Date;
 
+import org.zerock.user.exception.IdPasswordNotMatchingException;
+
 public class User {
 
 	private int id;
@@ -59,6 +61,13 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", password=" + password + ", nickname=" + nickname
 				+ ", regdate=" + regdate + ", updatedate=" + updatedate + ", photo=" + photo + "]";
+	}
+	
+	public void changePassword(String oldPassword, String newPassword) {
+		if (!password.equals(oldPassword))
+			throw new IdPasswordNotMatchingException();
+		
+		this.password = newPassword;
 	}
 	
 }

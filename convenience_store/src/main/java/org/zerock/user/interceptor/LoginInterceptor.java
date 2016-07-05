@@ -1,4 +1,4 @@
-package org.zerock.interceptor;
+package org.zerock.user.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -48,7 +48,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			logger.info("new login success.\n## new user:{}", user);
 			session.setAttribute(SessionName.LOGIN_USER, user);
 			
-//			response.sendRedirect("/");
 			Object dest = session.getAttribute(SessionName.DEST_URI);
 			response.sendRedirect(dest != null ? (String)dest : "/user/home");
 		}

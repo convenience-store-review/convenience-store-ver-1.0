@@ -1,4 +1,4 @@
-package org.zerock.interceptor;
+package org.zerock.user.interceptor;
 
 import java.lang.reflect.Method;
 

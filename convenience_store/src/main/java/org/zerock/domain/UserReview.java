@@ -2,6 +2,8 @@ package org.zerock.domain;
 
 import java.util.Date;
 
+import org.zerock.user.domain.User;
+
 public class UserReview {
 	
 	private int id;
