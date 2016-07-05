@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
+import org.zerock.domain.Product;
 import org.zerock.domain.SearchCriteria;
 
 public interface BoardDAO {
@@ -26,7 +27,7 @@ public interface BoardDAO {
   
   //use for dynamic sql
   
-  public List<BoardVO> listSearch(SearchCriteria cri)throws Exception;
+  public List<Product> listSearch(SearchCriteria cri)throws Exception;
   
   public int listSearchCount(SearchCriteria cri)throws Exception;
 

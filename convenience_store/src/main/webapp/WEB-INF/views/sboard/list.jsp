@@ -26,24 +26,16 @@
 						<option value="n"
 							<c:out value="${cri.searchType == null?'selected':''}"/>>
 							---</option>
-						<option value="t"
-							<c:out value="${cri.searchType eq 't'?'selected':''}"/>>
-							Title</option>
+						<option value="p"
+							<c:out value="${cri.searchType eq 'p'?'selected':''}"/>>
+							상품명</option>
 						<option value="c"
 							<c:out value="${cri.searchType eq 'c'?'selected':''}"/>>
-							Content</option>
-						<option value="w"
-							<c:out value="${cri.searchType eq 'w'?'selected':''}"/>>
-							Writer</option>
-						<option value="tc"
-							<c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>
-							Title OR Content</option>
-						<option value="cw"
-							<c:out value="${cri.searchType eq 'cw'?'selected':''}"/>>
-							Content OR Writer</option>
-						<option value="tcw"
-							<c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>
-							Title OR Content OR Writer</option>
+							제조사</option>
+						<%-- 	<option value="w"
+							<c:out value="${cri.searchType eq 'c'?'selected':''}"/>>
+							글내용</option> --%>
+
 					</select> <input type="text" name='keyword' id="keywordInput"
 						value='${cri.keyword }'>
 					<button id='searchBtn'>Search</button>
@@ -60,28 +52,28 @@
 				<div class="box-body">
 					<table class="table table-bordered">
 						<tr>
-							<th style="width: 10px">BNO</th>
-							<th>TITLE</th>
-							<th>WRITER</th>
-							<th>REGDATE</th>
-							<th style="width: 40px">VIEWCNT</th>
+							<!-- <th style="width: 45px">번호</th> -->
+							<th>상품명</th>
+							<th>제조사</th>
+							<th>등록일</th>
+							<!-- <th style="width: 60px">조회수</th> -->
 						</tr>
+							
+							<c:forEach items="${list}" var="Product">
+								<c:if test="null"><p>ㅇㅇ</p></c:if>
+								<tr>
+									<%-- <td>${Product.id}</td> --%>
+									<td><a
+										href='/sboard/readPage${pageMaker.makeSearch(pageMaker.cri.page) }&id=${Product.id}'>
+											${Product.name} </a></td>
+									<th>${Product.company }</th>
+									<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
+											value="${Product.regdate}" /></td>
+									<!-- <td><span class="badge bg-red">${boardVO.viewcnt }</span></td> -->
+								</tr>
 
-						<c:forEach items="${list}" var="boardVO">
-
-							<tr>
-								<td>${boardVO.bno}</td>
-								<td><a
-									href='/sboard/readPage${pageMaker.makeSearch(pageMaker.cri.page) }&bno=${boardVO.bno}'>
-										${boardVO.title} </a></td>
-								<td>${boardVO.writer}</td>
-								<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
-										value="${boardVO.regdate}" /></td>
-								<td><span class="badge bg-red">${boardVO.viewcnt }</span></td>
-							</tr>
-
-						</c:forEach>
-
+							</c:forEach>
+						
 					</table>
 				</div>
 				<!-- /.box-body -->
