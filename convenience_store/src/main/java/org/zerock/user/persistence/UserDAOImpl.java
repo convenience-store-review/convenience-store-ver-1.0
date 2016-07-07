@@ -27,7 +27,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public void create(User user) throws Exception {
-		session.insert(NAMESPACE + ".insert", user);
+		session.insert(NAMESPACE + ".create", user);
 	}
 
 	@Override

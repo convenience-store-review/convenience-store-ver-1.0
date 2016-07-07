@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.zerock.user.domain.User;
 import org.zerock.user.dto.LoginDTO;
+import org.zerock.user.exception.AlreadyExistingUserException;
 import org.zerock.user.exception.UserNotFoundException;
 import org.zerock.user.persistence.UserDAO;
 
@@ -20,8 +21,15 @@ public class UserServiceImpl implements UserService {
 		return dao.login(dto);
 	}
 
+	@Transactional
 	@Override
 	public void regist(User user) throws Exception {
+		
+		User oldUser = dao.selectByEmail(user.getEmail());
+		if (oldUser != null) {
+			throw new AlreadyExistingUserException("dup email " + user.getEmail());
+		}
+		
 		dao.create(user);
 	}
 

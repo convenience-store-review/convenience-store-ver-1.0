@@ -14,8 +14,6 @@ import org.zerock.common.ModelName;
 import org.zerock.user.domain.User;
 import org.zerock.user.dto.ChangePasswordRequest;
 import org.zerock.user.dto.LoginDTO;
-import org.zerock.user.dto.RegisterRequest;
-import org.zerock.user.exception.AlreadyExistingUserException;
 import org.zerock.user.exception.ConfirmPasswordNotMatchingException;
 import org.zerock.user.exception.IdPasswordNotMatchingException;
 import org.zerock.user.exception.UserNotFoundException;
@@ -29,11 +27,6 @@ public class UserController {
 	
 	@Inject
 	private UserService service;
-	
-	@RequestMapping(value = "/home", method=RequestMethod.GET)
-	public void homeET() {
-		logger.info("home get..........");
-	}
 	
 	@RequestMapping(value = "/login", method=RequestMethod.GET)
 	public void loginGET(@ModelAttribute("dto") LoginDTO dto) {
@@ -51,33 +44,6 @@ public class UserController {
 		}
 		
 		model.addAttribute(ModelName.LOGIN_USER, user);
-	}
-	
-	@RequestMapping(value = "/regist", method=RequestMethod.GET)
-	public void registGET(@ModelAttribute("registerRequest") RegisterRequest registerRequest) {
-		logger.info("regist get..........");
-	}
-	
-	@RequestMapping(value = "/regist", method=RequestMethod.POST)
-	public void registPOST(RegisterRequest request) throws Exception {
-		logger.info("regist post..........");
-		
-		if (! request.isPasswordEqualToConfirmPassword()) {
-			System.out.println("\n암호와 암호 확인이 일치하지 않습니다!\n");
-			throw new ConfirmPasswordNotMatchingException();
-		}
-		
-		try {
-			User user = new User();
-			user.setEmail(request.getEmail());
-			user.setPassword(request.getPassword());
-			user.setNickname(request.getNickname());
-			
-			service.regist(user);
-			System.out.println("\n등록했습니다.\n");
-		} catch (AlreadyExistingUserException e) {
-			System.out.println("\n이미 존재하는 이메일입니다.\n");
-		}
 	}
 	
 	@RequestMapping(value = "/changePassword", method=RequestMethod.GET)

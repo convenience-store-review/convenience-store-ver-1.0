@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
 
-<%@include file="../include/header.jsp" %>
+<%@include file="../include/cvs-header.jsp" %>
 
     <!-- Main content -->
     <section class="content">
@@ -21,9 +21,10 @@
                     <p>${loginUser.nickname}님, 환영합니다!!</p>
                 </c:if>
                 <c:if test="${empty loginUser}">
+                    <p>환영합니다!! </p>
                     <p>로그인을 하시면 더 많은 서비스를 이용할 수 있습니다.</p>
                     <p>
-                        <a href="/user/register">[회원 가입하기]</a>
+                        <a href="/register/step1">[회원 가입하기]</a>
                         <a href="/user/login">[로그인하기]</a>
                     </p>
                 </c:if>
@@ -36,5 +37,5 @@
     </section><!-- /.content -->
 
     
-<%@include file="../include/footer.jsp" %>
+<%@include file="../include/cvs-footer.jsp" %>
  

@@ -23,6 +23,8 @@
 	
 	<context:component-scan base-package="org.zerock.controller" />
 	
+	<view-controller path="/user/home" view-name="/user/home"/>
+	
 	
 	
 </beans:beans>
