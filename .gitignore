@@ -1,13 +1,21 @@
 *.class
+<<<<<<< HEAD
 *.log
+=======
+>>>>>>> refs/heads/Hyeong_Won
 *.xmi
 
 # eclipse
 .metadata/
+<<<<<<< HEAD
 **/.settings/
 **/target/
 **/.classpath
 
+=======
+.log/
+.xmi/
+>>>>>>> refs/heads/Hyeong_Won
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/

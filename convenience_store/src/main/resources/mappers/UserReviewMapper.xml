@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.zerock.mapper.UserReviewMapper">
+
+
+ <select id="read" resultType="org.zerock.domain.UserReview">
+
+	select * from tbl_user_review where id = #{id}
+ 
+ </select>
+ 
+<resultMap id="product_infoMap" type="ProductReview" >
+<result property="like_count" column="like_count"/>
+<association property="product" javaType="Product">
+    <id property="id" column="product_id"/>
+    <result property="name" column="product_name"/>
+    <result property="price" column="product_price"/>
+    <result property="photo" column="product_photo"/>
+</association>
+<association property="grade" javaType="Grade">
+    <id property="id" column="grade_id"/>
+    <result property="total" column="grade_total"/>
+    <result property="taste" column="grade_taste"/>
+    <result property="cost_ratio" column="grade_cost_ratio"/>
+    <result property="calory" column="grade_calory"/>
+</association>
+</resultMap>
+
+<select id="product_info" resultMap="product_infoMap">
+
+select pr.like_count as like_count, p.id as product_id, p.name as product_name,
+p.price as product_price, p.photo as product_photo, g.total as grade_total,
+g.id as grade_id, g.taste as grade_taste, g.cost_ratio as grade_cost_ratio, g.calory as grade_calory 
+from tbl_product_review as pr inner join tbl_product as p inner join tbl_grade as g
+on pr.product_id = #{id} and pr.grade_id = g.id
+</select>
+
+<resultMap id="user_review_Map" type="UserReview" >
+<result property="id" column="user_review_id"/>
+<result property="content1" column="user_review_content1" />
+<result property="content2" column="user_review_content2" />
+<result property="content3" column="user_review_content3" />
+<result property="help_count" column="user_review_help_count" />
+<result property="regdate" column="user_review_regdate" />
+
+<association property="user" javaType="User">
+    <id property="id" column="user_id"/>
+    <result property="nickname" column="user_nickname"/>
+    <result property="photo" column="user_photo"/>
+</association>
+
+<association property="grade" javaType="Grade">
+    <id property="id" column="grade_id"/>
+    <result property="total" column="grade_total"/>
+    <result property="taste" column="grade_taste"/>
+    <result property="cost_ratio" column="grade_cost_ratio"/>
+    <result property="calory" column="grade_calory"/>
+</association>
+
+<association property="productReview" javaType="ProductReview">
+	<id property="id" column="product_review_id"></id>
+</association>
+
+</resultMap>
+
+<select id = "user_review_list" resultMap="user_review_Map">
+	select ur.id as user_review_id, ur.content1 as user_review_content1,
+	ur.content2 as user_review_content2, ur.content3 as user_review_content3,
+	ur.help_count as user_review_help_count, ur.regdate as user_review_regdate,
+	u.id as user_id, u.nickname as user_nickname, u.photo as user_photo,
+	g.id as grade_id, g.total as grade_total, g.taste as grade_taste,
+	g.cost_ratio as grade_cost_ratio, g.calory as grade_calory, p.id as product_review_id 
+	from tbl_user_review as ur 
+	inner join tbl_user as u 
+	inner join tbl_grade as g 
+	inner join tbl_product_review as p
+	on ur.product_review_id = #{id} and u.id = ur.user_id
+</select>
+
+
+</mapper>
