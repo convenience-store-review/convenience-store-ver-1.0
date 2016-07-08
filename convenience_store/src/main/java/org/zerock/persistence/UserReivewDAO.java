@@ -9,11 +9,11 @@ import org.zerock.domain.UserReview;
 
 public interface UserReivewDAO {
 	
-	public UserReview read(Integer id)throws Exception;
-	
 	public ProductReview product_info(Integer id) throws Exception;
 	
 	public List<UserReview> user_review_list(Integer id) throws Exception;
+	
+	public UserReview user_review_read(Integer id) throws Exception;
 
 
 }

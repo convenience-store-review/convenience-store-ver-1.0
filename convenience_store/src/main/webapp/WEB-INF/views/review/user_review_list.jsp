@@ -49,6 +49,7 @@
 	<c:forEach items="${list}" var="ur">
 	<table class="table table-bordered">
 	<tr>
+		<th>user_review_id</th>
 		<th style="width: 10px">nickname</th>
 		<th>regdate</th>
 		<th>taste</th>
@@ -57,6 +58,7 @@
 	</tr>
 
 	<tr>
+		<td><a href='/review/user_review_readPage?id=${ur.id}'>${ur.id}</a></td>
 		<td>${ur.user.nickname}</td>
 		<td>${ur.regdate}</td>
 		<td>${ur.grade.taste}</td>

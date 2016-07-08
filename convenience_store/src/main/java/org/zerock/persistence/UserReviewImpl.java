@@ -21,10 +21,6 @@ public class UserReviewImpl implements UserReivewDAO {
 	private static String namespace
 	="org.zerock.mapper.UserReviewMapper";
 	
-	@Override
-	public UserReview read(Integer id)throws Exception {
-		return session.selectOne(namespace+".read", id);
-	}
 	
 	@Override
 	public ProductReview product_info(Integer id) throws Exception {
@@ -34,6 +30,11 @@ public class UserReviewImpl implements UserReivewDAO {
 	@Override
 	public List<UserReview> user_review_list(Integer id) throws Exception {
 		return session.selectList(namespace + ".user_review_list", id);
+	}
+	
+	@Override
+	public UserReview user_review_read(Integer id) throws Exception {
+		return session.selectOne(namespace +".user_review_read", id);
 	}
 
 }

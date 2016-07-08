@@ -15,11 +15,6 @@ public class UserReviewServiceImpl implements UserReviewService {
 	@Inject
 	private UserReivewDAO dao;
 
-	@Override
-	public UserReview read(Integer id) throws Exception {
-		
-		return dao.read(id);
-	}
 	
 	@Override
 	public ProductReview product_info(Integer id) throws Exception {
@@ -30,5 +25,10 @@ public class UserReviewServiceImpl implements UserReviewService {
 	@Override
 	public List<UserReview> user_review_list(Integer id) throws Exception {
 		return dao.user_review_list(id);
+	}
+	
+	@Override
+	public UserReview user_review_read(Integer id) throws Exception {
+		return dao.user_review_read(id);
 	}
 }

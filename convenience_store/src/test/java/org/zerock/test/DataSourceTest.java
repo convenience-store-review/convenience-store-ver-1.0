@@ -25,7 +25,7 @@ public class DataSourceTest {
   @Test
   public void testRead() throws Exception {
 
-    logger.info(dao.read(1).toString());
+    //logger.info(dao.read(1).toString());
   }
 
 
