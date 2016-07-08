@@ -4,7 +4,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.zerock.user.domain.User;
+import org.zerock.domain.User;
 import org.zerock.user.dto.LoginDTO;
 import org.zerock.user.exception.AlreadyExistingUserException;
 import org.zerock.user.exception.UserNotFoundException;

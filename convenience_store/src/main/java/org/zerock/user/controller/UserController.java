@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.zerock.common.ModelName;
-import org.zerock.user.domain.User;
+import org.zerock.domain.User;
 import org.zerock.user.dto.ChangePasswordRequest;
 import org.zerock.user.dto.LoginDTO;
 import org.zerock.user.exception.ConfirmPasswordNotMatchingException;
