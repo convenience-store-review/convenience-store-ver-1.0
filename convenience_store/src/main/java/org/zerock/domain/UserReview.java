@@ -16,6 +16,7 @@ public class UserReview {
 	private int ispenalty;
 	private Date regdate;
 	private Date updatedate;
+	private int ask;
 	
 	public int getId() {
 		return id;
