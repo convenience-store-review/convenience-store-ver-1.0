@@ -35,6 +35,12 @@ public class UserController {
 		logger.info("login get..........");
 	}
 	
+	@RequestMapping(value = "/loginPost", method=RequestMethod.GET)
+	public String loginPostGET(@ModelAttribute("loginDTO") LoginDTO dto) {
+		logger.info("loginPost get..........");
+		return "/user/login";
+	}
+	
 	@RequestMapping(value = "/loginPost", method=RequestMethod.POST)
 	public String loginPOST(@Valid LoginDTO dto, Errors errors, 
 			HttpSession session, Model model) throws Exception {
