@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -8,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
-    <title>회원 가입</title>
+    <title><spring:message code="user.register" /></title>
 
     <!-- 부트스트랩 -->
     <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -21,31 +22,31 @@
     <![endif]-->
   </head>
   <body>
-    <h2>회원 정보 입력</h2>
+    <h2><spring:message code="user.info" /></h2>
     
     <form:form action="step3" commandName="registerRequest">
         <p>
-            <label>이메일:<br>
+            <label><spring:message code="email" />:<br>
                 <form:input path="email"/>
             </label>
         </p>
         <p>
-            <label>닉네임:<br>
+            <label><spring:message code="nickname" />:<br>
                 <form:input path="nickname"/>
             </label>
         </p>
         <p>
-            <label>비밀번호:<br>
+            <label><spring:message code="password" />:<br>
                 <form:password path="password"/>
             </label>
         </p>
         <p>
-            <label>비밀번호 확인:<br>
+            <label><spring:message code="password.confirm" />:<br>
                 <form:password path="confirmPassword"/>
             </label>
         </p>
         
-        <input type="submit" value="가입 완료" >
+        <input type="submit" value="<spring:message code="register.btn" />" >
     </form:form>
 
     <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
@@ -53,6 +54,5 @@
     <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
     <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
     
-    </script>
   </body>
 </html>

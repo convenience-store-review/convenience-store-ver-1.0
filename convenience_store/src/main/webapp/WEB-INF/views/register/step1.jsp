@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -7,8 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
-    <title>회원 가입</title>
-
+    <title><spring:message code="user.register" /></title>
+    
     <!-- 부트스트랩 -->
     <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -20,14 +21,14 @@
     <![endif]-->
   </head>
   <body>
-    <h2>약관</h2>
-    <p>약관 내용</p>
+    <h2><spring:message code="term" /></h2>
+    <p><spring:message code="term.content" /></p>
     
     <form action="step2" method="post">
         <label id="agreeLabel">
-            <input type="checkbox" name="agree" value="true"> 약관 동의
+            <input type="checkbox" name="agree" value="true"> <spring:message code="term.agree" />
         </label>
-        <input type="submit" value="다음 단계" >
+        <input type="submit" value="<spring:message code="next.btn" />" >
     </form>
 
     <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
