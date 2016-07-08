@@ -25,6 +25,12 @@
 	   <property name="defaultEncoding" value="UTF-8" />
 	</bean>
 	
+	<!-- 객체 검증 처리 -->
+	<!-- 기본 JSR-303 Validator를 스프링 빈으로 설정 -->
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+	   <property name="validationMessageSource" ref="messageSource" />
+	</bean>
+	
 	<!-- 인터셉터 샘플 -->
 	<bean id="sampleInterceptor" class="org.zerock.user.interceptor.SampleInterceptor" />
 	<mvc:interceptors>

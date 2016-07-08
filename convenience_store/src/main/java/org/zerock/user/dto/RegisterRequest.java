@@ -1,10 +1,22 @@
 package org.zerock.user.dto;
 
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+
 public class RegisterRequest {
 
+	@NotBlank @Email
 	private String email;
+	
+	@Size(min=6, max=20)
 	private String password;
+	
+	@Size(min=6, max=20)
 	private String confirmPassword;
+	
+	@Size(min=2, max=18)
 	private String nickname;
 	
 	public String getEmail() {

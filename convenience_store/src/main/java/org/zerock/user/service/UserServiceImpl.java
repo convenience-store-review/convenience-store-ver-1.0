@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.zerock.domain.User;
 import org.zerock.user.dto.LoginDTO;
 import org.zerock.user.exception.AlreadyExistingUserException;
+import org.zerock.user.exception.IdPasswordNotMatchingException;
 import org.zerock.user.exception.UserNotFoundException;
 import org.zerock.user.persistence.UserDAO;
 
@@ -18,7 +19,11 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public User login(LoginDTO dto) throws Exception {
-		return dao.login(dto);
+		User user = dao.login(dto);
+		if (user == null)
+			throw new IdPasswordNotMatchingException();
+		
+		return user;
 	}
 
 	@Transactional

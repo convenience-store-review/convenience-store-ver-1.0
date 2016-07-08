@@ -1,11 +1,13 @@
 package org.zerock.user.controller;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -56,12 +58,19 @@ public class RegisterController {
 	}
 	
 	@RequestMapping(value = "/step3", method=RequestMethod.POST)
-	public String step3POST(RegisterRequest request) throws Exception {
+	public String step3POST(@Valid RegisterRequest request, Errors errors) throws Exception {
 		logger.info("step3 post..........");
+		
+		if (errors.hasErrors()) {
+			System.out.println("## error:" + errors.getAllErrors().toString());
+			return "register/step2";
+		}
 		
 		if (! request.isPasswordEqualToConfirmPassword()) {
 			System.out.println("\n암호와 암호 확인이 일치하지 않습니다!\n");
-			throw new ConfirmPasswordNotMatchingException();
+			errors.rejectValue("password", "confirm.nomatch");
+//			throw new ConfirmPasswordNotMatchingException();
+			return "register/step2";
 		}
 		
 		try {
@@ -76,6 +85,7 @@ public class RegisterController {
 			return "/register/step3";
 		} catch (AlreadyExistingUserException e) {
 			System.out.println("\n이미 존재하는 이메일입니다.\n");
+			errors.rejectValue("email", "duplicate");
 			return "/register/step2";
 		}
 	}

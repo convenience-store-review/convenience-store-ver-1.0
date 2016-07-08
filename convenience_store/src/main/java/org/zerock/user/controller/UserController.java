@@ -2,11 +2,13 @@ package org.zerock.user.controller;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,21 +31,30 @@ public class UserController {
 	private UserService service;
 	
 	@RequestMapping(value = "/login", method=RequestMethod.GET)
-	public void loginGET(@ModelAttribute("dto") LoginDTO dto) {
+	public void loginGET(@ModelAttribute("loginDTO") LoginDTO dto) {
 		logger.info("login get..........");
 	}
 	
 	@RequestMapping(value = "/loginPost", method=RequestMethod.POST)
-	public void loginPOST(LoginDTO dto, HttpSession session, Model model) throws Exception {
+	public String loginPOST(@Valid LoginDTO dto, Errors errors, 
+			HttpSession session, Model model) throws Exception {
 		logger.info("login post..........\ndto:{}", dto);
 		
-		User user = service.login(dto);
-		if (user == null) {
-			System.out.println("## login failed!!");
-			return;
+		if (errors.hasErrors()) {
+			System.out.println("## error:" + errors.getAllErrors().toString());
+			return "/user/login";
 		}
 		
-		model.addAttribute(ModelName.LOGIN_USER, user);
+		try {
+			User user = service.login(dto);
+			model.addAttribute(ModelName.LOGIN_USER, user);
+			
+		} catch (IdPasswordNotMatchingException e) {
+			errors.reject("idPasswordNotMatching");
+			return "/user/login";
+		}
+		
+		return "/user/loginPost";
 	}
 	
 	@RequestMapping(value = "/changePassword", method=RequestMethod.GET)

@@ -20,30 +20,36 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <style>
+        .error {
+            color: red; font-weight: bold;
+        }
+    </style>
   </head>
   <body>
     <h2><spring:message code="user.info" /></h2>
     
     <form:form action="step3" commandName="registerRequest">
         <p>
-            <label><spring:message code="email" />:<br>
-                <form:input path="email"/>
-            </label>
+            <form:label path="email"><spring:message code="email" /></form:label><br>
+            <form:input path="email" placeholder="your-mail@mail.com" required="required" />
+            <form:errors path="email" cssClass="error"/>
         </p>
         <p>
-            <label><spring:message code="nickname" />:<br>
-                <form:input path="nickname"/>
-            </label>
+            <form:label path="nickname"><spring:message code="nickname" /></form:label><br>
+            <form:input path="nickname" placeholder="nickname" required="required"/>
+            <form:errors path="nickname" cssClass="error"/>
         </p>
         <p>
-            <label><spring:message code="password" />:<br>
-                <form:password path="password"/>
-            </label>
+            <form:label path="password"><spring:message code="password" /></form:label><br>
+            <form:password path="password" placeholder="Password" required="required" />
+            <form:errors path="password" cssClass="error"/>
         </p>
         <p>
-            <label><spring:message code="password.confirm" />:<br>
-                <form:password path="confirmPassword"/>
-            </label>
+            <form:label path="confirmPassword"><spring:message code="password.confirm" /></form:label><br>
+            <form:password path="confirmPassword" placeholder="Conform password" required="required"/>
+            <form:errors path="confirmPassword" cssClass="error"/>
         </p>
         
         <input type="submit" value="<spring:message code="register.btn" />" >
