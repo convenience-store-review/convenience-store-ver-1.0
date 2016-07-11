@@ -7,6 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <resultMap id="product_infoMap" type="ProductReview" >
 <result property="like_count" column="like_count"/>
+<result property="id" column="product_review_id"/>
 <association property="product" javaType="Product">
     <id property="id" column="product_id"/>
     <result property="name" column="product_name"/>
@@ -24,7 +25,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <select id="product_info" resultMap="product_infoMap">
 
-select pr.like_count as like_count, 
+select pr.id as product_review_id, 
+pr.like_count as like_count, 
 p.id as product_id, 
 p.name as product_name,
 p.price as product_price, 
@@ -115,6 +117,56 @@ on pr.product_id = #{id} and pr.grade_id = g.id
 	on ur.user_id = #{id}
  
  </select>
+ 
+ <update id = "user_review_update">
+ 	update tbl_user_review set 
+ 	content1 = #{content1}, 
+ 	content2 = #{content2}, 
+ 	content3 = #{content3} 
+ 	where id = #{id}
+ 	
+ </update>
+ 
+ <update id = "user_review_grade_update">
+ 
+ 	update tbl_grade set
+ 	taste = #{grade.taste}, 
+ 	cost_ratio = #{grade.cost_ratio}, 
+ 	calory = #{grade.calory}, 
+ 	total = #{grade.total} 
+ 	where id = #{grade.id}
+ </update>
+ 
+ <delete id = "user_review_delete">
+ 
+ 	delete from tbl_user_review where id = #{id}
+ 
+ </delete>
+ 
 
+ <insert id="user_review_grade_insert" parameterType="userReview" 
+ useGeneratedKeys="true" keyProperty="grade.id">
+	
+	insert into tbl_grade(taste, cost_ratio, calory, total) 
+	values(#{grade.taste}, 
+			#{grade.cost_ratio},  
+			#{grade.calory}, 
+			#{grade.total})
+ 	
+ </insert>
+ 
+ <insert id = "user_review_insert">
+ insert into tbl_user_review(user_id, grade_id, 
+								product_review_id, 
+								content1, content2, content3, 
+								regdate)
+	values(#{user.id}, 
+	#{grade.id}, 
+	#{productReview.id}, 
+	#{content1}, 
+	#{content2}, 
+	#{content3}, 
+	#{regdate})
+ </insert>
 
 </mapper>

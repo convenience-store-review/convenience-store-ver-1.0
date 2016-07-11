@@ -86,7 +86,8 @@ $(document).ready(function(){
 	});
 	
 	$(".btn-danger").on("click", function(){
-		formObj.attr("action", "/review/removePage");
+		formObj.attr("action", "/review/user_review_remove");
+		formObj.attr("method", "post");
 		formObj.submit();
 	});
 	

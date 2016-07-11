@@ -36,5 +36,22 @@ public class UserReviewImpl implements UserReivewDAO {
 	public UserReview user_review_read(Integer id) throws Exception {
 		return session.selectOne(namespace +".user_review_read", id);
 	}
+	
+	@Override
+	public void user_review_modify(UserReview userReview) throws Exception {
+		session.update(namespace + ".user_review_update", userReview);
+		session.update(namespace +".user_review_grade_update", userReview);
+	}
+	
+	@Override
+	public void user_review_remove(UserReview userReview) throws Exception {
+		session.delete(namespace + ".user_review_delete", userReview);
+	}
+	
+	@Override
+	public void user_review_register(UserReview userReview) throws Exception {
+		session.insert(namespace + ".user_review_grade_insert", userReview);
+		session.insert(namespace + ".user_review_insert", userReview);
+	}
 
 }

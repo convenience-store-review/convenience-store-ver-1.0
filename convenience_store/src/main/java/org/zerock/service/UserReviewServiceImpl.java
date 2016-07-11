@@ -31,4 +31,19 @@ public class UserReviewServiceImpl implements UserReviewService {
 	public UserReview user_review_read(Integer id) throws Exception {
 		return dao.user_review_read(id);
 	}
+	
+	@Override
+	public void user_review_modify(UserReview userReview) throws Exception {
+		dao.user_review_modify(userReview);
+	}
+	
+	@Override
+	public void user_review_remove(UserReview userReview) throws Exception {
+		dao.user_review_remove(userReview);
+	}
+	
+	@Override
+	public void user_review_register(UserReview userReview) throws Exception {
+		dao.user_review_register(userReview);
+	}
 }

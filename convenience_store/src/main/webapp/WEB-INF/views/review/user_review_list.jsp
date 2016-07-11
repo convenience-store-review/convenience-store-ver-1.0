@@ -11,6 +11,7 @@
 		<!-- left column -->
 		<div class="col-md-12">
 			<!-- general form elements -->
+			<button id = 'newBtn' class="btn btn-warning">New Review</button>
 			<div class="box box-primary">
 				<div class="box-header">
 					<h3 class="box-title">Product_Review</h3>
@@ -83,8 +84,6 @@
 <br><br>
 </c:forEach>
 
-
-
 		</div>
 		<!-- /.box -->
 	</div>
@@ -96,5 +95,26 @@
 <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+<script>
+	var result = '${msg}';
+
+	if (result == 'SUCCESS') {
+		alert("처리가 완료되었습니다.");
+	}
+</script>
+
+<script>
+	$(document).ready(
+			function() {
+
+				$('#newBtn').on("click", function(evt) {
+
+					self.location = "/review/user_review_registerPage?product_id=${productReview.id}";
+
+				});
+
+			});
+</script>
 
 <%@include file="../include/footer.jsp"%>

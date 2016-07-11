@@ -15,9 +15,10 @@
 				</div>
 				<!-- /.box-header -->
 
-				<form role="form" action="modifyPage" method="post">
+				<form role="form" action="user_review_modify" method="post">
 
-					<input type='hidden' name='id' value ="${userReview.productReview.id}">
+					<input type='hidden' name='product.id' value ="${userReview.productReview.id}">
+					<input type='hidden' name='grade.id' value ="${userReview.grade.id}">
 
 					<div class="box-body">
 
@@ -29,21 +30,21 @@
 
 						<div class="form-group">
 							<label for="exampleInputEmail1">Taste</label> <input type="text"
-								name='taste' class="form-control" value="${userReview.grade.taste}"
+								name='grade.taste' class="form-control" value="${userReview.grade.taste}"
 								id = "taste">
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Cost_ratio</label> <input type="text"
-								name='cost_ratio' class="form-control" value="${userReview.grade.cost_ratio}">
+								name='grade.cost_ratio' class="form-control" value="${userReview.grade.cost_ratio}">
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Calory</label><input type="text"
-								name='calory' class="form-control" value="${userReview.grade.calory}">
+								name='grade.calory' class="form-control" value="${userReview.grade.calory}">
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Total</label> <input type="text"
-								name='total' class="form-control" value="${userReview.grade.total}"
-								readonly="readonly" onpropertychange="자바스크립트 함수">
+								name='grade.total' class="form-control" value="${userReview.grade.total}"
+								readonly="readonly">
 						</div>
 						<div class="form-group">
 							<label for="exampleInputPassword1">Content1</label>
@@ -54,8 +55,8 @@
 							<textarea class="form-control" name="content2" rows="3">${userReview.content2}</textarea>
 						</div>
 						<div class="form-group">
-							<label for="exampleInputPassword1">Content1</label>
-							<textarea class="form-control" name="content2" rows="3">${userReview.content3}</textarea>
+							<label for="exampleInputPassword1">Content3</label>
+							<textarea class="form-control" name="content3" rows="3">${userReview.content3}</textarea>
 						</div>
 					</div>
 					<!-- /.box-body -->
@@ -67,11 +68,11 @@
 				
 				<script type="text/javascript">
 				$("input").on("input", function() {
-					var taste = document.getElementsByName("taste")[0].value;
-					var cost_ratio = document.getElementsByName("cost_ratio")[0].value;
-					var calory = document.getElementsByName("calory")[0].value;
+					var taste = document.getElementsByName("grade.taste")[0].value;
+					var cost_ratio = document.getElementsByName("grade.cost_ratio")[0].value;
+					var calory = document.getElementsByName("grade.calory")[0].value;
 					
-					var total = document.getElementsByName("total")[0];
+					var total = document.getElementsByName("grade.total")[0];
 					
 					taste = Number(taste);
 					cost_ratio = Number(cost_ratio);
@@ -79,12 +80,8 @@
 					
 					total.value = ((taste + cost_ratio + calory) / 3).toFixed(1);
 				});
-
-				
-				
 				
 				</script>
-
 
 				<script>
 				
@@ -100,7 +97,7 @@
 												.on(
 														"click",
 														function() {
-															self.location = "/board/listPage?page=${cri.page}&perPageNum=${cri.perPageNum}";
+															self.location = "/review/user_review_list?id=${id}";
 														});
 
 										$(".btn-primary").on("click",
