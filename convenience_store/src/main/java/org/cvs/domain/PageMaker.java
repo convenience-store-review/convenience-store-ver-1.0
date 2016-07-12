@@ -1,4 +1,4 @@
-package org.zerock.domain;
+package org.cvs.domain;
 
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;

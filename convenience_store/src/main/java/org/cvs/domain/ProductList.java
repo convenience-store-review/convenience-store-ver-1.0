@@ -1,6 +1,6 @@
-package org.zerock.domain;
+package org.cvs.domain;
 
-public class ProductCategoryList {
+public class ProductList {
 
 	private Product product;
 	private CollaboReview collaboReview;
