@@ -1,4 +1,4 @@
-package org.cvs.domain;
+package org.review.cvs.domain;
 
 import java.util.Date;
 

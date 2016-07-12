@@ -1,17 +1,17 @@
-package org.cvs.collabo.controller;
+package org.review.cvs.collabo.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 
-@RestController
+@Controller
 @RequestMapping("/collabo")
 public class CollaboBoardController {
 
   private static final Logger logger = LoggerFactory.getLogger(CollaboBoardController.class);
-  @RequestMapping("/hello")
+  @RequestMapping("/list")
 	public String sayHello() {
 		return "Hello World";
 	}

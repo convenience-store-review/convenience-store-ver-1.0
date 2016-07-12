@@ -1,6 +1,6 @@
-package org.cvs.domain;
+package org.review.cvs.domain;
 
-public class ProductList {
+public class ProductCategoryList {
 
 	private Product product;
 	private CollaboReview collaboReview;

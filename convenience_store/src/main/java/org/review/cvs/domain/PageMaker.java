@@ -1,4 +1,4 @@
-package org.cvs.domain;
+package org.review.cvs.domain;
 
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
