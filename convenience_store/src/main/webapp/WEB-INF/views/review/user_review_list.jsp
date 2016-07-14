@@ -17,6 +17,7 @@
 					<h3 class="box-title">Product_Review</h3>
 				</div>
 				<!-- /.box-header -->
+
 <table class="table table-bordered">
 	<tr>
 		<th style="width: 10px">name</th>
@@ -59,7 +60,7 @@
 	</tr>
 
 	<tr>
-		<td><a href='/review/user_review_readPage?id=${ur.id}'>${ur.id}</a></td>
+		<td><a href='/review/user_review_readPage?id=${ur.id}&user_id=${ur.user.id}&grade_id=${ur.grade.id}'>${ur.id}</a></td>
 		<td>${ur.user.nickname}</td>
 		<td>${ur.regdate}</td>
 		<td>${ur.grade.taste}</td>

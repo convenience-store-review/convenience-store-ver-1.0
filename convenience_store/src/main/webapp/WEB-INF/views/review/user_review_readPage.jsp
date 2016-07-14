@@ -16,15 +16,16 @@
         
     <form role="form" action="modifyPage" method="post">
     
-    <input type='hidden' name='id' value ="${userReview.productReview.id}">
+    <input type="hidden" name="id" value ="${userReview.productReview.id}">
     <input type='hidden' name='user_review_id' value ="${userReview.id}">
+    <input type='hidden' name='user_id' value ="${userReview.user.id}">
     <input type='hidden' name='grade_id' value ="${userReview.grade.id}">
 
  </form>
  
   <div class="box-body">
     <div class="form-group">
-      <label for="exampleInputEmail1">No.</label>
+      <label for="exampleInputEmail1">No</label>
       <input type="text" name='No' class="form-control" 
          value="${userReview.id}" readonly="readonly">
     </div>
@@ -80,7 +81,7 @@ $(document).ready(function(){
 	console.log(formObj);
 	
 	$(".btn-warning").on("click", function(){
-		formObj.attr("action", "/review/user_review_modifyPage?user_review_id=${user_review_id}&grade_id=${grade_id}");
+		formObj.attr("action", "/review/user_review_modifyPage");
 		formObj.attr("method", "get");		
 		formObj.submit();
 	});
@@ -93,7 +94,7 @@ $(document).ready(function(){
 	
 	$(".btn-primary").on("click", function(){
 		formObj.attr("method", "get");
-		formObj.attr("action", "/review/user_review_list?id=${id}");
+		formObj.attr("action", "/review/user_review_list");
 		formObj.submit();
 	});
 	

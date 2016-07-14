@@ -1,13 +1,14 @@
-package org.zerock.service;
+package org.review.cvs.userreview.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
-import org.zerock.domain.ProductReview;
-import org.zerock.domain.UserReview;
-import org.zerock.persistence.UserReivewDAO;
+import org.review.cvs.commons.domain.ProductReview;
+import org.review.cvs.commons.domain.UserReview;
+import org.review.cvs.userreview.persistence.UserReivewDAO;
 
 @Service
 public class UserReviewServiceImpl implements UserReviewService {
@@ -28,8 +29,8 @@ public class UserReviewServiceImpl implements UserReviewService {
 	}
 	
 	@Override
-	public UserReview user_review_read(Integer id) throws Exception {
-		return dao.user_review_read(id);
+	public UserReview user_review_read(HashMap<String, Object> map) throws Exception {
+		return dao.user_review_read(map);
 	}
 	
 	@Override

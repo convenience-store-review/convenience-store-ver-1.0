@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.zerock.mapper.UserReviewMapper">
+<mapper namespace="org.review.cvs.mapper.UserReviewMapper">
  
 <resultMap id="product_infoMap" type="ProductReview" >
 <result property="like_count" column="like_count"/>
@@ -90,17 +90,17 @@ on pr.product_id = #{id} and pr.grade_id = g.id
 	inner join tbl_user as u 
 	inner join tbl_grade as g 
 	inner join tbl_product_review as p 
-	on ur.product_review_id = #{id} and u.id = ur.user_id
+	on ur.product_review_id = #{id} and g.id = ur.grade_id and u.id = ur.user_id
 </select>
 
- <select id="user_review_read" resultMap="user_review_Map">
+ <select id="user_review_read" resultMap="user_review_Map" parameterType="hashmap">
 
 	select ur.id as user_review_id, 
 	ur.content1 as user_review_content1, 
 	ur.content2 as user_review_content2, 
 	ur.content3 as user_review_content3, 
 	ur.help_count as user_review_help_count, 
-	ur.regdate as user_review_regdate,
+	ur.regdate as user_review_regdate, 
 	u.id as user_id, 
 	u.nickname as user_nickname, 
 	u.photo as user_photo,
@@ -114,8 +114,7 @@ on pr.product_id = #{id} and pr.grade_id = g.id
 	inner join tbl_user as u 
 	inner join tbl_grade as g 
 	inner join tbl_product_review as p
-	on ur.user_id = #{id}
- 
+	on ur.id = #{id} and u.id = #{user_id} and g.id = #{grade_id}
  </select>
  
  <update id = "user_review_update">

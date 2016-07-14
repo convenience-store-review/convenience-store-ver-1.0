@@ -19,6 +19,7 @@
 
 					<input type='hidden' name='product.id' value ="${userReview.productReview.id}">
 					<input type='hidden' name='grade.id' value ="${userReview.grade.id}">
+					<input type="hidden" name ='productReview.id' value ="${userReview.productReview.id}">
 
 					<div class="box-body">
 
@@ -90,14 +91,14 @@
 									function() {
 
 										var formObj = $("form[role='form']");
-
+			
 										console.log(formObj);
 
 										$(".btn-warning")
 												.on(
 														"click",
 														function() {
-															self.location = "/review/user_review_list?id=${id}";
+															self.location = "/review/user_review_list?id=${userReview.productReview.id}";
 														});
 
 										$(".btn-primary").on("click",

@@ -1,4 +1,6 @@
-package org.zerock.controller;
+package org.review.cvs.userreview.controller;
+
+import java.util.HashMap;
 
 import javax.inject.Inject;
 
@@ -11,10 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.zerock.domain.BoardVO;
-import org.zerock.domain.Criteria;
-import org.zerock.domain.UserReview;
-import org.zerock.service.UserReviewService;
+
+import org.review.cvs.commons.domain.UserReview;
+import org.review.cvs.userreview.service.UserReviewService;
 
 
 @Controller
@@ -35,17 +36,22 @@ public class ReviewController {
   
   
   @RequestMapping(value = "/user_review_readPage", method = RequestMethod.GET)
-  public void read(@RequestParam("id") int id, Model model) throws Exception {
-
-    model.addAttribute(service.user_review_read(id));
+  public void read(@RequestParam("id") Integer id, @RequestParam("user_id") Integer user_id, 
+		  @RequestParam("grade_id") Integer grade_id ,Model model) throws Exception {
+	HashMap<String, Object> map = new HashMap<String, Object>();
+	map.put("id", id); map.put("user_id", user_id); map.put("grade_id", grade_id);
+    model.addAttribute(service.user_review_read(map));
+    logger.info("!!!");
   }
   
+  
   @RequestMapping(value = "/user_review_modifyPage", method = RequestMethod.GET)
-  public void modifyPagingGET(@RequestParam("user_review_id") int user_review_id, 
-		  @RequestParam("grade_id") int grade_id, Model model)
+  public void modifyPagingGET(@RequestParam("user_review_id") Integer id, @RequestParam("user_id") Integer user_id, 
+		  @RequestParam("grade_id") Integer grade_id ,Model model)
       throws Exception {
-
-    model.addAttribute(service.user_review_read(user_review_id));
+	  HashMap<String, Object> map = new HashMap<String, Object>();
+	map.put("id", id); map.put("user_id", user_id); map.put("grade_id", grade_id);
+    model.addAttribute(service.user_review_read(map));
   }
   
   @RequestMapping(value = "/user_review_modify", method = RequestMethod.POST)

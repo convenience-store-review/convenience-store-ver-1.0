@@ -1,16 +1,15 @@
-package org.zerock.persistence;
+package org.review.cvs.userreview.persistence;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
-import org.zerock.domain.UserReview;
-import org.zerock.domain.User;
-import org.zerock.domain.Grade;
-import org.zerock.domain.ProductReview;
-import org.zerock.domain.CollaboReview;
+import org.review.cvs.commons.domain.UserReview;
+import org.review.cvs.commons.domain.ProductReview;
+
 
 @Repository
 public class UserReviewImpl implements UserReivewDAO {
@@ -19,7 +18,7 @@ public class UserReviewImpl implements UserReivewDAO {
 	private SqlSession session;
 	
 	private static String namespace
-	="org.zerock.mapper.UserReviewMapper";
+	="org.review.cvs.mapper.UserReviewMapper";
 	
 	
 	@Override
@@ -33,8 +32,8 @@ public class UserReviewImpl implements UserReivewDAO {
 	}
 	
 	@Override
-	public UserReview user_review_read(Integer id) throws Exception {
-		return session.selectOne(namespace +".user_review_read", id);
+	public UserReview user_review_read(HashMap<String, Object> map) throws Exception {
+		return session.selectOne(namespace +".user_review_read", map);
 	}
 	
 	@Override
