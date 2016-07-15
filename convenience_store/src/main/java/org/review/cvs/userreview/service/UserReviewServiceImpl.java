@@ -6,6 +6,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.review.cvs.commons.domain.Grade;
 import org.review.cvs.commons.domain.ProductReview;
 import org.review.cvs.commons.domain.UserReview;
 import org.review.cvs.userreview.persistence.UserReivewDAO;
@@ -38,13 +40,19 @@ public class UserReviewServiceImpl implements UserReviewService {
 		dao.user_review_modify(userReview);
 	}
 	
+	@Transactional
 	@Override
-	public void user_review_remove(UserReview userReview) throws Exception {
-		dao.user_review_remove(userReview);
+	public void user_review_remove(Integer user_review_id, Integer grade_id) throws Exception {
+		dao.user_review_remove(user_review_id);
+		dao.user_review_grade_remove(grade_id);
 	}
 	
+	@Transactional
 	@Override
-	public void user_review_register(UserReview userReview) throws Exception {
-		dao.user_review_register(userReview);
+	public void user_review_register(UserReview userReview, Grade grade) throws Exception {
+		dao.user_review_grade_register(grade);
+		System.out.println(grade.getId());
+		dao.user_review_register(userReview, grade.getId());
+		
 	}
 }

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+import org.review.cvs.commons.domain.Grade;
 import org.review.cvs.commons.domain.UserReview;
 import org.review.cvs.userreview.service.UserReviewService;
 
@@ -41,7 +41,6 @@ public class ReviewController {
 	HashMap<String, Object> map = new HashMap<String, Object>();
 	map.put("id", id); map.put("user_id", user_id); map.put("grade_id", grade_id);
     model.addAttribute(service.user_review_read(map));
-    logger.info("!!!");
   }
   
   
@@ -66,12 +65,15 @@ public class ReviewController {
   }
   
   @RequestMapping(value = "/user_review_remove", method = RequestMethod.POST)
-  public String remove(UserReview userReview, RedirectAttributes rttr) throws Exception {
+  public String remove(@RequestParam("user_review_id") int user_review_id,
+		  @RequestParam("grade_id") int grade_id, @RequestParam("product_id") int product_id,
+		  RedirectAttributes rttr) throws Exception {
 	 
-    service.user_review_remove(userReview);
+	System.out.println(grade_id + " " + user_review_id);
+    service.user_review_remove(user_review_id, grade_id);
 	
     rttr.addFlashAttribute("msg", "SUCCESS");
-	return "redirect:/review/user_review_list?id="+ userReview.getProductReview().getId();
+	return "redirect:/review/user_review_list?id="+ product_id;
   }
   
   @RequestMapping(value = "/user_review_registerPage", method = RequestMethod.GET)
@@ -82,11 +84,10 @@ public class ReviewController {
   }
   
   @RequestMapping(value = "/user_review_register", method = RequestMethod.POST)
-  public String registerPOST(UserReview userReview, RedirectAttributes rttr) throws Exception {
+  public String registerPOST(UserReview userReview, Grade grade, RedirectAttributes rttr) throws Exception {
 	
     logger.info("mod post............");
-
-    service.user_review_register(userReview);
+    service.user_review_register(userReview, grade);
     rttr.addFlashAttribute("msg", "SUCCESS");
     
     return "redirect:/review/user_review_list?id="+ userReview.getProductReview().getId();

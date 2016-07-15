@@ -13,15 +13,17 @@
         <div class="box-header">
           <h3 class="box-title">USER_REVIEW_READ</h3>
         </div><!-- /.box-header -->
-        
-    <form role="form" action="modifyPage" method="post">
+
+    <form role="form" action="user_review_modifyPage" method="get">
     
-    <input type="hidden" name="id" value ="${userReview.productReview.id}">
+    <input type="hidden" name="product_id" value ="${userReview.productReview.id}">
     <input type='hidden' name='user_review_id' value ="${userReview.id}">
     <input type='hidden' name='user_id' value ="${userReview.user.id}">
     <input type='hidden' name='grade_id' value ="${userReview.grade.id}">
-
+    
  </form>
+
+  
  
   <div class="box-body">
     <div class="form-group">

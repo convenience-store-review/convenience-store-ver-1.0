@@ -2,13 +2,16 @@ package org.review.cvs.userreview.persistence;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
-import org.review.cvs.commons.domain.UserReview;
+import org.review.cvs.commons.domain.Grade;
 import org.review.cvs.commons.domain.ProductReview;
+import org.review.cvs.commons.domain.UserReview;
+
 
 
 @Repository
@@ -43,14 +46,31 @@ public class UserReviewImpl implements UserReivewDAO {
 	}
 	
 	@Override
-	public void user_review_remove(UserReview userReview) throws Exception {
-		session.delete(namespace + ".user_review_delete", userReview);
+	public void user_review_remove(Integer user_review_id) throws Exception {
+		session.delete(namespace + ".user_review_delete", user_review_id);
 	}
 	
 	@Override
-	public void user_review_register(UserReview userReview) throws Exception {
-		session.insert(namespace + ".user_review_grade_insert", userReview);
-		session.insert(namespace + ".user_review_insert", userReview);
+	public void user_review_register(UserReview userReview, int grade_id) throws Exception {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("userReview", userReview);
+		paramMap.put("grade_id", grade_id);
+		session.insert(namespace + ".user_review_insert", paramMap);
+	}
+	
+	@Override
+	public void user_review_grade_modify(Grade grade) throws Exception {
+		
+	}
+	
+	@Override
+	public int user_review_grade_register(Grade grade) throws Exception {
+		return session.insert(namespace + ".user_review_grade_insert", grade);
+	}
+	
+	@Override
+	public void user_review_grade_remove(Integer grade_id) throws Exception {
+		session.delete(namespace + ".user_review_grade_delete", grade_id);
 	}
 
 }

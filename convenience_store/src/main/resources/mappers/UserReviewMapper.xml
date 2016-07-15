@@ -138,19 +138,23 @@ on pr.product_id = #{id} and pr.grade_id = g.id
  
  <delete id = "user_review_delete">
  
- 	delete from tbl_user_review where id = #{id}
+ 	delete from tbl_user_review where id = #{user_review_id}
  
  </delete>
  
+ <delete id = "user_review_grade_delete">
+ 	delete from tbl_grade where id = #{grade_id}
+ </delete>
+ 
 
- <insert id="user_review_grade_insert" parameterType="userReview" 
- useGeneratedKeys="true" keyProperty="grade.id">
+ <insert id="user_review_grade_insert" parameterType="Grade" 
+ useGeneratedKeys="true" keyProperty="id">
 	
 	insert into tbl_grade(taste, cost_ratio, calory, total) 
-	values(#{grade.taste}, 
-			#{grade.cost_ratio},  
-			#{grade.calory}, 
-			#{grade.total})
+	values(#{taste}, 
+			#{cost_ratio},  
+			#{calory}, 
+			#{total})
  	
  </insert>
  
@@ -159,13 +163,13 @@ on pr.product_id = #{id} and pr.grade_id = g.id
 								product_review_id, 
 								content1, content2, content3, 
 								regdate)
-	values(#{user.id}, 
-	#{grade.id}, 
-	#{productReview.id}, 
-	#{content1}, 
-	#{content2}, 
-	#{content3}, 
-	#{regdate})
+	values(#{userReview.user.id}, 
+	#{grade_id}, 
+	#{userReview.productReview.id}, 
+	#{userReview.content1}, 
+	#{userReview.content2}, 
+	#{userReview.content3}, 
+	#{userReview.regdate})
  </insert>
 
 </mapper>
