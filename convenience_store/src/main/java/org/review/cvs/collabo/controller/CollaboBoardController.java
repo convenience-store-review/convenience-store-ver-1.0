@@ -25,6 +25,8 @@ public class CollaboBoardController {
   public void read(@RequestParam("id") int id, Model model) throws Exception{
 	  logger.info("read get...............");
 	  model.addAttribute(service.collaboRead(id));
+	  logger.info("photo..................");
+	  model.addAttribute("list",service.attachPhoto(id));
   }
   
   

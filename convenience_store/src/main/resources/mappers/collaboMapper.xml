@@ -5,34 +5,78 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="org.review.cvs.mapper.CollaboMapper">
     
-    <resultMap id="collabo_Map" type="CollaboReview" >
+	<resultMap id="collabo_Map" type="CollaboReview" >
+	    <id property="id" column="id"/>
 		<result property="title" column="title"/>
 		<result property="total_price" column="total_price"/>
 		<result property="recipe" column="recipe"/>
 		<result property="tips" column="tips"/>
 		<result property="like_count" column="like_count"/>
 		<result property="grade_total_count" column="grade_total_count"/>
-		<result property="view_cnt" column="view_cnt"/>
+		<result property="view_count" column="view_count"/>
 		<result property="ispenalty" column="ispenalty"/>
 		<result property="regdate" column="regdate"/>
 		<result property="updatedate" column="updatedate"/>
 		<association property="user" javaType="User">
 	    	<id property="id" column="user_id"/>
-	    	<result property="email" column="user_email"/>
-	    	<result property="nickname" column="user_nickname"/>
+	    	<result property="email" column="email"/>
+	    	<result property="nickname" column="nickname"/>
 		</association>
 		<association property="grade" javaType="Grade">
 		    <id property="id" column="grade_id"/>
-	    	<result property="total" column="grade_total"/>
-	    	<result property="taste" column="grade_taste"/>
-	    	<result property="cost_ratio" column="grade_cost_ratio"/>
-	    	<result property="calory" column="grade_calory"/>
+	    	<result property="taste" column="taste"/>
+	    	<result property="cost_ratio" column="cost_ratio"/>
+	    	<result property="calory" column="calory"/>
 		</association>
 	</resultMap>
-    
-    
-    <select id="collaboread" resultType="collabo_Map">
-		select * from tbl_collabo_review where id = #{id}        
+	
+	<select id="collaboread" resultMap="collabo_Map">
+		select * from tbl_collabo_review as tcr
+		inner join tbl_grade as tg
+		inner join tbl_user as tu 
+		on tcr.id = #{id} and tcr.user_id = tu.id and tcr.grade_id = tg.id
+		
     </select>
+    
+	<!--property는 클래스파일에 변수명 column은 디비  -->
+	<resultMap id="photo_Map" type="AttachPhoto" >
+	    <id property="attach_photo_fullname" column="fullname"/>
+		<result property="regdate" column="regdate"/>
+		<association property="collabo_review_id" javaType="CollaboReview">
+	    	<id property="id" column="collabo_review_id"/> <!-- tbl_attach_photo의 컬럼. -->
+		</association>
+	</resultMap>
+
+	<select id="collabophoto" resultMap="photo_Map">
+		<![CDATA[select * from tbl_attach_photo where collabo_review_id = #{id};]]>    
+	</select>
+	
+	
+    
+<!-- 	<select id="collaboread" resultMap="collabo_Map">
+        
+    select tcr.id as id,
+	tu.email as user_email, 
+	tu.nickname as user_nickname, 
+	tcr.title as title,
+	tcr.total_price as totalprice, 
+	tcr.recipe as recipe,
+	tcr.tips as tips, 
+	tcr.regdate as regdate,
+	tg.total as total,
+	tcr.like_count as like, 
+	tap.fullname as photo 
+	from tbl_collabo_review as tcr
+	inner join tbl_attach_photo as tap
+	inner join tbl_user as tu 
+	inner join tbl_grade as tg 
+	on tcr.user_id = tu.id and tcr.grade_id = tg.id and #{id} = tap.collabo_review_id;    
+        
+    </select> -->
+    
+    
+        
+    
+    
     
 </mapper>

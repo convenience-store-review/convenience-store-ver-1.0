@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.review.cvs.collabo.persistence.CollaboBoardDAO;
+import org.review.cvs.commons.domain.AttachPhoto;
 import org.review.cvs.commons.domain.BoardVO;
 import org.review.cvs.commons.domain.CollaboReview;
 import org.review.cvs.commons.domain.Criteria;
@@ -22,6 +23,12 @@ public class CollaboBoardServiceImpl implements CollaboBoardService {
 	public CollaboReview collaboRead(Integer id) throws Exception {
 		return dao.collaboRead(id);
 	}
+	
+	@Override
+	public List<AttachPhoto> attachPhoto(Integer id) throws Exception {
+		return dao.attachPhoto(id);
+	}
+	
 	
 //	@Override
 //	public void regist(BoardVO board) throws Exception {

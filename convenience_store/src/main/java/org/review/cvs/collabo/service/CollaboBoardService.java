@@ -2,15 +2,15 @@ package org.review.cvs.collabo.service;
 
 import java.util.List;
 
-import org.review.cvs.commons.domain.BoardVO;
+import org.review.cvs.commons.domain.AttachPhoto;
 import org.review.cvs.commons.domain.CollaboReview;
-import org.review.cvs.commons.domain.Criteria;
-import org.review.cvs.commons.domain.SearchCriteria;
 
 
 public interface CollaboBoardService {
 	
 	public CollaboReview collaboRead(Integer id) throws Exception;
+	
+	public List<AttachPhoto> attachPhoto(Integer id) throws Exception;
 	
 //	public void regist(BoardVO board) throws Exception;
 //	

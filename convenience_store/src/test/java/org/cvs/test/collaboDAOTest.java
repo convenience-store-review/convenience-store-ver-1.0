@@ -22,5 +22,6 @@ public class collaboDAOTest {
 	@Test
 	public void testRead() throws Exception {
 		logger.info(dao.collaboRead(6).toString());
+		
 	}
 }
