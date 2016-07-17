@@ -1,18 +1,40 @@
 package org.review.cvs.collabo.controller;
 
+import javax.inject.Inject;
+
+import org.review.cvs.collabo.service.CollaboBoardService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
-@RequestMapping("/collabo")
+@RequestMapping("/collabo/*")
 public class CollaboBoardController {
 
   private static final Logger logger = LoggerFactory.getLogger(CollaboBoardController.class);
+  
+  @Inject
+  private CollaboBoardService service;
+  
+  @RequestMapping(value="/read", method=RequestMethod.GET)
+  public void read(@RequestParam("id") int id, Model model) throws Exception{
+	  logger.info("read get...............");
+	  model.addAttribute(service.collaboRead(id));
+  }
+  
+  
   @RequestMapping("/list")
 	public String sayHello() {
+		return "Hello World";
+	}
+  
+  @RequestMapping("/hello")
+	public String sayHello2() {
 		return "Hello World";
 	}
   

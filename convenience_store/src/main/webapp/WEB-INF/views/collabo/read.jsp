@@ -13,30 +13,43 @@
 				<div class="box-body">
 					<table class="table table-bordered">
 						<tr>
-							<th style="width: 10px">bno</th>
-							<th>TITLE</th>
-							<th>WRITER</th>
-							<th>REGDATE</th>
-							<th style="width: 40px">VIEWCNT</th>
+							<th>id</th>
+							<th>userid</th>
+							<th>gradeid</th>	
+							<th>title</th>
+							<th>total_price</th>
+							<th>recipe</th>
+							<th>tips</th>
+							<th>like_count</th>
+							<th>grade_total_count</th>
+							<th>view_cnt</th>
+							<th>ispenalty</th>
+							<th>regdate</th>
+							<th>updatedate</th>
 						</tr>
 
-						<c:forEach items="${list}" var="boardVO">
-
-							<tr>
-								<td>${boardVO.bno}</td>
-								<td></td>
-								<td>${boardVO.writer}</td>
-								<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
-										value="${boardVO.regdate}" /></td>
-								<td><span class="badge bg-red">${boardVO.viewcnt }</span></td>
-							</tr>
-
-						</c:forEach>
+						<tr>
+							<td>${collaboReview.id}</td>
+							<td>${collaboReview.user_id}</td>
+							<td>${collaboReview.grade_id}</td>
+							<td>${collaboReview.title}</td>
+							<td>${collaboReview.total_price}</td>
+							<td>${collaboReview.recipe}</td>
+							<td>${collaboReview.tips}</td>
+							<td>${collaboReview.like_count}</td>
+							<td>${collaboReview.grade_total_count}</td>
+							<td>${collaboReview.view_cnt}</td>
+							<td>${collaboReview.ispenalty}</td>
+							<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
+									value="${collaboReview.regdate}" /></td>
+							<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
+									value="${collaboReview.updatedate}" /></td>
+						</tr>
 
 					</table>
 				</div>
 				<!-- /.box-body -->
-
+</div>
 
 
 

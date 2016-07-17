@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.review.cvs.mapper.CollaboMapper">
+    
+    <resultMap id="collabo_Map" type="CollaboReview" >
+		<result property="title" column="title"/>
+		<result property="total_price" column="total_price"/>
+		<result property="recipe" column="recipe"/>
+		<result property="tips" column="tips"/>
+		<result property="like_count" column="like_count"/>
+		<result property="grade_total_count" column="grade_total_count"/>
+		<result property="view_cnt" column="view_cnt"/>
+		<result property="ispenalty" column="ispenalty"/>
+		<result property="regdate" column="regdate"/>
+		<result property="updatedate" column="updatedate"/>
+		<association property="user" javaType="User">
+	    	<id property="id" column="user_id"/>
+	    	<result property="email" column="user_email"/>
+	    	<result property="nickname" column="user_nickname"/>
+		</association>
+		<association property="grade" javaType="Grade">
+		    <id property="id" column="grade_id"/>
+	    	<result property="total" column="grade_total"/>
+	    	<result property="taste" column="grade_taste"/>
+	    	<result property="cost_ratio" column="grade_cost_ratio"/>
+	    	<result property="calory" column="grade_calory"/>
+		</association>
+	</resultMap>
+    
+    
+    <select id="collaboread" resultType="collabo_Map">
+		select * from tbl_collabo_review where id = #{id}        
+    </select>
+    
+</mapper>

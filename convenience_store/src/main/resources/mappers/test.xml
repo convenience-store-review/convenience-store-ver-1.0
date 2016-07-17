@@ -5,30 +5,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 참고사항 -->
 
-<mapper namespace="org.zerock.mapper.UserReviewMapper">
+<mapper namespace="org.review.cvs.mapper.UserReviewMapper">
 
 
- <select id="read" resultType="org.zerock.domain.UserReview">
+ <select id="read" resultType="org.review.cvs.commons.domain.UserReview">
 
 	select * from tbl_user_review where id = #{id}
  
  </select>
  
 <resultMap id="product_infoMap" type="ProductReview" >
-<result property="like_count" column="like_count"/>
-<association property="product" javaType="Product">
-    <id property="id" column="product_id"/>
-    <result property="name" column="product_name"/>
-    <result property="price" column="product_price"/>
-    <result property="photo" column="product_photo"/>
-</association>
-<association property="grade" javaType="Grade">
-    <id property="id" column="grade_id"/>
-    <result property="total" column="grade_total"/>
-    <result property="taste" column="grade_taste"/>
-    <result property="cost_ratio" column="grade_cost_ratio"/>
-    <result property="calory" column="grade_calory"/>
-</association>
+	<result property="like_count" column="like_count"/>
+	<association property="product" javaType="Product">
+    	<id property="id" column="product_id"/>
+    	<result property="name" column="product_name"/>
+    	<result property="price" column="product_price"/>
+    	<result property="photo" column="product_photo"/>
+		</association>
+	<association property="grade" javaType="Grade">
+	    <id property="id" column="grade_id"/>
+    	<result property="total" column="grade_total"/>
+    	<result property="taste" column="grade_taste"/>
+    	<result property="cost_ratio" column="grade_cost_ratio"/>
+    	<result property="calory" column="grade_calory"/>
+	</association>
 </resultMap>
 
 <select id="product_info" resultMap="product_infoMap">

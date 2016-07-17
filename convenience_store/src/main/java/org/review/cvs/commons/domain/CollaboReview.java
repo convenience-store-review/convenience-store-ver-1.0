@@ -1,12 +1,12 @@
-package org.review.cvs.domain;
+package org.review.cvs.commons.domain;
 
 import java.util.Date;
 
 public class CollaboReview {
 	
 	private int id;
-	private User user;
-	private Grade grade;
+	private User user;   //fk
+	private Grade grade;   //fk
 	private String title;
 	private int total_price;
 	private String recipe;

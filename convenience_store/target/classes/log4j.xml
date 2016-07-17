@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="org.cvs.collabo.controller">
+	<logger name="org.review.cvs.collabo.controller">
 		<level value="info" />
 	</logger>
 	

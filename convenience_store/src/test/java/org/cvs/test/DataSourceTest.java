@@ -1,4 +1,4 @@
-package org.zerock.test;
+package org.cvs.test;
 
 import java.sql.Connection;
 

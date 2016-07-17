@@ -1,4 +1,4 @@
-package org.review.cvs.domain;
+package org.review.cvs.commons.domain;
 
 public class ProductCategory {
 	
