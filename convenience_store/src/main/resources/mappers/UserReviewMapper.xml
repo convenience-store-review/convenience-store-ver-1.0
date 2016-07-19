@@ -129,11 +129,11 @@ on pr.product_id = #{id} and pr.grade_id = g.id
  <update id = "user_review_grade_update">
  
  	update tbl_grade set
- 	taste = #{grade.taste}, 
- 	cost_ratio = #{grade.cost_ratio}, 
- 	calory = #{grade.calory}, 
- 	total = #{grade.total} 
- 	where id = #{grade.id}
+ 	taste = #{taste}, 
+ 	cost_ratio = #{cost_ratio}, 
+ 	calory = #{calory}, 
+ 	total = #{total} 
+ 	where id = #{id}
  </update>
  
  <delete id = "user_review_delete">

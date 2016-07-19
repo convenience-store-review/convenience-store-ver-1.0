@@ -42,7 +42,6 @@ public class UserReviewImpl implements UserReivewDAO {
 	@Override
 	public void user_review_modify(UserReview userReview) throws Exception {
 		session.update(namespace + ".user_review_update", userReview);
-		session.update(namespace +".user_review_grade_update", userReview);
 	}
 	
 	@Override
@@ -60,7 +59,7 @@ public class UserReviewImpl implements UserReivewDAO {
 	
 	@Override
 	public void user_review_grade_modify(Grade grade) throws Exception {
-		
+		session.update(namespace +".user_review_grade_update", grade);
 	}
 	
 	@Override

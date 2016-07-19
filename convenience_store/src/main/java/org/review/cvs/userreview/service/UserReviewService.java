@@ -16,7 +16,7 @@ public interface UserReviewService {
 	
 	public UserReview user_review_read(HashMap<String, Object> map) throws Exception;
 	
-	public void user_review_modify(UserReview userReview) throws Exception;
+	public void user_review_modify(UserReview userReview,  Grade grade) throws Exception;
 	
 	public void user_review_remove(Integer user_review_id, Integer grade_id) throws Exception;
 	

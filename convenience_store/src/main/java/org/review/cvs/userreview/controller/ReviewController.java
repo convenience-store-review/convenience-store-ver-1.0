@@ -54,11 +54,11 @@ public class ReviewController {
   }
   
   @RequestMapping(value = "/user_review_modify", method = RequestMethod.POST)
-  public String modifyPOST(UserReview userReview, RedirectAttributes rttr) throws Exception {
+  public String modifyPOST(UserReview userReview, Grade grade, RedirectAttributes rttr) throws Exception {
 	
     logger.info("mod post............");
-
-    service.user_review_modify(userReview);
+    
+    service.user_review_modify(userReview, grade);
     rttr.addFlashAttribute("msg", "SUCCESS");
     
     return "redirect:/review/user_review_list?id="+ userReview.getProductReview().getId();

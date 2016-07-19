@@ -35,9 +35,12 @@ public class UserReviewServiceImpl implements UserReviewService {
 		return dao.user_review_read(map);
 	}
 	
+	@Transactional
 	@Override
-	public void user_review_modify(UserReview userReview) throws Exception {
+	public void user_review_modify(UserReview userReview,  Grade grade) throws Exception {
+		System.out.println(grade.getId());
 		dao.user_review_modify(userReview);
+		dao.user_review_grade_modify(grade);
 	}
 	
 	@Transactional

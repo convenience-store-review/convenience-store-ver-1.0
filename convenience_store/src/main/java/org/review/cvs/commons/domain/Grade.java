@@ -39,6 +39,4 @@ public class Grade {
 		this.total = total;
 	}
 	
-	
-	
 }
