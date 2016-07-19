@@ -1,5 +1,9 @@
 package org.review.cvs.user.persistence;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -43,6 +47,23 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public User selectByNickname(String nickname) throws Exception {
 		return session.selectOne(NAMESPACE + ".selectByNickname", nickname);
+	}
+
+	@Override
+	public void keepLogin(String email, String sessionId, Date next) throws Exception {
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("email", email);
+		paramMap.put("sessionId", sessionId);
+		paramMap.put("next", next);
+		
+//		System.out.println("## DAO ## paramMap:" + paramMap.toString());
+				
+		session.update(NAMESPACE + ".keepLogin", paramMap);
+	}
+
+	@Override
+	public User checkUserWithSessionKey(String value) throws Exception {
+		return session.selectOne(NAMESPACE + ".checkUserWithSessionKey", value);
 	}
 	
 }

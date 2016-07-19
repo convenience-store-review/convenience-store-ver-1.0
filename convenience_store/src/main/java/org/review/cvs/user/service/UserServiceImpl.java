@@ -1,5 +1,7 @@
 package org.review.cvs.user.service;
 
+import java.util.Date;
+
 import javax.inject.Inject;
 
 import org.review.cvs.commons.domain.User;
@@ -55,6 +57,16 @@ public class UserServiceImpl implements UserService {
 		user.changePassword(oldPassword, newPassword);
 		
 		dao.update(user);
+	}
+
+	@Override
+	public void keepLogin(String email, String sessionId, Date next) throws Exception {
+		dao.keepLogin(email, sessionId, next);
+	}
+
+	@Override
+	public User checkLoginBefore(String value) throws Exception {
+		return dao.checkUserWithSessionKey(value);
 	}
 
 }

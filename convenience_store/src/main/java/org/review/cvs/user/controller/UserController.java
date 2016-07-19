@@ -1,5 +1,7 @@
 package org.review.cvs.user.controller;
 
+import java.util.Date;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -47,13 +49,25 @@ public class UserController {
 		logger.info("login post..........\ndto:{}", dto);
 		
 		if (errors.hasErrors()) {
-			System.out.println("## error:" + errors.getAllErrors().toString());
+//			logger.info("## error:{}", errors.getAllErrors().toString());
 			return "/user/login";
 		}
 		
 		try {
 			User user = service.login(dto);
+			if (user == null) {
+//				logger.info("## user is null");
+				return "/user/login";
+			}
+			
 			model.addAttribute(ModelName.LOGIN_USER, user);
+			
+			if (dto.isUseCookie()) {
+				int amount = 60 * 60 * 24 * 7; // 7 days
+				Date sessionLimit = new Date(System.currentTimeMillis() + (1000 * amount));
+//				logger.info("## CONT ## limit:{}", sessionLimit);
+				service.keepLogin(user.getEmail(), session.getId(), sessionLimit);
+			}
 			
 		} catch (IdPasswordNotMatchingException e) {
 			errors.reject("idPasswordNotMatching");

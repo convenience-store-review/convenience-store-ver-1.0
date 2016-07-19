@@ -1,9 +1,11 @@
 package org.review.cvs.user.interceptor;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.review.cvs.commons.CookieName;
 import org.review.cvs.commons.ModelName;
 import org.review.cvs.commons.SessionName;
 import org.slf4j.Logger;
@@ -19,7 +21,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		System.out.println("pre handler.......");
+		logger.info("pre handler.......");
 		
 		HttpSession session = request.getSession();
 		if (session.getAttribute(SessionName.LOGIN_USER) != null) {
@@ -39,14 +41,24 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		System.out.println("post handler.......");
+		logger.info("post handler.......");
 		
 		HttpSession session = request.getSession();
 		ModelMap modelMap = modelAndView.getModelMap();
 		Object user = modelMap.get(ModelName.LOGIN_USER);
+//		logger.info("#### user :" + user);
 		if (user != null) {
 			logger.info("new login success.\n## new user:{}", user);
 			session.setAttribute(SessionName.LOGIN_USER, user);
+			
+			// Set loginCookie
+			if (request.getParameter("useCookie") != null) {
+				logger.info("remember me.......");
+				Cookie loginCookie = new Cookie(CookieName.LOGIN_COOKIE, session.getId());
+				loginCookie.setPath("/");
+				loginCookie.setMaxAge(60 * 60 * 24 * 7);	// 7 days
+				response.addCookie(loginCookie);
+			}
 			
 			Object dest = session.getAttribute(SessionName.DEST_URI);
 			response.sendRedirect(dest != null ? (String)dest : "/user/home");
