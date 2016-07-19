@@ -9,10 +9,10 @@
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
-	<context:component-scan base-package="org.zerock.user.controller" />
+	<context:component-scan base-package="org.review.cvs.user.controller" />
 	
-    <context:component-scan base-package="org.zerock.user.persistence" />
-    <context:component-scan base-package="org.zerock.user.service" />
+    <context:component-scan base-package="org.review.cvs.user.persistence" />
+    <context:component-scan base-package="org.review.cvs.user.service" />
 	
 	<!-- 다국어 처리 -->
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
@@ -32,7 +32,7 @@
 	</bean>
 	
 	<!-- 인터셉터 샘플 -->
-	<bean id="sampleInterceptor" class="org.zerock.user.interceptor.SampleInterceptor" />
+	<bean id="sampleInterceptor" class="org.review.cvs.user.interceptor.SampleInterceptor" />
 	<mvc:interceptors>
        <mvc:interceptor>
 			<mvc:mapping path="/user/doA" />
@@ -42,9 +42,9 @@
    </mvc:interceptors>
 	
     <!-- 로그인 처리 -->
-    <bean id="loginInterceptor" class="org.zerock.user.interceptor.LoginInterceptor" />
+    <bean id="loginInterceptor" class="org.review.cvs.user.interceptor.LoginInterceptor" />
     <!-- 접근 권한 처리 -->
-    <bean id="authInterceptor" class="org.zerock.user.interceptor.AuthInterceptor" />
+    <bean id="authInterceptor" class="org.review.cvs.user.interceptor.AuthInterceptor" />
     
 	<mvc:interceptors>
 		<mvc:interceptor>

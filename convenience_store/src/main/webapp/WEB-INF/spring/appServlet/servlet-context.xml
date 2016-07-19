@@ -21,7 +21,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="org.zerock.controller" />
+	<context:component-scan base-package="org.review.cvs.commons.controller" />
 	
 	<view-controller path="/user/home" view-name="/user/home"/>
 	
