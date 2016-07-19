@@ -72,6 +72,9 @@ public class UserController {
 		} catch (IdPasswordNotMatchingException e) {
 			errors.reject("idPasswordNotMatching");
 			return "/user/login";
+		} catch (UserNotFoundException e) {
+			errors.reject("emailNotFound");
+			return "/user/login";
 		}
 		
 		return "/user/loginPost";

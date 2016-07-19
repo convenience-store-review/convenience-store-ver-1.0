@@ -20,8 +20,13 @@ public class UserServiceImpl implements UserService {
 	@Inject
 	private UserDAO dao;
 	
+	@Transactional
 	@Override
 	public User login(LoginDTO dto) throws Exception {
+		boolean isMember = dao.checkIsMember(dto.getEmail());
+		if (!isMember)
+			throw new UserNotFoundException();
+			
 		User user = dao.login(dto);
 		if (user == null)
 			throw new IdPasswordNotMatchingException();
@@ -68,5 +73,5 @@ public class UserServiceImpl implements UserService {
 	public User checkLoginBefore(String value) throws Exception {
 		return dao.checkUserWithSessionKey(value);
 	}
-
+	
 }

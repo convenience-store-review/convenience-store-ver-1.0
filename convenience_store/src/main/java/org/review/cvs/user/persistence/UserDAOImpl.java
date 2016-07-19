@@ -65,5 +65,18 @@ public class UserDAOImpl implements UserDAO {
 	public User checkUserWithSessionKey(String value) throws Exception {
 		return session.selectOne(NAMESPACE + ".checkUserWithSessionKey", value);
 	}
+
+	@Override
+	public boolean checkIsMember(String email) throws Exception {
+		User user = selectByEmail(email);
+		if (user == null)
+			return false;
+		if (user.getEmail() == null)
+			return false;
+		if (user.getEmail().isEmpty())
+			return false;
+		
+		return true;
+	}
 	
 }

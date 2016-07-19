@@ -9,6 +9,8 @@ public interface UserDAO {
 
 	public User login(LoginDTO dto) throws Exception;
 	
+	public boolean checkIsMember(String email) throws Exception;
+	
 	public void keepLogin(String email, String sessionId, Date next) throws Exception;
 	
 	public User checkUserWithSessionKey(String value) throws Exception;
