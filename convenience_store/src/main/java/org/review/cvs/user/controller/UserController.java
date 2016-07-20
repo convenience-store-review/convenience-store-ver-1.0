@@ -3,10 +3,15 @@ package org.review.cvs.user.controller;
 import java.util.Date;
 
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.review.cvs.commons.CookieName;
 import org.review.cvs.commons.ModelName;
+import org.review.cvs.commons.SessionName;
 import org.review.cvs.commons.domain.User;
 import org.review.cvs.user.dto.ChangePasswordRequest;
 import org.review.cvs.user.dto.LoginDTO;
@@ -22,6 +27,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.util.WebUtils;
 
 @Controller
 @RequestMapping("/user/*")
@@ -78,6 +84,35 @@ public class UserController {
 		}
 		
 		return "/user/loginPost";
+	}
+	
+	@RequestMapping(value="/logout", method=RequestMethod.GET)
+	public String logout(
+			HttpServletRequest request,
+			HttpServletResponse response,
+			HttpSession session) throws Exception {
+		logger.info("logout get.........");
+		
+		// 로그인 세션 제거
+		Object obj = session.getAttribute(SessionName.LOGIN_USER);
+		logger.info("## logout ## obj:{}", obj);
+		if (obj != null) {
+			User user = (User)obj;
+			
+			session.removeAttribute(SessionName.LOGIN_USER);
+			session.invalidate();
+			
+			// 로그인 쿠키 제거
+			Cookie loginCookie = WebUtils.getCookie(request, CookieName.LOGIN_COOKIE);
+			logger.info("## logout ## loginCookie:{}", String.valueOf(loginCookie));
+			if (loginCookie != null) {
+				loginCookie.setPath("/");
+				loginCookie.setMaxAge(0);
+				response.addCookie(loginCookie);
+				service.keepLogin(user.getEmail(), session.getId(), new Date());
+			}
+		}
+		return "/user/logout";
 	}
 	
 	@RequestMapping(value = "/changePassword", method=RequestMethod.GET)
