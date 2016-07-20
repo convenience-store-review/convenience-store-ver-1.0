@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="org.review.cvs.mapper.UserMapper">
 
     <select id="login" resultType="User">
-        select email, password, nickname, photo from tbl_user
+        select id, email, password, nickname, photo from tbl_user
         where email = #{email} and password = #{password}
     </select>
     

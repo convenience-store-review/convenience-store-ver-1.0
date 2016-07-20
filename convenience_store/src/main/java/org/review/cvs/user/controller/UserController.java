@@ -115,6 +115,11 @@ public class UserController {
 		return "/user/logout";
 	}
 	
+	@RequestMapping(value = "/myPage", method=RequestMethod.GET)
+	public void myPageGET(@ModelAttribute("loginDTO") LoginDTO dto) {
+		logger.info("myPage get..........");
+	}
+	
 	@RequestMapping(value = "/changePassword", method=RequestMethod.GET)
 	public void changePasswordGET(ChangePasswordRequest request) throws Exception {
 		logger.info("changePassword get..........");

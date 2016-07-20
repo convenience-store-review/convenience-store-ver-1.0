@@ -28,6 +28,21 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     
+    <style type="text/css">
+		.myPage-left-article {
+		    float: left;
+		    width: 400px;
+		}
+		.myPage-right-article {
+		    float: left;
+		    width: 600px;
+		    margin-left: 50px;
+		}
+		.myPage-photo > .profile-user-img.img-responsive.img-circle {
+		    margin: 0 auto;
+		    width: 50%;
+		}
+    </style>
   </head>
       <!-- jQuery 2.1.4 -->
     <script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
