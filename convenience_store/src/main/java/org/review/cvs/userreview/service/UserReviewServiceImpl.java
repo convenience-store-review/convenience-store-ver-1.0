@@ -2,6 +2,7 @@ package org.review.cvs.userreview.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -46,6 +47,7 @@ public class UserReviewServiceImpl implements UserReviewService {
 	@Transactional
 	@Override
 	public void user_review_remove(Integer user_review_id, Integer grade_id) throws Exception {
+		
 		dao.user_review_remove(user_review_id);
 		dao.user_review_grade_remove(grade_id);
 	}
@@ -54,7 +56,7 @@ public class UserReviewServiceImpl implements UserReviewService {
 	@Override
 	public void user_review_register(UserReview userReview, Grade grade) throws Exception {
 		dao.user_review_grade_register(grade);
-		System.out.println(grade.getId());
+		//System.out.println(grade.getId());
 		dao.user_review_register(userReview, grade.getId());
 		
 	}
