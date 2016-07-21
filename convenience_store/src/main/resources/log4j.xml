@@ -11,7 +11,11 @@
 	</appender>
 	
 	<!-- Application Loggers -->
+
 	<logger name="org.review.cvs.search.controller">
+		<level value="info" />
+	</logger>
+	<logger name="org.review.cvs.userreview.controller">
 		<level value="info" />
 	</logger>
 	

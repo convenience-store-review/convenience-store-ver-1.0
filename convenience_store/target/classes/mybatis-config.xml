@@ -5,9 +5,10 @@
 <configuration>
 
   <typeAliases>
-    <package name="org.review.cvs.commons.domain"/>    
+
+    <package name="org.review.cvs.commons.domain"/>
+
   </typeAliases>
-
-
+  
 </configuration>
 
