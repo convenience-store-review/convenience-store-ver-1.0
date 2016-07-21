@@ -29,7 +29,14 @@ public class CollaboBoardServiceImpl implements CollaboBoardService {
 		return dao.attachPhoto(id);
 	}
 	
-	
+	@Override
+	public List<CollaboReview> collaboList() throws Exception {
+		return dao.collaboList();
+	}
+	@Override
+	public void regist(CollaboReview board) throws Exception {
+		dao.create(board);
+	}
 //	@Override
 //	public void regist(BoardVO board) throws Exception {
 //		dao.create(board);

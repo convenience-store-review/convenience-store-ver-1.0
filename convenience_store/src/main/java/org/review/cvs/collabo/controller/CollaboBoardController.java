@@ -3,6 +3,7 @@ package org.review.cvs.collabo.controller;
 import javax.inject.Inject;
 
 import org.review.cvs.collabo.service.CollaboBoardService;
+import org.review.cvs.commons.domain.CollaboReview;
 import org.review.cvs.commons.domain.Criteria;
 import org.review.cvs.commons.domain.PageMaker;
 import org.slf4j.Logger;
@@ -30,8 +31,41 @@ public class CollaboBoardController {
 	  logger.info("read get...............");
 	  model.addAttribute(service.collaboRead(id));
 	  logger.info("photo..................");
-	  model.addAttribute("list",service.attachPhoto(id));
+	  model.addAttribute("photolist",service.attachPhoto(id));
   }
+  
+  //전체리스트 보기
+  @RequestMapping(value="/listall", method=RequestMethod.GET)
+	public void listAll(Model model) throws Exception {
+		logger.info("show all list................");
+		model.addAttribute("listall",service.collaboList());
+	}
+  //등록하기
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public void registerGET(CollaboReview board, Model model) throws Exception {
+	
+	  logger.info("register get ...........");
+	}
+	
+	 @RequestMapping(value = "/register", method = RequestMethod.POST)
+	 public String registPOST(CollaboReview board, Model model) throws Exception {
+	
+	 logger.info("regist post ...........");
+	 logger.info(board.toString());
+	
+	 service.regist(board);
+	
+	 model.addAttribute("result", "success");
+	
+	 //return "/board/success";
+	 return "redirect:/collabo/listall";
+	 }
+  
+  
+  
+  
+  
+  
   
   //전체리스트 보기
 //  @RequestMapping(value="/listPage", method=RequestMethod.GET)
@@ -50,6 +84,9 @@ public class CollaboBoardController {
 //		model.addAttribute("pageMaker",pageMaker);
 //	}
 //  
+  
+  
+  
   
   
   

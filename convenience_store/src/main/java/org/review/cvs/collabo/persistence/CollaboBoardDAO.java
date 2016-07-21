@@ -10,4 +10,7 @@ public interface CollaboBoardDAO {
 
 	public List<AttachPhoto> attachPhoto(Integer id) throws Exception;
 		
+	public List<CollaboReview> collaboList() throws Exception;
+	
+	public void create(CollaboReview board) throws Exception;
 }

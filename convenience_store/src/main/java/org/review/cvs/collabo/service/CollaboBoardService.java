@@ -6,11 +6,16 @@ import org.review.cvs.commons.domain.AttachPhoto;
 import org.review.cvs.commons.domain.CollaboReview;
 
 
+
 public interface CollaboBoardService {
 	
 	public CollaboReview collaboRead(Integer id) throws Exception;
 	
 	public List<AttachPhoto> attachPhoto(Integer id) throws Exception;
+	
+	public List<CollaboReview> collaboList() throws Exception;
+	
+	public void regist(CollaboReview board) throws Exception;
 	
 //	public void regist(BoardVO board) throws Exception;
 //	

@@ -31,5 +31,15 @@ public class CollaboBoardDAOImpl implements CollaboBoardDAO{
 	public List<AttachPhoto> attachPhoto(Integer id) throws Exception {
 		return session.selectList(namespace+".collabophoto",id);
 	}
+	
+	@Override
+	public List<CollaboReview> collaboList() throws Exception {
+		return session.selectList(namespace + ".collabolist");
+	}
+	
+	@Override
+	public void create(CollaboReview board) throws Exception {
+		session.insert(namespace + ".insert" , board);
+	}
 		
 }

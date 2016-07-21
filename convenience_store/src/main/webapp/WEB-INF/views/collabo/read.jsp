@@ -87,7 +87,7 @@
 					   	</div>
 					   
 						
-						<c:forEach items="${list}" var="attachPhoto">
+						<c:forEach items="${photolist}" var="attachPhoto">
 						<div class="item">
 					      <img width="200px" height = "100px" src="${attachPhoto.attach_photo_fullname}">
 					    </div>							
@@ -151,7 +151,7 @@
 </section>
 
 <script>
-		var c_id = 7;
+		var c_id = ${collaboReview.id};
 		
 		getPageList(1);
 		//getPageList때문에 getAllList의 로그
