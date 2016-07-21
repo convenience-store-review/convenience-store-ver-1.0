@@ -1,4 +1,5 @@
-package org.zerock.domain;
+
+package org.review.cvs.commons.domain;
 
 import java.util.Date;
 
@@ -17,10 +18,6 @@ public class CollaboReview {
 	private int ispenalty;
 	private Date regdate;
 	private Date updatedate;
-	
-	private String test;
-	private String what="what am i doing???? ";
-	private String ddfdf;
 	
 	public int getId() {
 		return id;
