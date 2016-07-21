@@ -73,5 +73,15 @@ public class UserServiceImpl implements UserService {
 	public User checkLoginBefore(String value) throws Exception {
 		return dao.checkUserWithSessionKey(value);
 	}
+
+	@Override
+	public void remove(int id) throws Exception {
+		dao.delete(id);
+	}
+
+	@Override
+	public void modify(User user) throws Exception {
+		dao.update(user);
+	}
 	
 }

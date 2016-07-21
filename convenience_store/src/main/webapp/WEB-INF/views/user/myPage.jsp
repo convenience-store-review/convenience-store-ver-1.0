@@ -52,7 +52,11 @@
              <div class="myPage-right-article">
                  <article>
 				  <div class="tab-pane active" id="settings">
-				    <form class="form-horizontal">
+				    <form role="form" action="/user/" class="form-horizontal" method="post">
+				      <!-- 
+				      <input type="hidden" name="_method" value="DELETE">
+				      -->
+				      <input type='hidden' name="id" value="${loginUser.id}">
 				      <div class="form-group">
 				        <label for="inputEmail" class="col-sm-2 control-label">Email</label>
 				        <div class="col-sm-10">
@@ -92,8 +96,8 @@
 				      </div>
 				      <div class="form-group">
 				        <div class="col-sm-offset-2 col-sm-10">
-				          <button type="submit" class="btn btn-default bg-green">수정</button>
-				          <button type="submit" class="btn btn-danger bg-red">탈퇴</button>
+				          <button type="submit" class="btn btn-default bg-green" id="modifyBtn">수정</button>
+				          <button type="submit" class="btn btn-danger bg-red" id="removeBtn">탈퇴</button>
 				        </div>
 				      </div>
 				    </form>
@@ -110,12 +114,43 @@
 <script type="text/javascript">
 // 1. DOM 생성 후
 $(function(){
-//	console.log('${ loginUser }');
+	var msg = '${msg}';
+	console.log("msg:", '${msg}');
+	
+	if ( msg == "success") {
+		alert("작업이 성공했습니다!");
+	} else if ( msg == "emptyPassword") {
+		alert("비밀번호를 입력하지 않으셨습니다!");
+	} else if ( msg == "noMatchConfirmPassword") {
+		alert("비밀번호 확인이 일치하지 않습니다!");
+	} 
 });
 
 // 2. 이미지 로딩 후
 $(window).load(function(){
     //alert('haha');
+});
+
+$(document).ready(function(){
+    
+    var formObj = $("form[role='form']");
+//  console.log("## formObj:", formObj);
+    
+    $("#modifyBtn").on("click", function(){
+//      console.log("## modify loginUser.id:", '${loginUser.id}');
+        formObj.attr("action", "/user/${loginUser.id}");
+        var input = $("<input>").attr("type", "hidden").attr("name", "_method").val("PUT");
+        formObj.append(input).submit();
+    });
+    
+    $("#removeBtn").on("click", function(){
+//      console.log("## remove loginUser.id:", '${loginUser.id}');
+        formObj.attr("action", "/user/${loginUser.id}");
+        var input = $("<input>").attr("type", "hidden").attr("name", "_method").val("DELETE");
+        formObj.append(input).submit();
+        
+    });
+    
 });
 </script>
     

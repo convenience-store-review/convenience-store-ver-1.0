@@ -16,4 +16,8 @@ public interface UserService {
 	public void regist(User user) throws Exception;
 	
 	public void changePassword(String email, String oldPassword, String newPassword) throws Exception;
+
+	public void remove(int id) throws Exception;
+
+	public void modify(User user) throws Exception;
 }

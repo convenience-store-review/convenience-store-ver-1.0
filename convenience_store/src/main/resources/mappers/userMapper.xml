@@ -39,11 +39,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<update id="update">
-	   
+	   UPDATE tbl_user
+	   SET password = #{password},
+	       nickname = #{nickname},
+	       photo = #{photo}
+	   WHERE id = #{id};
 	</update>
 	
 	<delete id="delete">
-	
+	   delete from tbl_user where id = #{id};
 	</delete>
 
 </mapper>

@@ -25,8 +25,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
 @Controller
@@ -37,6 +39,11 @@ public class UserController {
 	
 	@Inject
 	private UserService service;
+	
+	@RequestMapping(value = "/home", method=RequestMethod.GET)
+	public void home() {
+		logger.info("home get..........");
+	}
 	
 	@RequestMapping(value = "/login", method=RequestMethod.GET)
 	public void loginGET(@ModelAttribute("loginDTO") LoginDTO dto) {
@@ -118,6 +125,49 @@ public class UserController {
 	@RequestMapping(value = "/myPage", method=RequestMethod.GET)
 	public void myPageGET(@ModelAttribute("loginDTO") LoginDTO dto) {
 		logger.info("myPage get..........");
+	}
+	
+	/**
+	 * 회원 탈퇴 시나리오
+	 *  1. 회원의 개인 정보를 삭제한다.
+	 *  2. 로그아웃을 통해 웹서버에 있는 데이터를 삭제한다.
+	 *  
+	 *  ## 회원이 작성한 글(리뷰)들은 삭제해야 하는가?
+	 * @param id
+	 * @return
+	 * @throws Exception 
+	 */
+	@RequestMapping(value = "/{id}", method=RequestMethod.DELETE)
+	public String remove(@PathVariable("id") Integer id,
+			RedirectAttributes rttr) throws Exception {
+		logger.info("user delete..........\n id:{}", id);
+	    service.remove(id);
+	    rttr.addFlashAttribute("msg", "success");
+	    return "redirect:/user/logout";		// 로그아웃 처리.
+	}
+	
+	@RequestMapping(value = "/{id}", method=RequestMethod.PUT)
+	public String modify(@PathVariable("id") Integer id,
+			User user, String confirmPassword,
+			RedirectAttributes rttr, 
+			HttpSession session) throws Exception {
+		logger.info("user modify..........\n user:{}", user);
+
+		if ( user.getPassword() == null ) {
+			rttr.addFlashAttribute("msg", "emptyPassword");
+		} else if ( user.getPassword().isEmpty() ) {
+			rttr.addFlashAttribute("msg", "emptyPassword");
+		} else if ( user.getPassword() != null && user.getPassword().equals(confirmPassword) ) {
+			service.modify(user);
+			rttr.addFlashAttribute("msg", "success");
+			
+			// 세션의 로그인 사용자 정보 갱신
+			session.setAttribute(SessionName.LOGIN_USER, user);
+		} else {
+			rttr.addFlashAttribute("msg", "noMatchConfirmPassword");
+		}
+		
+		return "redirect:/user/myPage";
 	}
 	
 	@RequestMapping(value = "/changePassword", method=RequestMethod.GET)
