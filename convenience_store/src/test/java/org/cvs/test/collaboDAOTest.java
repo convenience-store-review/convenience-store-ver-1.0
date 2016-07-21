@@ -4,7 +4,9 @@ import javax.inject.Inject;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.review.cvs.collabo.persistence.CollaboBoardDAO;
+//import org.review.cvs.collabo.persistence.CollaboBoardDAO;
+import org.review.cvs.collabo.persistence.CollaboReplyDAO;
+import org.review.cvs.commons.domain.Criteria;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
@@ -15,13 +17,15 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class collaboDAOTest {
 	
 	@Inject
-	private CollaboBoardDAO dao;
+	private CollaboReplyDAO dao2;
+	//private CollaboBoardDAO dao;
+	private Criteria cri;
 	
 	private static final Logger logger=LoggerFactory.getLogger(collaboDAOTest.class);
 	
 	@Test
-	public void testRead() throws Exception {
-		logger.info(dao.collaboRead(6).toString());
+	public void testList() throws Exception {
+		logger.info(dao2.list(7).toString());
 		
 	}
 }

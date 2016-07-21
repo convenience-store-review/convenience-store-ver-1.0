@@ -24,6 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</association>
 		<association property="grade" javaType="Grade">
 		    <id property="id" column="grade_id"/>
+		    <result property="total" column="total"/>
 	    	<result property="taste" column="taste"/>
 	    	<result property="cost_ratio" column="cost_ratio"/>
 	    	<result property="calory" column="calory"/>

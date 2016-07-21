@@ -3,10 +3,13 @@ package org.review.cvs.collabo.controller;
 import javax.inject.Inject;
 
 import org.review.cvs.collabo.service.CollaboBoardService;
+import org.review.cvs.commons.domain.Criteria;
+import org.review.cvs.commons.domain.PageMaker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +24,7 @@ public class CollaboBoardController {
   @Inject
   private CollaboBoardService service;
   
+  //상세페이지 보기
   @RequestMapping(value="/read", method=RequestMethod.GET)
   public void read(@RequestParam("id") int id, Model model) throws Exception{
 	  logger.info("read get...............");
@@ -28,6 +32,28 @@ public class CollaboBoardController {
 	  logger.info("photo..................");
 	  model.addAttribute("list",service.attachPhoto(id));
   }
+  
+  //전체리스트 보기
+//  @RequestMapping(value="/listPage", method=RequestMethod.GET)
+//	public void listPage(@ModelAttribute("cri")Criteria cri, Model model) throws Exception {
+//		logger.info(cri.toString());
+//		
+//		model.addAttribute("list",service.listCriteria(cri));
+//		PageMaker pageMaker = new PageMaker();
+//		pageMaker.setCri(cri);
+//
+//		//테스트용도
+//		//pageMaker.setTotalCount(131);
+//		
+//		pageMaker.setTotalCount(service.listCountCriteria(cri));
+//		
+//		model.addAttribute("pageMaker",pageMaker);
+//	}
+//  
+  
+  
+  
+  
   
   
   @RequestMapping("/list")

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.review.cvs.mapper.CollaboReplyMapper">
+    
+    <!--property는 클래스파일에 변수명 column은 디비  -->
+	<resultMap id="Reply_Map" type="UserReview" >
+	    <id property="id" column="id"/>
+	    <result property="content1" column="content1"/>
+	    <result property="content2" column="content2"/>
+	    <result property="content3" column="content3"/>
+	    <result property="help_count" column="help_count"/>
+	    <result property="regdate" column="regdate"/>
+		<result property="updatedate" column="updatedate"/>
+		<result property="ispenalty" column="ispenalty"/>
+		<association property="user" javaType="User">
+	    	<id property="id" column="user_id"/>
+	    	<result property="email" column="email"/>
+	    	<result property="nickname" column="nickname"/>
+	    	<result property="photo" column="photo"/>
+		</association>
+		<association property="grade" javaType="Grade">
+		    <id property="id" column="grade_id"/>
+		    <result property="total" column="total"/>
+	    	<result property="taste" column="taste"/>
+	    	<result property="cost_ratio" column="cost_ratio"/>
+	    	<result property="calory" column="calory"/>
+		</association>
+		<association property="collaboReview" javaType="CollaboReview">
+		    <id property="id" column="collabo_review_id"/>
+		</association>
+	</resultMap>
+    
+	<select id="list" resultMap="Reply_Map">
+	        select * from tbl_user_review where collabo_review_id = #{c_id}
+	        order by id desc
+    </select>
+    
+	
+	<select id="listPage" resultMap="Reply_Map">
+		select * from tbl_user_review as tur
+		inner join tbl_user as tu
+		inner join tbl_grade as tg
+		inner join tbl_collabo_review as tcr
+		on tur.collabo_review_id = #{c_id} and tur.collabo_review_id= tcr.id
+		and tu.id = tur.user_id
+		and tur.grade_id = tg.id
+		order by tur.id desc limit #{cri.pageStart}, #{cri.perPageNum}
+	
+    </select>
+    
+    <select id="count" resultType="int">
+        select count(collabo_review_id) from tbl_user_review where collabo_review_id = #{c_id}
+    </select>
+    
+	
+
+
+
+</mapper>
