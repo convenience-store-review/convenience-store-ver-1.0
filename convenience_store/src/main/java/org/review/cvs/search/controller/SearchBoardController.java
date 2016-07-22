@@ -35,7 +35,7 @@ public class SearchBoardController {
 
 		logger.info(cri.toString());
 		String st = cri.getSearchType();
-		System.out.println("## st:" + st);
+		//System.out.println("## st:" + st);
 		
 		if (service.listSearchCount(cri) == 0 || service.collaboListSearchCount(cri) == 0) {
 			model.addAttribute("failed", "searchFailed");
@@ -47,7 +47,7 @@ public class SearchBoardController {
 
 		if (st != null && st.equals("l")) {
 			model.addAttribute("cList", service.collaListSearchCriteria(cri));
-			System.out.println("cri.......:" + cri);
+			//System.out.println("cri.......:" + cri);
 			pageMaker.setCri(cri);
 			pageMaker.setTotalCount(service.collaboListSearchCount(cri));
 			model.addAttribute("pageMaker", pageMaker);
@@ -63,7 +63,7 @@ public class SearchBoardController {
 			
 			model.addAttribute("list", service.listSearchCriteria(cri));
 
-			System.out.println("pageMaker.......:" + service.listCountCriteria(cri));
+			//System.out.println("pageMaker.......:" + service.listCountCriteria(cri));
 			pageMaker.setCri(cri);
 			pageMaker.setTotalCount(service.listCountCriteria(cri));
 			model.addAttribute("pageMaker", pageMaker);
