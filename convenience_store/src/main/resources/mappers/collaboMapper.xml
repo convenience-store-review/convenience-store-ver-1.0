@@ -21,6 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    	<id property="id" column="user_id"/>
 	    	<result property="email" column="email"/>
 	    	<result property="nickname" column="nickname"/>
+	    	<result property="photo" column="photo"/>
 		</association>
 		<association property="grade" javaType="Grade">
 		    <id property="id" column="grade_id"/>
@@ -54,15 +55,51 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 나중에 resultMap으로 바꿔야함. 메인화면에 출력하는 부분이라 사진이 필요한데
 		사진 여러개 올린 게시물중에서 대표사진을 뭘로 하는지를 안정함. 대표사진중에 tbl_attach_photo중에 id가 제일 낮은걸 대표사진으로 정할까? -->
+	
+	<!-- /collabo/listall 구현 -->
 	<select id="collabolist" resultType="CollaboReview">
 	    <![CDATA[select * from tbl_collabo_review]]>
 		
     </select>
     
-	<!-- 콜라보 글 등록하기 -->
-	<insert id="create">
-        insert into tbl_collabo_reivew (title, content, writer) values(#{title},#{content},#{writer})
+	<!-- 콜라보 글 등록하기 (콜라보,평점,사진,상품 필요!. 사진 상품은 나중에...)-->
+	<!-- 로그인 되어 있다고 가정. 예로 회원 id 9를 불러온다. -->
+	<select id="create_get_user" resultType="User">
+	    select * from tbl_user where id=9
+	</select>
+	
+	
+	<insert id="create_grade" parameterType="Grade" useGeneratedKeys="true" keyProperty="id">
+        insert into tbl_grade (taste, cost_ratio, calory,total) values(#{taste}, #{cost_ratio}, #{calory},1)
     </insert>
+	<insert id="create_collabo_review">
+        insert into tbl_collabo_review (user_id, grade_id, title, total_price, recipe, tips) values(9,#{grade_id},#{collaboReview.title}, #{collaboReview.total_price},#{collaboReview.recipe},#{collaboReview.tips})
+    </insert>
+    
+    
+	
+	
+	
+    
+	<!-- 콜라보 글 수정하기. -->
+	<update id="update">
+        update tbl_collabo_review as tcr
+		inner join tbl_grade as tg
+		on tcr.grade_id = tg.id
+		set tcr.title =#{title}, tcr.total_price=#{total_price}, tcr.recipe=#{recipe}, tcr.tips=#{tips},
+		tg.taste=#{grade.taste}, tg.cost_ratio=#{grade.cost_ratio}, tg.calory=#{grade.calory}
+		where tcr.id=#{id};
+    </update>
+    
+	    
+	<!--  콜라보 글 삭제하기 -->    
+    <delete id="delete_collabo_review">
+        delete from tbl_collabo_review where id=#{id}
+    </delete>
+    
+    <delete id="delete_grade">
+        delete from tbl_grade where id = #{grade.id}
+    </delete>
 	
 	
     

@@ -7,6 +7,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
+<form role="form" method="post">
+	<input type='hidden' name="id" value="${collaboReview.id}">
+	<input type='hidden' name="grade_id" value="${collaboReview.grade.id}">
+</form> 
+
 
 <h1>Collabo Review 상세보기</h1>
 
@@ -59,7 +64,7 @@
 						</tr>
 
 						<tr>
-							<td>${collaboReview.grade.id}</td>
+							<td>${collaboReview.grade.taste}</td>
 							<td>${collaboReview.grade.cost_ratio}</td>
 							<td>${collaboReview.grade.calory}</td>
 						</tr>
@@ -129,10 +134,13 @@
 				<!-- /.box-body -->
 </div>
 
+<div class="box-footer">
+	<button type="submit" class="btn btn-warning">Modify</button>
+	<button type="submit" class="btn btn-danger">Remove</button>
+	<button type="submit" class="btn btn-primary">List ALL</button>
+</div>
 
-<%-- <form action="read.jsp" method=post>
-	<input type="hidden" name="c_id" value="${collaboReview.id}">
-</form> --%>
+
 
 <table id="replies" class="table table-bordered">
 	
@@ -141,8 +149,8 @@
 
 
 
-	<ul id="replies1">
-	</ul>
+	<!-- <ul id="replies1">
+	</ul> -->
 	
 	<ul class='pagination'>
 	</ul>	
@@ -158,7 +166,7 @@
 
 		function getPageList(page){
 			
-			 // 아래 c_id에 id를 가져와야 하는데 . 위에 html코드에서 스크립트로 어떻게 이동하지??
+			 // 아래 c_id에 id를 가져와야 하는데 . 위에 html코드에서 스크립트로 어떻게 이동하지?? 그냥 변수 쓰면된다.
 		  $.getJSON("/collabo/replies/"+c_id+"/"+page , function(data){
 			  
 			  console.log(data.list.length);
@@ -241,9 +249,36 @@
 			
 		});
 		
-		
-	  		
-	  		
+	</script>
+	
+	<!-- 수정, 삭제 , 리스트 버튼 관련 스크립트 -->
+	<script>
+		$(document).ready(function() {
+			
+			var formObj = $("form[role='form']");
+			console.log(formObj);
+			
+			$(".btn-warning").on("click", function() {
+				formObj.attr("action", "/collabo/modify");
+				formObj.attr("method", "get");
+				formObj.submit();
+			});
+			
+			$(".btn-danger").on("click", function() {
+				if(confirm("정말 삭제할꺼야??")==true) {
+					formObj.attr("action", "/collabo/remove");
+					formObj.submit();	
+				} else {
+					return;
+				}
+				
+			});
+			
+			$(".btn-primary").on("click", function() {
+				self.location = "/collabo/listall";
+			});
+			
+		});
 	</script>
 
 

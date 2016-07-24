@@ -6,11 +6,11 @@ import javax.inject.Inject;
 
 import org.review.cvs.collabo.persistence.CollaboBoardDAO;
 import org.review.cvs.commons.domain.AttachPhoto;
-import org.review.cvs.commons.domain.BoardVO;
 import org.review.cvs.commons.domain.CollaboReview;
-import org.review.cvs.commons.domain.Criteria;
-import org.review.cvs.commons.domain.SearchCriteria;
+import org.review.cvs.commons.domain.Grade;
+import org.review.cvs.commons.domain.User;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
@@ -29,57 +29,40 @@ public class CollaboBoardServiceImpl implements CollaboBoardService {
 		return dao.attachPhoto(id);
 	}
 	
+	
 	@Override
 	public List<CollaboReview> collaboList() throws Exception {
 		return dao.collaboList();
 	}
+	
+	@Transactional
 	@Override
-	public void regist(CollaboReview board) throws Exception {
-		dao.create(board);
+	public void regist(CollaboReview collaboReview,Grade grade) throws Exception {
+		dao.create_grade(grade);
+		System.out.println(grade.getId());
+		dao.create_collabo_review(collaboReview,grade.getId());
 	}
-//	@Override
-//	public void regist(BoardVO board) throws Exception {
-//		dao.create(board);
-//	}
-//	
-//	@Override
-//	public BoardVO read(Integer bno) throws Exception {
-//		return dao.read(bno);
-//	}
-//	
-//	@Override
-//	public void modify(BoardVO board) throws Exception {
-//		dao.update(board);
-//	}
-//	
-//	@Override
-//	public void remove(Integer bno) throws Exception{
-//		dao.delete(bno);
-//	}
-//	
-//	@Override
-//	public List<BoardVO> listAll() throws Exception {
-//		return dao.listAll();
-//	}
-//	
-//	@Override
-//	public List<BoardVO> listCriteria(Criteria cri) throws Exception {
-//		return dao.listCriteria(cri);
-//	}
-//	
-//	@Override
-//	public int listCountCriteria(Criteria cri) throws Exception {
-//		return dao.countPaging(cri);
-//	}
-//	
-//	@Override
-//	public List<BoardVO> listSearchCriteria(SearchCriteria cri) throws Exception {
-//		return dao.listSearch(cri);
-//	}
-//	
-//	@Override
-//	public int listSearchCount(SearchCriteria cri) throws Exception {
-//		return dao.listSearchCount(cri);
-//	}
+	@Override
+	public User regist_get_user(Integer id) throws Exception {
+		return dao.create_get_user(9);
+	}
+	
+	
+	
+	
+	
+	@Override
+	public void modify(CollaboReview board) throws Exception {
+		dao.update(board);
+	}
+	
+	@Transactional
+	@Override
+	public void remove(Integer id, Integer grade_id) throws Exception {
+		dao.delete_collabo_review(id);
+		dao.delete_grade(grade_id);
+		
+	}
+	
 
 }
