@@ -7,8 +7,9 @@ public class AttachPhoto {
 	private String attach_photo_fullname;
 	private Date regdate;
 	private ProductReview productReview;
-	private CollaboReview collabo_review_id;
+	private CollaboReview collaboReview;
 	private UserReview userReview;
+	
 	public String getAttach_photo_fullname() {
 		return attach_photo_fullname;
 	}
@@ -27,11 +28,11 @@ public class AttachPhoto {
 	public void setProductReview(ProductReview productReview) {
 		this.productReview = productReview;
 	}
-	public CollaboReview getCollabo_review_id() {
-		return collabo_review_id;
+	public CollaboReview getCollaboReview() {
+		return collaboReview;
 	}
-	public void setCollabo_review_id(CollaboReview collabo_review_id) {
-		this.collabo_review_id = collabo_review_id;
+	public void setCollaboReview(CollaboReview collaboReview) {
+		this.collaboReview = collaboReview;
 	}
 	public UserReview getUserReview() {
 		return userReview;
@@ -39,5 +40,5 @@ public class AttachPhoto {
 	public void setUserReview(UserReview userReview) {
 		this.userReview = userReview;
 	}
-	
+
 }

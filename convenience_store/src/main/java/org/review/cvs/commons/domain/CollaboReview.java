@@ -5,8 +5,8 @@ import java.util.Date;
 public class CollaboReview {
 	
 	private int id;
-	private User user;   //fk
-	private Grade grade;   //fk
+	private User user;
+	private Grade grade;
 	private String title;
 	private int total_price;
 	private String recipe;
@@ -17,10 +17,6 @@ public class CollaboReview {
 	private int ispenalty;
 	private Date regdate;
 	private Date updatedate;
-	
-	private String test;
-	private String what="what am i doing???? ";
-	private String ddfdf;
 	
 	public int getId() {
 		return id;

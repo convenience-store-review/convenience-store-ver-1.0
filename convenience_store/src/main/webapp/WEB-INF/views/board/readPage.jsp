@@ -16,7 +16,7 @@
 
  <form role="form" action="modifyPage" method="post">
     
-    <input type='hidden' name='bno' value ="${boardVO.bno}">
+    <input type='hidden' name='bno' value ="${productReview.id}">
     <input type='hidden' name='page' value ="${cri.page}">
     <input type='hidden' name='perPageNum' value ="${cri.perPageNum}">
     

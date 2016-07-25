@@ -11,7 +11,17 @@ public class User {
 	private Date regdate;
 	private Date updatedate;
 	private String photo;
+
+	private int role_int;
 	
+	
+	
+	public int getRole_int() {
+		return role_int;
+	}
+	public void setRole_int(int role_int) {
+		this.role_int = role_int;
+	}
 	public int getId() {
 		return id;
 	}

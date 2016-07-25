@@ -3,130 +3,199 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.review.cvs.mapper.BoardMapper">
 
- <insert id="create">
- insert into tbl_board (title, content, writer) 
- values(#{title},#{content}, #{writer})
- </insert>
+<mapper namespace="org.review.cvs.mapper.SearchMapper">
 
- <select id="read" resultType="org.review.cvs.commons.domain.BoardVO">
- select 
-   bno, title, content, writer, regdate, viewcnt 
- from 
-   tbl_board 
- where bno = #{bno}
- </select>
 
- <update id="update">
- update tbl_board set title =#{title}, content =#{content}
- where bno = #{bno}
- </update>
 
- <delete id="delete">
- delete from tbl_board where bno = #{bno}
- </delete>
-
- <select id="listAll" resultType="org.review.cvs.commons.domain.BoardVO">
+	<select id="countPaging" resultType="int">
  <![CDATA[
  select 
-   bno, title, content, writer, regdate, viewcnt 
+   count(id) 
  from 
-   tbl_board 
- where bno > 0 
- order by bno desc, regdate desc
- ]]>  
- </select>
- 
- <select id="listPage" resultType="BoardVO">
- <![CDATA[
- select 
-   bno, title, content, writer, regdate, viewcnt 
- from 
-   tbl_board 
- where bno > 0 
- order by bno desc, regdate desc
- limit #{page}, 10
- ]]>  
- </select>
-
-  <select id="listCriteria" resultType="BoardVO">
- <![CDATA[
- select 
-   bno, title, content, writer, regdate, viewcnt 
- from 
-   tbl_board 
- where bno > 0 
- order by bno desc, regdate desc
- limit #{pageStart}, #{perPageNum}
- ]]>  
- </select>
-
-
-
- <select id="countPaging" resultType="int">
- <![CDATA[
- select 
-   count(bno) 
- from 
-   tbl_board 
+   tbl_product 
  where 
-   bno > 0 
+   id > 0 
  ]]>
- </select>
-
-
-
-<sql id="search">
- <if test="searchType != null" > 
-   <if test="searchType == 't'.toString()">
-     and title like CONCAT('%', #{keyword}, '%')
-   </if>
-   <if test="searchType == 'c'.toString()">
-     and content like CONCAT('%', #{keyword}, '%')
-   </if>
-   <if test="searchType == 'w'.toString()">
-     and writer like CONCAT('%', #{keyword}, '%')
-   </if>     
-   <if test="searchType == 'tc'.toString()">
-     and ( title like CONCAT('%', #{keyword}, '%') OR content like CONCAT('%', #{keyword}, '%'))
-   </if>        
-   <if test="searchType == 'cw'.toString()">
-     and ( content like CONCAT('%', #{keyword}, '%') OR writer like CONCAT('%', #{keyword}, '%'))
-   </if>        
-   <if test="searchType == 'tcw'.toString()">
-     and (   title like CONCAT('%', #{keyword}, '%') 
-           OR 
-             content like CONCAT('%', #{keyword}, '%') 
-           OR 
-             writer like CONCAT('%', #{keyword}, '%'))
-   </if>              
- </if>  
-</sql>
+ <include refid="search"></include>
  
-<select id="listSearch" resultType="BoardVO">
+	</select>
+
+
+	<select id="listCriteria" resultType="Product">
+ <![CDATA[
+ select 
+   id, name, price, photo, company, regdate 
+ from 
+   tbl_product 
+ where id > 0 
+ order by id desc, regdate desc
+ limit #{pageStart}, #{perPageNum}
+ ]]>
+	</select>
+
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 'p'.toString()">
+				and name like CONCAT('%', #{keyword}, '%')
+			</if>
+
+			<if test="searchType == 'c'.toString()">
+				and company like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 't'.toString()">
+				and name like CONCAT('%', #{keyword}, '%')
+			</if>
+		</if>
+	</sql>
+
+
+	<select id="listSearch" resultType="Product">
 <![CDATA[  
   select * 
-  from tbl_board 
-  where bno > 0 
-]]>  
+  from tbl_product 
+  where id > 0 
+]]>
 
-  <include refid="search"></include>
+		<include refid="search"></include>
   
 <![CDATA[    
-  order by bno desc
+  order by name asc
   limit #{pageStart}, #{perPageNum}
-]]>  
-</select>
-  
-<select id="listSearchCount" resultType="int">
-<![CDATA[  
-  select count(bno) 
-  from tbl_board 
-  where bno > 0 
 ]]>
-  <include refid="search"></include>
- 
-</select>  
+	</select>
+
+	<select id="listSearchCount" resultType="int">
+<![CDATA[  
+  select count(id) 
+  from tbl_product 
+  where id > 0 
+]]>
+		<include refid="search"></include>
+
+	</select>
+	
+<!-- colla -->
+
+<select id="collaCountPaging" resultType="int">
+ <![CDATA[
+ select 
+   count(id) 
+ from 
+   tbl_collabo_review 
+ where 
+   id > 0 
+ ]]>
+	</select>
+
+	<select id="collaListCriteria" resultType="CollaboReview">
+ <![CDATA[
+ select 
+   id, title, recipe, like_count, grade_total_count, view_count, regdate
+ from 
+   tbl_collabo_review 
+ where id > 0 
+ order by id desc, regdate desc
+ limit #{pageStart}, #{perPageNum}
+ ]]>
+	</select>
+
+
+	<sql id="collaSearch">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+				and title like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'l'.toString()">
+				and title like CONCAT('%', #{keyword}, '%')
+			</if>
+		</if>
+	</sql>
+
+	<select id="collaboSearch" resultType="CollaboReview">
+<![CDATA[  
+  select * 
+  from tbl_collabo_review 
+  where id > 0 
+]]>
+
+		<include refid="collaSearch"></include>
   
+<![CDATA[    
+  order by title asc
+  limit #{pageStart}, #{perPageNum}
+]]>
+	</select>
+
+
+	<select id="collaListSearchCount" resultType="int">
+<![CDATA[  
+  select count(id) 
+  from tbl_collabo_review 
+  where id > 0 
+]]>
+		<include refid="collaSearch"></include>
+
+	</select>
+	
+<!-- user_reivew -->	
+	
+	<select id="userReviewCountPaging" resultType="int">
+ <![CDATA[
+ select 
+   count(id) 
+ from 
+   tbl_user_review 
+ where 
+   id > 0 
+ ]]>
+	</select>
+
+	<select id="userReviewListCriteria" resultType="UserReview">
+ <![CDATA[
+ select 
+   id, user_id, grade_id, product_review_id, collabo_review_id, content1, content2, content3, regdate
+ from 
+   tbl_user_review 
+ where id > 0 
+ order by id desc, regdate desc
+ limit #{pageStart}, #{perPageNum}
+ ]]>
+	</select>
+
+
+	<sql id="userReSearch">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+				and content1 like CONCAT('%', #{keyword}, '%') or content2 like CONCAT('%', #{keyword}, '%')
+				or content3 like CONCAT('%', #{keyword}, '%')
+			</if>
+		</if>
+	</sql>
+
+	<select id="userReviewSearch" resultType="UserReview">
+<![CDATA[  
+  select * 
+  from tbl_user_review 
+  where id > 0 
+]]>
+
+		<include refid="userReSearch"></include>
+  
+<![CDATA[    
+  order by content1 asc
+  limit #{pageStart}, #{perPageNum}
+]]>
+	</select>
+
+
+	<select id="userReviewListSearchCount" resultType="int">
+<![CDATA[  
+  select count(id) 
+  from tbl_user_review 
+  where id > 0 
+]]>
+		<include refid="userReSearch"></include>
+
+	</select>
 </mapper>
