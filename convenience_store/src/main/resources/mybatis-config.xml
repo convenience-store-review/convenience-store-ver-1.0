@@ -5,7 +5,11 @@
 <configuration>
 
   <typeAliases>
+<<<<<<< HEAD
     <package name="org.zerock.domain"/>
+=======
+    <package name="org.review.cvs.commons.domain"/>    
+>>>>>>> branch 'master' of https://github.com/convenience-store-review/convenience-store-ver-1.0.git
   </typeAliases>
   
 </configuration>

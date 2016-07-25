@@ -1,4 +1,4 @@
-package org.zerock.domain;
+package org.review.cvs.commons.domain;
 
 public class SearchCriteria extends Criteria{
 

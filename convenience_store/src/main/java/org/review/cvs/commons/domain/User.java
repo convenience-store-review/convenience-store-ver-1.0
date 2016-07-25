@@ -1,4 +1,4 @@
-package org.zerock.domain;
+package org.review.cvs.commons.domain;
 
 import java.util.Date;
 
