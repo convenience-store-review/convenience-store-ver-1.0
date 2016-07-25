@@ -3,6 +3,8 @@ package org.review.cvs.collabo.persistence;
 import java.util.List;
 
 import org.review.cvs.commons.domain.Criteria;
+import org.review.cvs.commons.domain.Grade;
+import org.review.cvs.commons.domain.User;
 import org.review.cvs.commons.domain.UserReview;
 
 
@@ -10,9 +12,16 @@ public interface CollaboReplyDAO {
 
 	public List<UserReview> list(Integer c_id) throws Exception; //bno였음. collaboReview id여야함.
 	
-	public void create(UserReview vo) throws Exception;
+	//user는 정보 get용. 콜라보리뷰의 아이디도 여기서 겟 해서 userReview 등록시 사용해야하나?
+	public User create_reply_get_user(Integer id) throws Exception;
+	
+	public void create_reply_user_review(UserReview userReview, Integer grade_id) throws Exception; 
+	
+	public void create_reply_grade(Grade grade) throws Exception;
+	
 	
 	public void update(UserReview vo) throws Exception;
+	
 	
 	public void delete(Integer id) throws Exception;  //rno였음. userReview의 id 여야함.
 	

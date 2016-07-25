@@ -42,6 +42,7 @@ public class CollaboBoardServiceImpl implements CollaboBoardService {
 		System.out.println(grade.getId());
 		dao.create_collabo_review(collaboReview,grade.getId());
 	}
+	
 	@Override
 	public User regist_get_user(Integer id) throws Exception {
 		return dao.create_get_user(9);

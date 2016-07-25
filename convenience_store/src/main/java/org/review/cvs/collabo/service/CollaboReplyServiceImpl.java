@@ -6,6 +6,8 @@ import javax.inject.Inject;
 
 import org.review.cvs.collabo.persistence.CollaboReplyDAO;
 import org.review.cvs.commons.domain.Criteria;
+import org.review.cvs.commons.domain.Grade;
+import org.review.cvs.commons.domain.User;
 import org.review.cvs.commons.domain.UserReview;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +18,18 @@ public class CollaboReplyServiceImpl implements CollaboReplyService {
 	@Inject
 	private CollaboReplyDAO dao;
 	
+	
 	@Override
-	public void addReply(UserReview vo) throws Exception {
-		dao.create(vo);
+	public void addReply(UserReview userReview,Grade grade) throws Exception {
+		dao.create_reply_grade(grade);
+		dao.create_reply_user_review(userReview, grade.getId());
 	}
+	@Override
+	public User addReply_get_user(Integer id) throws Exception {
+		return dao.create_reply_get_user(id);
+	}
+	
+	
 	
 	@Override
 	public List<UserReview> listReply (Integer c_id) throws Exception {

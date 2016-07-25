@@ -6,6 +6,13 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<style type="text/css">
+	#replyButton {
+		float:right;
+	}
+</style>
+
+
 
 <form role="form" method="post">
 	<input type='hidden' name="id" value="${collaboReview.id}">
@@ -14,6 +21,7 @@
 
 
 <h1>Collabo Review 상세보기</h1>
+
 
 
 
@@ -173,15 +181,31 @@
 			  
 			  var str ="";
 			  $(data.list).each(function(){
+				  if(this.user.photo==null) {
+					  this.user.photo="/resources/img/IMG-0009.JPG";
+				  }
 				  str+=  
 				  "<tr data-id='"+this.id+"' class='replyLi'>"
 				  	+"<td>"
 				  		+"<div class="+"thumbnail"+">"
 						  +"<img width="+ "100px" + " height=" + "100px" + " src=" + this.user.photo + " class=" + "img-circle" + ">"
 						  +"<td>"
+						  + "<div id = 'replyButton' class='btn-group'>"
+							+  "<button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown' aria-label='Right Align' aria-expanded='false'>"
+								+   "<span class='glyphicon glyphicon-align-justify' aria-hidden='true'></span>"
+							+  "</button>"
+						  	+ "<ul class='dropdown-menu' role='menu'>"
+						    	+ "<li><a href='#'>Modify</a></li>"
+						    	+ "<li><a href='#'>Remove</a></li>"
+						    	+ "<li class='divider'></li>"
+						    	+ "<li>" + this.user.email + "</li>"
+						  	+ "</ul>"
+						 + "</div>"
+						  
 						  +"<div class="+"caption"+">"
-						  	+ "<h4>" +this.user.email+" , "+ this.user.nickname + "</h4>"  
-						  	+ "<p>" + this.content1 + " : "+ this.content2 + " : "+ this.content3 + "</p>"
+						  	+ "<h4>" +this.user.email+" , "+ this.user.nickname + "</h4>"
+						  	+ "<p>" + "1.total : "+this.grade.total + " 2.taste : "+ this.grade.taste + "  3.cost_ratio : "+ this.grade.cost_ratio + " 4.calory :" + this.grade.calory + "</p>"
+						  	+ "<p>" + "1.추천이유 : "+this.content1 + "  2.아쉬운점 : "+ this.content2 + "  3.하고싶은말 : "+ this.content3 + "</p>"
 						 +"</div>"
 						 +"</td>"
 						+"</div>"

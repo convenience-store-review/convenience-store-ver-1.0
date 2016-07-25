@@ -8,11 +8,13 @@ import javax.inject.Inject;
 
 import org.review.cvs.collabo.service.CollaboReplyService;
 import org.review.cvs.commons.domain.Criteria;
+import org.review.cvs.commons.domain.Grade;
 import org.review.cvs.commons.domain.PageMaker;
 import org.review.cvs.commons.domain.UserReview;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,8 +22,32 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/collabo/replies")
 public class CollaboReplyController {
+	
 	@Inject
 	private CollaboReplyService service;
+	
+	//삭제는 c_id/id  delete
+	//조회는 c_id/page get
+	//수정은 c_id/id
+	//등록은 ?? c_id /id post?
+	
+	@RequestMapping(value="", method=RequestMethod.POST)
+	public ResponseEntity<String> register(@RequestBody UserReview userReview, @RequestBody Grade grade) {
+		
+		ResponseEntity<String> entity =null;
+		
+		try {
+			
+			
+			service.addReply(userReview, grade);
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return entity;
+	}
+	
 	
 	// 페이징 처리를 위해서 /게시물 번호/페이지번호 를 패턴으로 처리하고 있습니다.
 	@RequestMapping(value="/{c_id}/{page}", method=RequestMethod.GET)

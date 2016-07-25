@@ -55,6 +55,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select count(collabo_review_id) from tbl_user_review where collabo_review_id = #{c_id}
     </select>
     
+    <!-- USER REVIEW등록!! -->
+    <!-- 현재 USER정보 가져오고 그 다음에 그 정보를 인서트 해야함. 로그인 기능이 없으므로 일단 USER는 ID=9로 고정   -->
+    <select id="create_reply_get_user" resultType="User">
+	    select * from tbl_user where id=9
+	</select>
+	
+    <insert id="create_reply_user_review">
+        
+    </insert>
+    
+    <insert id="create_reply_grade">
+        
+    </insert>
+    
+    
+    
+    <!-- update는 조인, delete는 트랜잭션 사용 -->
 	
 
 
