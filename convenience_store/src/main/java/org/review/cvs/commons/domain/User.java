@@ -11,10 +11,7 @@ public class User {
 	private Date regdate;
 	private Date updatedate;
 	private String photo;
-
 	private int role_int;
-	
-	
 	
 	public int getRole_int() {
 		return role_int;
