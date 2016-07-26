@@ -7,6 +7,12 @@
     <meta HTTP-EQUIV="contentType" Content="text/html";charset="UTF-8">
     <title>AdminLTE 2 | Dashboard</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    
+    <!-- jQuery 2.1.4 -->
+    <script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+    
+    
     <!-- Bootstrap 3.3.4 -->
     <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- Font Awesome Icons -->
@@ -28,7 +34,5 @@
     
   </head>
   <body>
-      <!-- jQuery 2.1.4 -->
-    <script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-  	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+      
     

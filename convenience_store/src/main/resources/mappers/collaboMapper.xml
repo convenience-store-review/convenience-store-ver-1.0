@@ -44,7 +44,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap id="photo_Map" type="AttachPhoto" >
 	    <id property="attach_photo_fullname" column="fullname"/>
 		<result property="regdate" column="regdate"/>
-		<association property="collabo_review_id" javaType="CollaboReview">
+		<association property="collaboReview" javaType="CollaboReview">
 	    	<id property="id" column="collabo_review_id"/> <!-- tbl_attach_photo의 컬럼. -->
 		</association>
 	</resultMap>

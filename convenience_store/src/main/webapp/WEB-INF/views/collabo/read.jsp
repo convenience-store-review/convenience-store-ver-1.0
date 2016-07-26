@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <%@ include file="../include/header.jsp" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>	
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <style type="text/css">
@@ -142,11 +142,19 @@
 				<!-- /.box-body -->
 </div>
 
+<button type="button" id="replyAddBtn" class="btn btn-primary" data-toggle='modal' data-target='#addReplyModal'>ADD REPLY</button>
+
+
+
 <div class="box-footer">
 	<button type="submit" class="btn btn-warning">Modify</button>
 	<button type="submit" class="btn btn-danger">Remove</button>
 	<button type="submit" class="btn btn-primary">List ALL</button>
 </div>
+
+
+
+
 
 
 
@@ -162,6 +170,44 @@
 	
 	<ul class='pagination'>
 	</ul>	
+
+
+
+
+<!-- Modal -->
+<div id="addReplyModal" class="modal modal-primary" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+    
+      <div class="modal-header">
+        <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+        <h4 class="modal-title">로그인유저 닉네임</h4>
+      </div>
+      
+      <div class="modal-body">
+        <label for="exampleInputEmail1">추천이유</label>
+        <p><textarea name='content1' id='content1' placeholder='추천이유!'></textarea></p>
+        
+        <label for="exampleInputEmail1">아쉬운점</label>
+        <p><textarea name='content2' id='content2' placeholder='아쉬운점!'></textarea></p>
+        
+        <label for="exampleInputEmail1">하고싶은말!</label>
+        <p><textarea name='content3' id='content3' placeholder='하고싶은말!'></textarea></p>
+      </div>
+      
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div> -->
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
 
 
 </section>
@@ -304,7 +350,38 @@
 			
 		});
 	</script>
-
+	
+	<!-- <script>
+	$("#replyAddBtn").on("click",function(){
+		
+		 
+		 var replyerObj = $("#newReplyWriter");
+		 var replytextObj = $("#newReplyText");
+		 var replyer = replyerObj.val();
+		 var replytext = replytextObj.val();
+		
+		  
+		  $.ajax({
+				type:'post',
+				url:'/replies/',
+				headers: { 
+				      "Content-Type": "application/json",
+				      "X-HTTP-Method-Override": "POST" },
+				dataType:'text',
+				data: JSON.stringify({bno:bno, replyer:replyer, replytext:replytext}),
+				success:function(result){
+					console.log("result: " + result);
+					if(result == 'SUCCESS'){
+						alert("등록 되었습니다.");
+						replyPage = 1;
+						getPage("/replies/"+bno+"/"+replyPage );
+						replyerObj.val("");
+						replytextObj.val("");
+					}
+			}});
+	});
+	</script>
+ -->
 
 
 
