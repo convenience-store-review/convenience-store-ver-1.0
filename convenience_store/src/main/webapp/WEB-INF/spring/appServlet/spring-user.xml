@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+    
+    <context:component-scan base-package="org.review.cvs.user.controller" />
+    
+    <context:component-scan base-package="org.review.cvs.user.persistence" />
+    <context:component-scan base-package="org.review.cvs.user.service" />
+    
+    <!-- 다국어 처리 -->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+       <property name="basenames">
+           <list>
+               <value>message.label</value>
+               <value>message.error</value>
+           </list>
+       </property>
+       <property name="defaultEncoding" value="UTF-8" />
+    </bean>
+    
+    <!-- 객체 검증 처리 -->
+    <!-- 기본 JSR-303 Validator를 스프링 빈으로 설정 -->
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+       <property name="validationMessageSource" ref="messageSource" />
+    </bean>
+    
+    <!-- 로그인 처리 -->
+    <bean id="loginInterceptor" class="org.review.cvs.user.interceptor.LoginInterceptor" />
+    <!-- 접근 권한 처리 -->
+    <bean id="authInterceptor" class="org.review.cvs.user.interceptor.AuthInterceptor" />
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+           <mvc:mapping path="/user/loginPost"/>
+           <ref bean="loginInterceptor" />
+        </mvc:interceptor>
+
+        <mvc:interceptor>
+           <mvc:mapping path="/sboard/list"/>
+           <mvc:mapping path="/sboard/register"/>
+           <mvc:mapping path="/sboard/modifyPage"/>
+           <mvc:mapping path="/sboard/removePage"/>
+
+           <mvc:mapping path="/user/mypage"/>
+           <ref bean="authInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>
+    
+    <!-- gmail -->
+    <bean id="mailSender" class ="org.springframework.mail.javamail.JavaMailSenderImpl" >
+        <property name="host" value="smtp.gmail.com" />
+        <property name="port" value="587" />
+        <property name="defaultEncoding" value="utf-8"/>
+        <property name="username" value="ID@gmail.com" />
+        <property name="password" value="PW" />
+
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.smtp.auth">true</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="email" class="org.review.cvs.user.domain.Email" />
+    <bean id="emailSender" class="org.review.cvs.user.domain.EmailSender" />
+    
+</beans>
