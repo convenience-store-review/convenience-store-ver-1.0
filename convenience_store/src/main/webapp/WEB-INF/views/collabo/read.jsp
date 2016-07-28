@@ -10,6 +10,19 @@
 	#replyButton {
 		float:right;
 	}
+	
+	#wrapper_grade {
+		float:left;
+		width:140px;
+		overflow:hidden;
+	}
+	#www {
+		width:600px;
+		text-align:center;
+		position:relative;
+		overflow:hidden;
+		
+	}
 </style>
 
 
@@ -142,14 +155,14 @@
 				<!-- /.box-body -->
 </div>
 
-<button type="button" id="replyAddBtn" class="btn btn-primary" data-toggle='modal' data-target='#addReplyModal'>ADD REPLY</button>
+<button type="button" id="replyAddBtn" class="btn btn-primary">ADD REPLY</button>
 
 
 
 <div class="box-footer">
 	<button type="submit" class="btn btn-warning">Modify</button>
 	<button type="submit" class="btn btn-danger">Remove</button>
-	<button type="submit" class="btn btn-primary">List ALL</button>
+	<button type="submit" id= 'goListall' class="btn btn-primary">List ALL</button>
 </div>
 
 
@@ -173,15 +186,14 @@
 
 
 
-
-<!-- Modal -->
+<!-- 
 <div id="addReplyModal" class="modal modal-primary" role="dialog">
   <div class="modal-dialog">
-    <!-- Modal content-->
+    Modal content
     <div class="modal-content">
     
       <div class="modal-header">
-        <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">로그인유저 닉네임</h4>
       </div>
       
@@ -196,10 +208,54 @@
         <p><textarea name='content3' id='content3' placeholder='하고싶은말!'></textarea></p>
       </div>
       
-      <!-- <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div> -->
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
       
+    </div>
+  </div>
+</div> -->
+
+
+<div class="modal fade bs-example-modal-lg" id="addReplyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="control-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div id="www">
+          	<div id="wrapper_grade" class="form-group"><input type="text"  name='taste' class="form-control" placeholder="taste"></div>
+          	<div id="wrapper_grade" class="form-group"><input type="text"  name='cost_ratio' class="form-control" placeholder="ratio"></div>
+          	<div id="wrapper_grade" class="form-group"><input type="text"  name='calory' class="form-control" placeholder="calory"></div>
+          	<div id="wrapper_grade" class="form-group"><input type="text"  name='total' readonly="true" class="form-control" placeholder="total"></div>
+		</div>
+		<br>
+          <div class="form-group">
+            <label for="message-text" class="control-label">추천이유</label>
+            <textarea class="form-control" id="content1"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label">아쉬운점</label>
+            <textarea class="form-control" id="content2"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label">하고싶은말</label>
+            <textarea class="form-control" id="content3"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
     </div>
   </div>
 </div>
@@ -324,9 +380,13 @@
 	<!-- 수정, 삭제 , 리스트 버튼 관련 스크립트 -->
 	<script>
 		$(document).ready(function() {
-			
 			var formObj = $("form[role='form']");
 			console.log(formObj);
+			
+			$("#replyAddBtn").on("click", function() {
+				console.log("모달토글!");
+				$("#addReplyModal").modal('toggle');
+			});
 			
 			$(".btn-warning").on("click", function() {
 				formObj.attr("action", "/collabo/modify");
@@ -344,7 +404,8 @@
 				
 			});
 			
-			$(".btn-primary").on("click", function() {
+			$("#goListall").on("click", function() {
+				console.log("리스트올로가자!!");
 				self.location = "/collabo/listall";
 			});
 			
