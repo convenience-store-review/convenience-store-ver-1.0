@@ -33,6 +33,15 @@
    <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
  </bean>
  
+  <!-- JDBC를 위한 PlatformTransactionManater -->
+ <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="dataSource" />
+ </bean>
+ 
+ <tx:annotation-driven transaction-manager="transactionManager"/>
+ 
+ <context:component-scan base-package="org.review.cvs.commons.persistence"></context:component-scan>
+ <context:component-scan base-package="org.review.cvs.commons.service"></context:component-scan>
 
  <context:component-scan base-package="org.review.cvs.collabo.persistence"></context:component-scan>
  <context:component-scan base-package="org.review.cvs.collabo.service"></context:component-scan>
@@ -48,10 +57,5 @@
  <aop:config>
  </aop:config>
 
-	<bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"></property>
-	</bean>
-	<tx:annotation-driven />
 
 </beans>
