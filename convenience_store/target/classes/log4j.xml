@@ -23,10 +23,17 @@
 		<level value="info" />
 	</logger>
 	
-	<logger name="org.zerock.interceptor">
+	<logger name="org.review.cvs.commons.controller">
 		<level value="info" />
 	</logger>
-	<logger name="org.zerock.user.controller">
+	
+	<logger name="org.review.cvs.commons.interceptor">
+		<level value="info" />
+	</logger>
+	<logger name="org.review.cvs.user.controller">
+		<level value="info" />
+	</logger>
+	<logger name="org.review.cvs.user.interceptor">
 		<level value="info" />
 	</logger>
 	
