@@ -2,6 +2,16 @@ package org.review.cvs.commons.domain;
 
 import java.util.Date;
 
+import org.review.cvs.user.exception.IdPasswordNotMatchingException;
+
+/**
+ * roleId
+ * 	0: 가입안한 사람 default
+ * 	1: 어드민
+ * 	2: 가입한 회원
+ * @author kjlee
+ *
+ */
 public class User {
 
 	private int id;
@@ -11,14 +21,9 @@ public class User {
 	private Date regdate;
 	private Date updatedate;
 	private String photo;
-	private int role_int;
 	
-	public int getRole_int() {
-		return role_int;
-	}
-	public void setRole_int(int role_int) {
-		this.role_int = role_int;
-	}
+	private int roleId;		// default 0
+	
 	public int getId() {
 		return id;
 	}
@@ -61,4 +66,24 @@ public class User {
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
+	public int getRoleId() {
+		return roleId;
+	}
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
+	}
+	
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", email=" + email + ", password=" + password + ", nickname=" + nickname
+				+ ", regdate=" + regdate + ", updatedate=" + updatedate + ", photo=" + photo + ", roleId=" + roleId
+				+ "]";
+	}
+	public void changePassword(String oldPassword, String newPassword) {
+		if (!password.equals(oldPassword))
+			throw new IdPasswordNotMatchingException();
+		
+		this.password = newPassword;
+	}
+	
 }

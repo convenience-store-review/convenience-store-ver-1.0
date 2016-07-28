@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.review.cvs.mapper.UserMapper">
+
+    <select id="login" resultType="User">
+        select id, email, password, nickname, photo from tbl_user
+        where email = #{email} and password = #{password}
+    </select>
+    
+    <update id="keepLogin">
+        update tbl_user
+        set sessionKey = #{sessionId}, sessionLimit = #{next}
+        where email = #{email}  
+    </update>
+    
+    <select id="checkUserWithSessionKey" resultType="User">
+        select * from tbl_user
+        where
+            sessionKey = #{value}
+            and sessionLimit > now()
+    </select>
+    
+    <select id="selectByEmail" resultType="User">
+        select email, password, nickname, photo from tbl_user
+        where email = #{email}
+    </select>
+    
+    <select id="selectByNickname" resultType="User">
+        select email, password, nickname, photo from tbl_user
+        where nickname = #{nickname}
+    </select>
+
+	<insert id="create">
+		insert into tbl_user (email, password, nickname) 
+		values(#{email}, #{password}, #{nickname})
+	</insert>
+	
+	<update id="update">
+	   UPDATE tbl_user
+	   SET password = #{password},
+	       nickname = #{nickname},
+	       photo = #{photo}
+	   WHERE id = #{id};
+	</update>
+	
+	<delete id="delete">
+	   delete from tbl_user where id = #{id};
+	</delete>
+
+</mapper>
