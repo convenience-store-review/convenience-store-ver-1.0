@@ -23,6 +23,10 @@
 		overflow:hidden;
 		
 	}
+/* 	
+	#re_modi {
+		
+	} */
 </style>
 
 
@@ -155,7 +159,7 @@
 				<!-- /.box-body -->
 </div>
 
-<button type="button" id="replyAddBtn" class="btn btn-primary">ADD REPLY</button>
+<button type="button" id="replyOpenAddBtn" class="btn btn-primary">ADD REPLY</button>
 
 
 
@@ -186,79 +190,8 @@
 
 
 
-<!-- 
-<div id="addReplyModal" class="modal modal-primary" role="dialog">
-  <div class="modal-dialog">
-    Modal content
-    <div class="modal-content">
-    
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">로그인유저 닉네임</h4>
-      </div>
-      
-      <div class="modal-body">
-        <label for="exampleInputEmail1">추천이유</label>
-        <p><textarea name='content1' id='content1' placeholder='추천이유!'></textarea></p>
-        
-        <label for="exampleInputEmail1">아쉬운점</label>
-        <p><textarea name='content2' id='content2' placeholder='아쉬운점!'></textarea></p>
-        
-        <label for="exampleInputEmail1">하고싶은말!</label>
-        <p><textarea name='content3' id='content3' placeholder='하고싶은말!'></textarea></p>
-      </div>
-      
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-      
-    </div>
-  </div>
-</div> -->
+<%@ include file="collaboModal.jsp" %>
 
-
-<div class="modal fade bs-example-modal-lg" id="addReplyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="exampleModalLabel">New message</h4>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="control-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div id="www">
-          	<div id="wrapper_grade" class="form-group"><input type="text"  name='taste' class="form-control" placeholder="taste"></div>
-          	<div id="wrapper_grade" class="form-group"><input type="text"  name='cost_ratio' class="form-control" placeholder="ratio"></div>
-          	<div id="wrapper_grade" class="form-group"><input type="text"  name='calory' class="form-control" placeholder="calory"></div>
-          	<div id="wrapper_grade" class="form-group"><input type="text"  name='total' readonly="true" class="form-control" placeholder="total"></div>
-		</div>
-		<br>
-          <div class="form-group">
-            <label for="message-text" class="control-label">추천이유</label>
-            <textarea class="form-control" id="content1"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="control-label">아쉬운점</label>
-            <textarea class="form-control" id="content2"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="control-label">하고싶은말</label>
-            <textarea class="form-control" id="content3"></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 
@@ -273,6 +206,79 @@
 		
 		getPageList(1);
 		//getPageList때문에 getAllList의 로그
+		
+		
+		//하나의 모달로 등록, 수정 같이 사용하기 위해서. 등록은 post로 값을 전달하고
+		//수정은 먼저 값을 
+		function getModal(rno) {
+				console.log("모달토글!");
+				$("#modReplyModal").modal('toggle');
+				
+				
+				var formObj = $("form[role='form2']");
+				var test = rno;
+				console.log(rno);
+				
+				
+				//수정에서 모달창 팝업했을때 기존 정보가 미리 등록 되어있게 json객체를 가져와 
+				//정보를 나타나게 한다.! 
+				
+				$.getJSON("/collabo/replies/mod/"+rno, function(data) {
+					document.getElementById("mod_content1").innerHTML=data.content1;
+					document.getElementById("mod_content2").innerHTML=data.content2;
+					document.getElementById("mod_content3").innerHTML=data.content3;
+					
+					document.getElementById("mod_reply_taste").value=data.grade.taste;
+					document.getElementById("mod_reply_cost_ratio").value=data.grade.cost_ratio;
+					document.getElementById("mod_reply_calory").value=data.grade.calory;
+					document.getElementById("mod_reply_total").value=data.grade.total;
+					
+				});
+				
+				$("#mod_replyModBtn").on("click",function(){
+					 
+					var content1Obj = $("#mod_content1");
+					var content2Obj = $("#mod_content2");
+					var content3Obj = $("#mod_content3");
+					var content1 = content1Obj.val();
+					var content2 = content2Obj.val();
+					var content3 = content3Obj.val();
+					 
+					 
+					var taste = document.getElementsByName("mod_re_taste")[0].value;
+					var cost_ratio = document.getElementsByName("mod_re_cost_ratio")[0].value;
+					var calory = document.getElementsByName("mod_re_calory")[0].value;
+					
+					var total = document.getElementsByName("mod_re_total")[0].value;
+					 
+					console.log("콜라보id"+c_id +content1 + content2 + content3 + taste + cost_ratio + calory + "   total : " + total + "  user_id:"+ user_id);
+					 
+			 		
+					  
+					  $.ajax({
+							type:'put',
+							url:'/collabo/replies/mod/'+rno,
+							headers: { 
+							      "Content-Type": "application/json",
+							      "X-HTTP-Method-Override": "PUT" },
+							dataType:'text',
+							data: JSON.stringify(
+								{content1:content1, content2:content2, content3:content3, grade : {taste:taste, cost_ratio:cost_ratio, calory:calory, total:total}}),
+							success:function(result){
+								console.log("result: " + result);
+								if(result == 'SUCCESS'){
+									alert("수정 되었습니다.");
+									self.location = "/collabo/read?id="+c_id;
+									/* getPage("/collabo/read?id="+c_id); */
+								}
+						}}); 
+					}); 
+				
+			
+			}
+		function getRemove(rno) {
+			
+		}
 
 		function getPageList(page){
 			
@@ -297,14 +303,19 @@
 								+   "<span class='glyphicon glyphicon-align-justify' aria-hidden='true'></span>"
 							+  "</button>"
 						  	+ "<ul class='dropdown-menu' role='menu'>"
-						    	+ "<li><a href='#'>Modify</a></li>"
-						    	+ "<li><a href='#'>Remove</a></li>"
+//						  		+ "<form role='form2' method='post'>"
+//						  			+"<input type='hidden' name='rno' value='" + this.id + "= '>"
+//						    		+ "<li><a data-toggle='modal' href='#addReplyModal'>Modify</a></li>"
+								+ "<li><a data-toggle='modal' href='#' onClick='getModal("+ this.id +"); return false;'>Modify</a></li>"
+//						    	+ "</form>"
+						    	+ "<li><a href='#' onClick='getRemove("+ this.id +"); return false;'>Remove</a></li>"
 						    	+ "<li class='divider'></li>"
 						    	+ "<li>" + this.user.email + "</li>"
 						  	+ "</ul>"
 						 + "</div>"
 						  
 						  +"<div class="+"caption"+">"
+						  	+ "Reply Modify TEST - id =" + this.id
 						  	+ "<h4>" +this.user.email+" , "+ this.user.nickname + "</h4>"
 						  	+ "<p>" + "1.total : "+this.grade.total + " 2.taste : "+ this.grade.taste + "  3.cost_ratio : "+ this.grade.cost_ratio + " 4.calory :" + this.grade.calory + "</p>"
 						  	+ "<p>" + "1.추천이유 : "+this.content1 + "  2.아쉬운점 : "+ this.content2 + "  3.하고싶은말 : "+ this.content3 + "</p>"
@@ -377,15 +388,20 @@
 		
 	</script>
 	
-	<!-- 수정, 삭제 , 리스트 버튼 관련 스크립트 -->
+	<!-- 수정, 삭제 , 리스트 버튼 관련 초기버튼 설정 스크립트 -->
 	<script>
 		$(document).ready(function() {
 			var formObj = $("form[role='form']");
 			console.log(formObj);
 			
-			$("#replyAddBtn").on("click", function() {
+//			document.getElementById("#replyModBtn").style.visibility='hidden';
+			
+			
+			
+			$("#replyOpenAddBtn").on("click", function() {
 				console.log("모달토글!");
 				$("#addReplyModal").modal('toggle');
+				
 			});
 			
 			$(".btn-warning").on("click", function() {
@@ -409,41 +425,94 @@
 				self.location = "/collabo/listall";
 			});
 			
+			
 		});
 	</script>
 	
-	<!-- <script>
-	$("#replyAddBtn").on("click",function(){
-		
-		 
-		 var replyerObj = $("#newReplyWriter");
-		 var replytextObj = $("#newReplyText");
-		 var replyer = replyerObj.val();
-		 var replytext = replytextObj.val();
-		
-		  
-		  $.ajax({
-				type:'post',
-				url:'/replies/',
-				headers: { 
-				      "Content-Type": "application/json",
-				      "X-HTTP-Method-Override": "POST" },
-				dataType:'text',
-				data: JSON.stringify({bno:bno, replyer:replyer, replytext:replytext}),
-				success:function(result){
-					console.log("result: " + result);
-					if(result == 'SUCCESS'){
-						alert("등록 되었습니다.");
-						replyPage = 1;
-						getPage("/replies/"+bno+"/"+replyPage );
-						replyerObj.val("");
-						replytextObj.val("");
-					}
-			}});
-	});
-	</script>
- -->
+	<!--  -->
+	<script type="text/javascript">
+				$("input").on("input", function() {
+					var taste = document.getElementsByName("re_taste")[0].value;
+					var cost_ratio = document.getElementsByName("re_cost_ratio")[0].value;
+					var calory = document.getElementsByName("re_calory")[0].value;
+					
+					var total = document.getElementsByName("re_total")[0];
+					
+					taste = Number(taste);
+					cost_ratio = Number(cost_ratio);
+					calory = Number(calory);
+					
+					//나중에 고쳐야함.
+					
+					total.value = ((taste + cost_ratio + calory) / 3).toFixed(1);
+					
 
+
+				});
+				
+	</script>
+	
+	
+	
+	
+<script>
+	
+</script>
+<script>
+	var c_id = ${collaboReview.id};
+	var user_id=9;
+//registerGET!! 댓글등록창에서 유저의 정보를 나타내줄때 사용하는 것! 나중에 유저사진 추가!!
+	//$.getJSON("/collabo/replies/"+user_id , function(data){
+	  $.getJSON("/collabo/replies/9" , function(data){
+		  
+		  console.log(data.nickname);
+		  var nickname = data.nickname+"님이 글을 작성하십니다.";
+		  document.getElementById("reply_register_nick").innerHTML=nickname;
+		
+	  });
+	  
+	  $("#replyAddBtn").on("click",function(){
+			 
+			var content1Obj = $("#content1");
+			var content2Obj = $("#content2");
+			var content3Obj = $("#content3");
+			var content1 = content1Obj.val();
+			var content2 = content2Obj.val();
+			var content3 = content3Obj.val();
+			 
+			 
+			var taste = document.getElementsByName("re_taste")[0].value;
+			var cost_ratio = document.getElementsByName("re_cost_ratio")[0].value;
+			var calory = document.getElementsByName("re_calory")[0].value;
+			
+			var total = document.getElementsByName("re_total")[0].value;
+			 
+			console.log("콜라보id"+c_id +content1 + content2 + content3 + taste + cost_ratio + calory + "   total : " + total + "  user_id:"+ user_id);
+			 
+	 		
+			  
+			  $.ajax({
+					type:'post',
+					url:'/collabo/replies/regi',
+					headers: { 
+					      "Content-Type": "application/json",
+					      "X-HTTP-Method-Override": "POST" },
+					dataType:'text',
+					data: JSON.stringify(
+						{collaboReview : {id : c_id}, content1:content1, content2:content2, content3:content3, grade : {taste:taste, cost_ratio:cost_ratio, calory:calory, total:total}}),
+					success:function(result){
+						console.log("result: " + result);
+						if(result == 'SUCCESS'){
+							alert("등록 되었습니다.");
+							self.location = "/collabo/read?id="+c_id;
+							/* getPage("/collabo/read?id="+c_id); */
+						}
+				}}); 
+			}); 
+
+	  
+		
+	</script>
 
 
 

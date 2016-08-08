@@ -88,7 +88,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		inner join tbl_grade as tg
 		on tcr.grade_id = tg.id
 		set tcr.title =#{title}, tcr.total_price=#{total_price}, tcr.recipe=#{recipe}, tcr.tips=#{tips},
-		tg.taste=#{grade.taste}, tg.cost_ratio=#{grade.cost_ratio}, tg.calory=#{grade.calory}
+		tg.taste=#{grade.taste}, tg.cost_ratio=#{grade.cost_ratio}, tg.calory=#{grade.calory},tg.total=#{grade.total}
 		where tcr.id=#{id};
     </update>
     

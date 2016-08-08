@@ -17,13 +17,19 @@ public interface CollaboReplyDAO {
 	
 	public void create_reply_user_review(UserReview userReview, Integer grade_id) throws Exception; 
 	
-	public void create_reply_grade(Grade grade) throws Exception;
+	public Integer create_reply_grade(Grade grade) throws Exception;
+	
+	//modify get  아래 update가 put
+	public UserReview update_get(Integer rno) throws Exception;
+	
+	public void update_put(Integer rno,UserReview userReview) throws Exception;
 	
 	
-	public void update(UserReview vo) throws Exception;
 	
 	
 	public void delete(Integer id) throws Exception;  //rno였음. userReview의 id 여야함.
+	
+	
 	
 	public List<UserReview> listPage(
 			Integer c_id, Criteria cri) throws Exception;  //bno였

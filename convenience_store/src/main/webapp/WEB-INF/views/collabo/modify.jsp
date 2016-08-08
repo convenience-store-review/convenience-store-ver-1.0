@@ -72,13 +72,14 @@
 							<th>맛</th>
 							<th>가성비</th>
 							<th>칼로리</th>
+							<th>합계</th>
 						</tr>
 
 						<tr>
 							<div class="form-group"><td><input type="number" step="0.1" name='grade.taste' class="form-control" value="${collaboReview.grade.taste}"></td></div>
 							<div class="form-group"><td><input type="number" step="0.1" name='grade.cost_ratio' class="form-control" value="${collaboReview.grade.cost_ratio}"></td></div>
 							<div class="form-group"><td><input type="number" step="0.1" name='grade.calory' class="form-control" value="${collaboReview.grade.calory}"></td></div>
-							
+							<div class="form-group"><td><input type="number" readonly="true" name='grade.total' class="form-control" value="${collaboReview.grade.total}"></td></div>
 													
 						</tr>
 
@@ -101,6 +102,30 @@
 </div>
 
 </section>
+
+
+<script type="text/javascript">
+				$("input").on("input", function() {
+					var taste = document.getElementsByName("grade.taste")[0].value;
+					var cost_ratio = document.getElementsByName("grade.cost_ratio")[0].value;
+					var calory = document.getElementsByName("grade.calory")[0].value;
+					
+					var total = document.getElementsByName("grade.total")[0];
+					
+					taste = Number(taste);
+					cost_ratio = Number(cost_ratio);
+					calory = Number(calory);
+					
+					//나중에 고쳐야함.
+					total.value = ((taste + cost_ratio + calory) / 3).toFixed(1);
+
+				});
+				
+	</script>
+
+
+
+
 <script>
 	$(document).ready(function() {
 		var formObj = $("form[role='form']");

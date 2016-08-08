@@ -120,22 +120,6 @@ public class CollaboBoardController {
   
   
   
-  
-  
-  
-  
-  
-  @RequestMapping("/list")
-	public String sayHello() {
-		return "Hello World";
-	}
-  
-  @RequestMapping("/hello")
-	public String sayHello2() {
-		return "Hello World";
-	}
-  
-  
 
 //  @RequestMapping(value = "/register", method = RequestMethod.GET)
 //  public void registerGET(BoardVO board, Model model) throws Exception {

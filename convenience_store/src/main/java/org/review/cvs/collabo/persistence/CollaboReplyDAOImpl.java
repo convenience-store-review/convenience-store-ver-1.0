@@ -38,21 +38,34 @@ public class CollaboReplyDAOImpl implements CollaboReplyDAO {
 	@Override
 	public void create_reply_user_review(UserReview userReview, Integer grade_id) throws Exception {
 		Map<String,Object> paramMap = new HashMap<String,Object>();
+		System.out.println(userReview.getCollaboReview().getId());
 		paramMap.put("userReview" , userReview);
 		paramMap.put("grade_id", grade_id);
 		session.insert(namespace + ".create_reply_user_review" , paramMap);
 	}
 		
 	@Override
-	public void create_reply_grade(Grade grade) throws Exception {
+	public Integer create_reply_grade(Grade grade) throws Exception {
 		session.insert(namespace + ".create_reply_grade",grade);
+		return grade.getId();
 	}
 	
 	
 	@Override
-	public void update(UserReview vo) throws Exception  {
-		session.update(namespace + ".update", vo);
+	public UserReview update_get(Integer rno) throws Exception{
+		return session.selectOne(namespace + ".update_get_info",rno);
 	}
+	
+	@Override
+	public void update_put(Integer rno,UserReview userReview) throws Exception {
+		Map<String,Object> paramMap = new HashMap<String,Object>();
+		System.out.println("rno : " + rno + "   userReview.id : " + userReview.getContent1().toString());
+		paramMap.put("userReview" , userReview);
+		paramMap.put("rno", rno);
+		session.insert(namespace + ".update_put" , paramMap);
+		
+	}
+	
 	
 	@Override
 	public void delete(Integer id) throws Exception {

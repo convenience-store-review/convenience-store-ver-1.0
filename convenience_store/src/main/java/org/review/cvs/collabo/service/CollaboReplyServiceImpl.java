@@ -10,6 +10,7 @@ import org.review.cvs.commons.domain.Grade;
 import org.review.cvs.commons.domain.User;
 import org.review.cvs.commons.domain.UserReview;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class CollaboReplyServiceImpl implements CollaboReplyService {
@@ -18,11 +19,12 @@ public class CollaboReplyServiceImpl implements CollaboReplyService {
 	@Inject
 	private CollaboReplyDAO dao;
 	
-	
+	@Transactional
 	@Override
 	public void addReply(UserReview userReview,Grade grade) throws Exception {
-		dao.create_reply_grade(grade);
-		dao.create_reply_user_review(userReview, grade.getId());
+		int id = dao.create_reply_grade(grade);
+		System.out.println("[dao]" + grade.getId());
+		dao.create_reply_user_review(userReview, id);
 	}
 	@Override
 	public User addReply_get_user(Integer id) throws Exception {
@@ -36,9 +38,16 @@ public class CollaboReplyServiceImpl implements CollaboReplyService {
 		return dao.list(c_id);
 	}
 	
-	public void modifyReply(UserReview vo) throws Exception {
-		dao.update(vo);
+
+	public UserReview modifyReplyGet(Integer rno) throws Exception {
+		return dao.update_get(rno);
 	}
+	
+	public void modifyReplyPut(Integer rno,UserReview userReview) throws Exception {
+		dao.update_put(rno,userReview);
+	}
+	
+	
 	
 	public void removeReply(Integer id) throws Exception {
 		dao.delete(id);
