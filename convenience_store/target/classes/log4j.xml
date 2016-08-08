@@ -15,6 +15,10 @@
 		<level value="info" />
 	</logger>
 	
+	<logger name="org.review.cvs.main.controller">
+		<level value="info" />
+	</logger>
+	
 	<logger name="org.review.cvs.search.controller">
 		<level value="info" />
 	</logger>

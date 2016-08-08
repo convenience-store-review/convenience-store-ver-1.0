@@ -20,6 +20,7 @@
     <input type='hidden' name='user_review_id' value ="${userReview.id}">
     <input type='hidden' name='user_id' value ="${userReview.user.id}">
     <input type='hidden' name='grade_id' value ="${userReview.grade.id}">
+    <input type="hidden" name="id" value ="${userReview.productReview.id}">
     
  </form>
 
