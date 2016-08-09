@@ -11,6 +11,8 @@
     <!-- jQuery 2.1.4 -->
     <script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+  	<script type="text/javascript" src="/resources/js/jquery.rateyo.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.1.1/jquery.rateyo.min.js"></script>
     
     
     <!-- Bootstrap 3.3.4 -->
@@ -24,6 +26,8 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins 
          folder instead of downloading all of them to reduce the load. -->
     <link href="/resources/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/resources/js/jquery.rateyo.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.1.1/jquery.rateyo.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

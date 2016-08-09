@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <%@include file="../include/header.jsp"%>
+
 
 <!-- Main content -->
 <section class="content">
@@ -28,22 +28,38 @@
 								name='id' class="form-control" value="${userReview.id}"
 								readonly="readonly">
 						</div>
-
-						<div class="form-group">
-							<label for="exampleInputEmail1">Taste</label> <input type="text"
-								name='taste' class="form-control" value="${userReview.grade.taste}"
-								id = "taste">
+						
+						<div class = "clearfix">
+							<div class = "pull-left rating-container">
+								<div id = taste class = "rating jq-ry-container"></div>
+							
+								<div class = "counter" style="display:inline;
+															  right:80%;
+															   background-color:white;
+															   color:black;
+															   font-weight: bold;
+															   margin-top:-22%"></div>
+							</div>
 						</div>
 						<div class="form-group">
-							<label for="exampleInputEmail1">Cost_ratio</label> <input type="text"
+							<label for="exampleInputEmail1">Taste</label> <input type="hidden"
+								name='taste' class="form-control" value="${userReview.grade.taste}">
+						</div>
+						<div id = cost_ratio></div>
+						<div class="counter"></div>
+						<div class="form-group">
+							<label for="exampleInputEmail1">Cost_ratio</label> <input type="hidden"
 								name='cost_ratio' class="form-control" value="${userReview.grade.cost_ratio}">
 						</div>
+						<div id = "calory"></div>
+						<div class="counter"></div>
 						<div class="form-group">
-							<label for="exampleInputEmail1">Calory</label><input type="text"
+							<label for="exampleInputEmail1">Calory</label><input type="hidden"
 								name='calory' class="form-control" value="${userReview.grade.calory}">
 						</div>
+						<div id="total"></div>
 						<div class="form-group">
-							<label for="exampleInputEmail1">Total</label> <input type="text"
+							<label for="exampleInputEmail1">Total</label> <input type="hidden"
 								name='total' class="form-control" value="${userReview.grade.total}"
 								readonly="readonly">
 						</div>
@@ -74,15 +90,71 @@
 					var calory = document.getElementsByName("calory")[0].value;
 					
 					var total = document.getElementsByName("total")[0];
-					
+					var total_score = document.getElementsByName("total")[0].value;
 					taste = Number(taste);
 					cost_ratio = Number(cost_ratio);
 					calory = Number(calory);
 					
 					total.value = ((taste + cost_ratio + calory) / 3).toFixed(1);
+					
 				});
 				
+				$(function () {
+					var total_score = document.getElementsByName("total")[0].value;
+					var taste = document.getElementsByName("taste")[0].value;
+					var cost_ratio = document.getElementsByName("cost_ratio")[0].value;
+					var calory = document.getElementsByName("calory")[0].value;
+					
+					taste = Number(taste);
+					cost_ratio = Number(cost_ratio);
+					calory = Number(calory);
+					
+					  $("#total").rateYo({
+					    rating: total_score,
+					    spacing: "10px",
+					    readOnly: true
+					  });
+					  
+					  $("#taste").rateYo({
+						    rating: taste,
+						    spacing: "10px",
+						    multiColor : true,
+						   
+						    
+						    onChange: function (rating, rateYoInstance) {
+						    	taste = rating;
+						    	$("#total").rateYo("option", "rating", ((taste + cost_ratio + calory) / 3).toFixed(1));
+						        $(this).next().text(rating);
+						      }
+						  });
+					  $("#cost_ratio").rateYo({
+						    rating: cost_ratio,
+						    spacing: "10px",
+						    multiColor : true,
+						    
+						    onChange: function (rating, rateYoInstance) {
+						    	cost_ratio = rating;
+						    	$("#total").rateYo("option", "rating", ((taste + cost_ratio + calory) / 3).toFixed(1));
+						        $(this).next().text(rating);
+						      }
+						  });
+					  $("#calory").rateYo({
+						    rating: calory,
+						    spacing: "10px",
+						    multiColor : true,
+						    
+						    onChange: function (rating, rateYoInstance) {
+						    	calory = rating;
+						    	$("#total").rateYo("option", "rating", ((taste + cost_ratio + calory) / 3).toFixed(1));
+						        $(this).next().text(rating);
+						      }
+						  });
+					});
+				
+				
 				</script>
+				
+				
 
 				<script>
 				
@@ -108,6 +180,8 @@
 
 									});
 				</script>
+				
+				
 
 
 
@@ -121,7 +195,6 @@
 	<!-- /.row -->
 </section>
 <!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
+
 
 <%@include file="../include/footer.jsp"%>

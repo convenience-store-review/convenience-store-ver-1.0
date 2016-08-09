@@ -34,7 +34,7 @@
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Taste</label>
-      <input type="text" name='title' class="form-control" 
+      <input type="hidden" name='title' class="form-control" 
          value="${userReview.grade.taste}" readonly="readonly">
     </div>
     <div class="form-group">
