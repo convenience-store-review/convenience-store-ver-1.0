@@ -1,8 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="eng">
 	<head>
-		<meta charset="utf-8">
-		<title>Bootstrap E-commerce Templates</title>
+		 <meta HTTP-EQUIV="contentType" Content="text/html";charset="UTF-8">
+		<title>편의점 상품 리뷰</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="">
 		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
@@ -37,9 +39,9 @@
 				<div class="span8">
 					<div class="account pull-right">
 						<ul class="user-menu">				
-							<li><a href="#">My Account</a></li>
-							<li><a href="cart.html">Your Cart</a></li>
-							<li><a href="checkout.html">Checkout</a></li>					
+							<li><a href="#">단품 리뷰</a></li>
+							<li><a href="cart.html">콜라보 리뷰</a></li>
+							<li><a href="checkout.html">할인정보</a></li>					
 							<li><a href="register.html">Login</a></li>		
 						</ul>
 					</div>
@@ -47,33 +49,7 @@
 			</div>
 		</div>
 		<div id="wrapper" class="container">
-			<section class="navbar main-menu">
-				<div class="navbar-inner main-menu">				
-					<a href="index.html" class="logo pull-left"><img src="resources/themes/images/logo.png" class="site_logo" alt=""></a>
-					<nav id="menu" class="pull-right">
-						<ul>
-							<li><a href="./products.html">Woman</a>					
-								<ul>
-									<li><a href="./products.html">Lacinia nibh</a></li>									
-									<li><a href="./products.html">Eget molestie</a></li>
-									<li><a href="./products.html">Varius purus</a></li>									
-								</ul>
-							</li>															
-							<li><a href="./products.html">Man</a></li>			
-							<li><a href="./products.html">Sport</a>
-								<ul>									
-									<li><a href="./products.html">Gifts and Tech</a></li>
-									<li><a href="./products.html">Ties and Hats</a></li>
-									<li><a href="./products.html">Cold Weather</a></li>
-								</ul>
-							</li>							
-							<li><a href="./products.html">Hangbag</a></li>
-							<li><a href="./products.html">Best Seller</a></li>
-							<li><a href="./products.html">Top Seller</a></li>
-						</ul>
-					</nav>
-				</div>
-			</section>
+			
 			<section  class="homepage-slider" id="home-slider">
 				<div class="flexslider">
 					<ul class="slides">
@@ -83,9 +59,9 @@
 						<li>
 							<img src="resources/themes/images/carousel/banner-2.jpg" alt="" />
 							<div class="intro">
-								<h1>Mid season sale</h1>
-								<p><span>Up to 50% Off</span></p>
-								<p><span>On selected items online and in stores</span></p>
+								<h1>BEST 콜라보 리뷰</h1>
+								<p><span>추천 이유 : 소금이라 할지니 인생에</span></p>
+								<p><span>아쉬운 점 : 착목하는곳이 원대하고</span></p>		
 							</div>
 						</li>
 					</ul>
@@ -101,7 +77,7 @@
 						<div class="row">
 							<div class="span12">
 								<h4 class="title">
-									<span class="pull-left"><span class="text"><span class="line">Feature <strong>Products</strong></span></span></span>
+									<span class="pull-left"><span class="text"><span class="line">최신 <strong>리뷰</strong></span></span></span>
 									<span class="pull-right">
 										<a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
 									</span>
@@ -190,7 +166,7 @@
 						<div class="row">
 							<div class="span12">
 								<h4 class="title">
-									<span class="pull-left"><span class="text"><span class="line">Latest <strong>Products</strong></span></span></span>
+									<span class="pull-left"><span class="text"><span class="line">도움이 되는 <strong>BEST</strong> 리뷰</span></span></span>
 									<span class="pull-right">
 										<a class="left button" href="#myCarousel-2" data-slide="prev"></a><a class="right button" href="#myCarousel-2" data-slide="next"></a>
 									</span>
