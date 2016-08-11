@@ -53,7 +53,8 @@
 								<c:out value="${cri.searchType eq 'l'?'selected':''}"/>>
 								콜라보</option>
 
-						</select> <input type="text" name='keyword' id="keywordInput"
+						</select> 
+						<input type="text" name='keyword' id="keywordInput"
 							value='${cri.keyword }'>
 						<button id='searchBtn'>Search</button>
 						<button id='newBtn'>New Board</button>

@@ -451,7 +451,7 @@ section.navbar{
 	color:#111111;
 	display:inline-block;
 	font-weight:bold;
-	font-size:11px;
+	font-size:15px;
 	margin:15px 0 0px 0;
 }
 .product-box a.category{
@@ -526,8 +526,7 @@ section.our_client .row{
 	margin-bottom:0;
 }
 .search_form input{
-	background: url(../images/search.png) #fff no-repeat 97% 6px;
-	color:#fff;
+	color:#7a787b;
 	text-shadow:none;
 	padding-right:25px;	
 	border:1px solid #eee;

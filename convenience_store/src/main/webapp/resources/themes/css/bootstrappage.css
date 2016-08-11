@@ -65,6 +65,11 @@
     .uneditable-input.span1 {
         width: 50px;
     }
+    input.span0,
+    textarea.span0,
+    .uneditable-input.span0 {
+        width: 10px;
+    }
     .thumbnails {
         margin-left: -20px;
     }

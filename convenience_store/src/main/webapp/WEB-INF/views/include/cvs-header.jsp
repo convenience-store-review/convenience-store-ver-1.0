@@ -33,7 +33,27 @@
 	<body>
 	<div id="top-bar" class="container">
 			<div class="row">
-				<div class="span4">
+			<div class = "span0">
+				<select name="searchType" class="selectbox">
+							<option value="n"
+								<c:out value="${cri.searchType == null?'selected':''}"/>>
+								---</option>
+							<option value="t"
+								<c:out value="${cri.searchType eq 't' ?'selected':''}"/>>
+								전체</option>
+							<option value="p"
+								<c:out value="${cri.searchType eq 'p'?'selected':''}"/>>
+								상품명</option>
+							<option value="c"
+								<c:out value="${cri.searchType eq 'c'?'selected':''}"/>>
+								제조사</option>
+							<option value="l" class="collaboSel"
+								<c:out value="${cri.searchType eq 'l'?'selected':''}"/>>
+								콜라보</option>
+
+						</select>
+				</div>
+				<div class="span2">
 					<form method="POST" class="search_form">
 						<input type="text" class="input-block-level search-query" Placeholder="eg. T-sirt">
 					</form>
