@@ -23,6 +23,13 @@
 		overflow:hidden;
 		
 	}
+	
+	/* 댓글에서 페이징 1번이랑 다른번들이 크기 차이가 생겨서 일단 고정값으로 만들어놨다. */
+	/* 나중에 반응형 작업할때 고정크기 대신 %로 바꿔주는 작업을 해야할 것 같음!*/
+	#thumbsize {
+		width:183px;
+	}
+	
 /* 	
 	#re_modi {
 		
@@ -185,8 +192,14 @@
 	<!-- <ul id="replies1">
 	</ul> -->
 	
-	<ul class='pagination'>
-	</ul>	
+	<div class='pagination pagination-small pagination-centered'>
+		<ul id='pagination'>
+		
+		</ul>	
+	</div>
+	
+	
+		
 
 
 
@@ -212,7 +225,7 @@
 		//수정은 먼저 값을 
 		function getModal(rno) {
 				console.log("모달토글!");
-				$("#modReplyModal").modal('toggle');
+				$("#modReplyModal").modal('show');
 				
 				
 				var formObj = $("form[role='form2']");
@@ -277,6 +290,30 @@
 			
 			}
 		function getRemove(rno) {
+			if(confirm("정말 삭제할꺼야??")==true) {
+				console.log("삭제할꺼야? 창 출력");
+				$.ajax({
+					type:'delete',
+					url:'/collabo/replies/remove/'+rno,
+					headers: { 
+					      "Content-Type": "application/json",
+					      "X-HTTP-Method-Override": "DELETE" },
+					dataType:'text', 
+					success:function(result){
+						console.log("result: " + result);
+						if(result == 'SUCCESS'){
+							alert("삭제 되었습니다.");
+							self.location = "/collabo/read?id="+c_id;
+						}
+				}});
+				
+				
+				
+				
+
+			} else {
+				return;
+			}
 			
 		}
 
@@ -294,10 +331,12 @@
 				  }
 				  str+=  
 				  "<tr data-id='"+this.id+"' class='replyLi'>"
-				  	+"<td>"
+				  	+"<td id='thumbsize'>"
 				  		+"<div class="+"thumbnail"+">"
 						  +"<img width="+ "100px" + " height=" + "100px" + " src=" + this.user.photo + " class=" + "img-circle" + ">"
-						  +"<td>"
+						+"</div>"	  
+					+"</td>"
+					+"<td>"
 						  + "<div id = 'replyButton' class='btn-group'>"
 							+  "<button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown' aria-label='Right Align' aria-expanded='false'>"
 								+   "<span class='glyphicon glyphicon-align-justify' aria-hidden='true'></span>"
@@ -321,8 +360,6 @@
 						  	+ "<p>" + "1.추천이유 : "+this.content1 + "  2.아쉬운점 : "+ this.content2 + "  3.하고싶은말 : "+ this.content3 + "</p>"
 						 +"</div>"
 						 +"</td>"
-						+"</div>"
-						+  "</td>"
 					+"</tr>";
 			  });
 			  
@@ -370,12 +407,12 @@
 			if(pageMaker.next){
 				str += "<li><a href='"+(pageMaker.endPage + 1)+"'> >> </a></li>";
 			}
-			$('.pagination').html(str);				
+			$('#pagination').html(str);				
 		}
 		
 		var replyPage = 1;
 		
-		$(".pagination").on("click", "li a", function(event){
+		$("#pagination").on("click", "li a", function(event){
 			
 			//a href의 기본동작인 페이지 전환을 막는 역할을 한다.
 			event.preventDefault();
@@ -400,7 +437,7 @@
 			
 			$("#replyOpenAddBtn").on("click", function() {
 				console.log("모달토글!");
-				$("#addReplyModal").modal('toggle');
+				$("#addReplyModal").modal('show');
 				
 			});
 			

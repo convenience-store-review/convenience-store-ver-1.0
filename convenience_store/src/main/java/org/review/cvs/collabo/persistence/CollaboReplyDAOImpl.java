@@ -66,11 +66,24 @@ public class CollaboReplyDAOImpl implements CollaboReplyDAO {
 		
 	}
 	
+	//삭제 ~~~~~~~~~~~~~
+	@Override
+	public Integer delete_select_grade(Integer rno) throws Exception {
+		return session.selectOne(namespace + ".delete_select_grade",rno);
+	}
 	
 	@Override
-	public void delete(Integer id) throws Exception {
-		session.delete(namespace + ".delete", id);
+	public void deleteReply(Integer rno) throws Exception {
+		session.delete(namespace + ".deleteReply", rno);
 	}
+	@Override
+	public void deleteReply_Grade(Integer grade_id) throws Exception {
+		session.delete(namespace + ".deleteReply_Grade", grade_id);
+	}
+	
+	
+	
+	
 	
 	@Override
 	public List<UserReview> listPage(

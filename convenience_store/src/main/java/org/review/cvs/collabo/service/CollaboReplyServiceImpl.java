@@ -38,25 +38,34 @@ public class CollaboReplyServiceImpl implements CollaboReplyService {
 		return dao.list(c_id);
 	}
 	
-
+	@Override
 	public UserReview modifyReplyGet(Integer rno) throws Exception {
 		return dao.update_get(rno);
 	}
 	
+	@Override
 	public void modifyReplyPut(Integer rno,UserReview userReview) throws Exception {
 		dao.update_put(rno,userReview);
 	}
 	
 	
-	
-	public void removeReply(Integer id) throws Exception {
-		dao.delete(id);
+	@Transactional
+	@Override
+	public void removeReply(Integer rno) throws Exception {
+		int grade_id = dao.delete_select_grade(rno);
+		dao.deleteReply(rno);
+		dao.deleteReply_Grade(grade_id);
+		System.out.println("## reply삭제에서 userReview먼저 지워야 grade 지우는게 가능하다!!");
+		
 	}
 	
+	@Override
 	public List<UserReview> listReplyPage(Integer c_id, Criteria cri) throws Exception {
 		return dao.listPage(c_id, cri);
 	}
 	
+	
+	@Override
 	public int count(Integer c_id) throws Exception {
 		return dao.count(c_id);
 	}

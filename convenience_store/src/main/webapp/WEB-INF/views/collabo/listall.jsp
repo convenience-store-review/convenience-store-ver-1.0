@@ -14,7 +14,7 @@
 
 
 <h1>Collabo Review 전체보기</h1>
-
+<button class="btn btn-primary">ddd</button>
 
 
 <section class="content">

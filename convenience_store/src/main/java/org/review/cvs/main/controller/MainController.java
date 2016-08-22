@@ -16,19 +16,19 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
-@RequestMapping("/*")
+//@RequestMapping("/*")
 public class MainController {
 
 private static final Logger logger = LoggerFactory.getLogger(MainController.class);
-  
-  @Inject
-  private CollaboBoardService service;
-  
-  //상세페이지 보기
-  @RequestMapping(value="", method=RequestMethod.GET)
-  public String dd() throws Exception{
-	  return "index";
-	  
-  }
+//  
+//  @Inject
+//  private CollaboBoardService service;
+//  
+//  //상세페이지 보기
+//  @RequestMapping(value="", method=RequestMethod.GET)
+//  public String dd() throws Exception{
+//	  return "index";
+//	  
+//  }
   
 }

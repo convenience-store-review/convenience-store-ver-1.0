@@ -26,8 +26,13 @@ public interface CollaboReplyDAO {
 	
 	
 	
+	public Integer delete_select_grade(Integer rno) throws Exception;
 	
-	public void delete(Integer id) throws Exception;  //rno였음. userReview의 id 여야함.
+	public void deleteReply(Integer id) throws Exception;  //rno였음. userReview의 id 여야함.
+	
+	public void deleteReply_Grade(Integer grade_id) throws Exception;
+	
+	
 	
 	
 	

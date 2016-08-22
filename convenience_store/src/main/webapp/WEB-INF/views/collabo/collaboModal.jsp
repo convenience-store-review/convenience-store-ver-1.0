@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 	
 
-<div class="modal fade bs-example-modal-lg" id="addReplyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade bs-example-modal-lg" id="addReplyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -48,7 +48,7 @@
 
 
 
-<div class="modal fade bs-example-modal-lg" id="modReplyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade bs-example-modal-lg" id="modReplyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -90,3 +90,28 @@
     </div>
   </div>
 </div>
+
+
+
+<script type="text/javascript">
+				$("input").on("input", function() {
+					var taste = document.getElementsByName("mod_re_taste")[0].value;
+					var cost_ratio = document.getElementsByName("mod_re_cost_ratio")[0].value;
+					var calory = document.getElementsByName("mod_re_calory")[0].value;
+					
+					var total = document.getElementsByName("mod_re_total")[0];
+					
+					taste = Number(taste);
+					cost_ratio = Number(cost_ratio);
+					calory = Number(calory);
+					
+					//나중에 고쳐야함.
+					
+					total.value = ((taste + cost_ratio + calory) / 3).toFixed(1);
+					
+
+
+				});
+				
+	</script>
+

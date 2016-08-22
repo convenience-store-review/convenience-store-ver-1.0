@@ -16,11 +16,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @RestController
 @RequestMapping("/collabo/replies")
@@ -40,6 +44,29 @@ public class CollaboReplyController {
 //	public void registerGET() {
 //			
 //	}
+	
+	@RequestMapping(value = "/remove/{rno}", method=RequestMethod.DELETE)
+	@ResponseBody
+	 public ResponseEntity<String> removeReply(@PathVariable("rno") int rno) throws Exception {
+		 
+		 System.out.println("## delete userreview rno :" + rno);
+			ResponseEntity<String> entity =null;
+			
+			try {
+				
+				//현재 로그인한 사용자가 9 라고 가정.
+//				service.addReply_get_user(9);
+				
+				service.removeReply(rno);
+				entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+			} catch(Exception e) {
+				e.printStackTrace();
+				entity=new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+			}
+			
+			return entity;
+	 }
+	
 	
 	@RequestMapping(value="/mod/{rno}", method=RequestMethod.GET)
 	public ResponseEntity<UserReview> modifyGET(@PathVariable("rno") Integer rno) {

@@ -102,5 +102,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		tg.total=#{userReview.grade.total} where tur.id=#{rno}
 	</update>
 
+	
+	<!-- 삭제하기. -->
+	
+	<select id="delete_select_grade" resultType="Integer">
+	    select grade_id from tbl_user_review where id= #{rno}
+	</select>
+	
+	
+	<delete id="deleteReply_Grade">
+        delete from tbl_grade where id = #{grade_id}
+    </delete>
+    
+	
+	<delete id="deleteReply">
+        delete from tbl_user_review where id=#{rno}
+    </delete>
+    
+    
+	
 
 </mapper>
